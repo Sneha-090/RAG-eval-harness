@@ -5,8 +5,8 @@ from pathlib import Path
 
 from src.ingestion.loader import Document, load_documents
 
-CHUNK_SIZE = 800  # maximum characters per chunk
-OVERLAP = 100     # characters repeated from the end of the previous chunk
+CHUNK_SIZE = 550 # max charcaters per chunk
+OVERLAP = 80   # characters repeated from the end of the previous chunk
 
 
 @dataclass
