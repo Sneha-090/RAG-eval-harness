@@ -3,3 +3,4 @@ __pycache__/
 .env
 chroma_db/
 chunk_report.txt
+retrieval_check.txt
