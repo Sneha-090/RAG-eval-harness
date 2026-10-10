@@ -4,3 +4,14 @@ __pycache__/
 chroma_db/
 chunk_report.txt
 retrieval_check.txt
+
+key_check.txt
+
+llm_test.txt
+
+
+latency_probe.txt
+latency_probe.txt
+
+
+latency_probe.txt
