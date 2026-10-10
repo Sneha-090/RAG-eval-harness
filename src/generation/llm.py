@@ -11,7 +11,7 @@ load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 # The models are chosen in ONE place. Every evaluation run must record them.
 GENERATOR = {"provider": "groq", "model": "openai/gpt-oss-120b"}
-JUDGE = {"provider": "gemini", "model": "gemini-3.8-flash"}
+JUDGE = {"provider": "gemini", "model": "gemini-3.5-flash"}
 
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
