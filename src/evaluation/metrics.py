@@ -87,6 +87,7 @@ def summarize(rows, observations, documents, k):
     latency = {'count': len(latencies), 'mean_s': mean(latencies) if latencies else None,
                'p95_s': sorted(latencies)[math.ceil(.95 * len(latencies)) - 1] if latencies else None}
     return {'metrics_version': 2, 'k': k, 'requested': len(rows),
+            'splits': sorted({r.get('split', 'unspecified') for r in rows}),
             'answerable_requested': sum(r['answerable'] for r in rows),
             'answerable_missing_retrieval': missing,
             'unanswerable_requested': sum(not r['answerable'] for r in rows),

@@ -26,8 +26,8 @@ No keys or HTTP response headers are saved.
 Each output directory contains a manifest (selected questions, settings, source
 and corpus hashes, code commit, index metadata), one JSON checkpoint per question,
 and a summary with completed/failed counts. Retrieved chunk text and separate
-retrieval/generation timing are retained. Quality scores are deliberately absent:
-the benchmark and evidence-scoring contract still need review.
+retrieval/generation timing are retained. Capture does not calculate quality scores. Run the offline retrieval scorer
+below; the benchmark remains draft and answer judging is pending.
 
 Re-run the identical command to skip completed questions. Failed questions are
 retained unless --retry-errors is supplied. Retrieval is saved before generation,
@@ -60,3 +60,17 @@ it offline left all 10 question checkpoint timestamps unchanged. No generator
 or judge API calls were made. This is execution verification, not quality scoring.
 An earlier offline attempt failed because the model had not yet been cached;
 the runner now loads the model before starting question checkpoints.
+
+
+## Offline retrieval scoring (metrics version 2)
+
+    python -m src.evaluation.run --split dev --output runs/config-a-dev-draft-v2
+    python -m src.evaluation.report --run runs/config-a-dev-draft-v2
+
+The report command makes no model/API calls. It writes evaluation.json and
+report.md with Hit@K, MRR@K, required-source recall, exact evidence coverage,
+complete-evidence rate and per-category counts. Missing retrievals are explicit;
+unanswerable questions are excluded from retrieval quality averages. Corpus or
+metric changes after capture require a fresh run. Test questions stay reserved.
+The stored run summary describes capture; evaluation.json describes retrieval
+scoring. Correctness, faithfulness, abstention and judge agreement remain unset.

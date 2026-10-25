@@ -1,0 +1,781 @@
+{
+  "signature": "71a254492d5fa147da55fafeeda6aa87ccd6e0684ce3cb52831e9d7cccf937f8",
+  "created_utc": "2026-10-25T07:13:48.982509+00:00",
+  "contract": {
+    "version": 1,
+    "config": "A",
+    "mode": "retrieval",
+    "k": 5,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "collection": "fastapi_baseline",
+    "chunk_size": 550,
+    "overlap": 80,
+    "dataset_sha256": "a3a5df854be64a1f3dd803cf3f6a3fb57cfc368cebca5be7b03be70f64364e02",
+    "files": {
+      "data/CORPUS.md": "3044fcf8b4b9bd851e9bc3ccf2b58541e33e822d8fac5f5eaca6de0977774f88",
+      "data/raw/body.md": "f93940f261696e7112108207f117d2b7079a59391ca426383dce4b0f1462ae62",
+      "data/raw/cookie-params.md": "478b9caa27f40b98232c8e9e4e28f1aedf656e7a7293ca181cddd8319638bdac",
+      "data/raw/dependencies__index.md": "7ab140531a4fc05e67255c87e16f64a858a0151d4eaaaa98a315c316138c3dd8",
+      "data/raw/first-steps.md": "12e2a79c194740bbe192a1ff11ebf633b60ce6651b97e2d5891777f6803f8779",
+      "data/raw/handling-errors.md": "61fae95bbbf9d3b29882cbc01b5220f81271814083662e8a790e47a4c90e822c",
+      "data/raw/header-params.md": "8ec0728cd6a16226d4513b226c42ba6e9396a5787f8ccec7eaad76090ef20cff",
+      "data/raw/path-params-numeric-validations.md": "321e328de941b2c24753f634c63d54c66f1d2cb451d84dbb0eca8b51e03f9038",
+      "data/raw/path-params.md": "555eb4692bdfbc864a78c451f4a90bae12217f1c943d9093ab1f8e4bec247b11",
+      "data/raw/query-params-str-validations.md": "d4a59c80d39f99d3f4054b24f43ccd309a741d53f4e56d64cfa7827194bca36c",
+      "data/raw/query-params.md": "2fece32d99d9dbc399013bb91e0714a488297ad01e467e7cf37783ec4717995a",
+      "data/raw/response-model.md": "7a68126ccca77a077ddd5e58feb015e069359bbfe06702028211bfbde5faec36",
+      "data/raw/security__first-steps.md": "d0223e826961fae0733e3df2bde2455ffb03f942d5ea987f2663a4f451698d7c",
+      "METRICS.md": "41c421816780d83d35d4ee2f7116ae71bd36c3a3ed0de57542acf2b09e4d09cc",
+      "requirements.txt": "eb9d61c479bd025f2a233ebcf09d8bf8db990836d9bbcf68c310bff0cccc7e69",
+      "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/chunking/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/chunking/fixed.py": "dd65eb4781b6d4082d4f43658e608b48b1a803ef5e05257e109f0700c8f4efbc",
+      "src/evaluation/__init__.py": "8fd4f8d2dee0a54f1d234145da1f6cea312e1327295a0d6a2950218bd817691e",
+      "src/evaluation/metrics.py": "a6aa01bbc2730624d562adf5d06dd466ac824d2d8aa8447bce366ce4fb52add1",
+      "src/evaluation/report.py": "98197728e370603ada7b785646820f7746792a59cd6a5486c5ee109686cf9bd0",
+      "src/evaluation/run.py": "aeead4594f3ed095d8b0620e69c3957c47afb24127bd1c8aa19365c013e9d7ff",
+      "src/evaluation/validate.py": "e7db423810acfd8828be26b2a353281c2980600679193444726a3cba861de6ee",
+      "src/generation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/generation/answer.py": "312a20e9234c75d23d2152c997aa62c6ac3998a0959274f7b7a18c761d41e8f1",
+      "src/generation/check_keys.py": "995294b7f5b1faac55a15e6d86ca8d29e0c41e5e059be8b24ea93147dd0d22bd",
+      "src/generation/latency_probe.py": "1e31f39e92a65a3cfa24af0ed44f695d43be285364786423be2b6b65587a5f48",
+      "src/generation/llm.py": "662a3221f3de8e76fbf01e684b1fc189c151c8bec01f01f3c8f6ffddef126153",
+      "src/ingestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ingestion/loader.py": "1cd943eb2fb7b37881c6bc1a9aba593e40d3289147580da7b58bc4303c77ef87",
+      "src/retrieval/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/retrieval/dense.py": "19e80d6d07262dd3d090a1926511cd3a6eec481d2d8e239242d53b8e69322cd7",
+      "src/retrieval/embeddings.py": "2a9eb6ba5faf0df53735c13e609671f58c37363ed289651969bfef499934d5f5",
+      "src/retrieval/index.py": "9f083001e85583974310623f268a2ce4cd744e19eb5f935df2f37c59e8c55075"
+    },
+    "python": "3.13.2",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "index_content_sha256": "a170880aad13cd06a18d17d23dead21375526f3e101a047030610a89190f755f",
+    "index_metadata": {
+      "hnsw:space": "cosine"
+    },
+    "embedding_max_length": 256,
+    "git_commit": "33745719fc93362bd9044687db03152715810be2"
+  },
+  "dataset": [
+    {
+      "id": "q001",
+      "category": "direct",
+      "split": "dev",
+      "question": "Which declaration is needed to read a cookie instead of a query parameter?",
+      "answerable": true,
+      "reference_answer": "Use Cookie; without it the parameter is interpreted as a query parameter.",
+      "gold_sources": [
+        "cookie-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "cookie-params.md",
+          "quote": "To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters."
+        }
+      ]
+    },
+    {
+      "id": "q002",
+      "category": "direct",
+      "split": "dev",
+      "question": "How does Header handle underscores in parameter names by default?",
+      "answerable": true,
+      "reference_answer": "Header converts underscores to hyphens when extracting and documenting headers.",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "header-params.md",
+          "quote": "So, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers."
+        }
+      ]
+    },
+    {
+      "id": "q003",
+      "category": "direct",
+      "split": "dev",
+      "question": "Should HTTPException be returned or raised?",
+      "answerable": true,
+      "reference_answer": "It must be raised because it is a Python exception.",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "evidence": [
+        {
+          "source": "handling-errors.md",
+          "quote": "Because it's a Python exception, you don't `return` it, you `raise` it."
+        }
+      ]
+    },
+    {
+      "id": "q004",
+      "category": "direct",
+      "split": "dev",
+      "question": "Where do query parameters appear in a URL and how are they separated?",
+      "answerable": true,
+      "reference_answer": "They follow the question mark and are separated by ampersands.",
+      "gold_sources": [
+        "query-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params.md",
+          "quote": "The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters."
+        }
+      ]
+    },
+    {
+      "id": "q005",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "How do I explicitly read a header versus a cookie, rather than treating either as a query parameter?",
+      "answerable": true,
+      "reference_answer": "Use Header for headers and Cookie for cookies; without those declarations they are interpreted as query parameters.",
+      "gold_sources": [
+        "header-params.md",
+        "cookie-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "header-params.md",
+          "quote": "To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters."
+        },
+        {
+          "source": "cookie-params.md",
+          "quote": "To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters."
+        }
+      ]
+    },
+    {
+      "id": "q006",
+      "category": "multi_part",
+      "split": "dev",
+      "question": "How do I disable header underscore conversion, and what compatibility issue should I consider?",
+      "answerable": true,
+      "reference_answer": "Set convert_underscores to False on Header. Some HTTP proxies and servers disallow headers containing underscores.",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "header-params.md",
+          "quote": "If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:"
+        },
+        {
+          "source": "header-params.md",
+          "quote": "Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores."
+        }
+      ]
+    },
+    {
+      "id": "q007",
+      "category": "multi_part",
+      "split": "dev",
+      "question": "How can duplicate header values be declared, and what Python type receives their values?",
+      "answerable": true,
+      "reference_answer": "Use a list in the type declaration; the duplicate values are received as a Python list.",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "header-params.md",
+          "quote": "You can define those cases using a list in the type declaration."
+        },
+        {
+          "source": "header-params.md",
+          "quote": "You will receive all the values from the duplicate header as a Python `list`."
+        }
+      ]
+    },
+    {
+      "id": "q008",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "Can the detail of an HTTPException contain structured data rather than just text?",
+      "answerable": true,
+      "reference_answer": "Yes. It accepts JSON-convertible values, including dictionaries and lists.",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "evidence": [
+        {
+          "source": "handling-errors.md",
+          "quote": "When raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`."
+        },
+        {
+          "source": "handling-errors.md",
+          "quote": "You could pass a `dict`, a `list`, etc."
+        }
+      ]
+    },
+    {
+      "id": "q009",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "How can a query argument be made mandatory without assigning it a default?",
+      "answerable": true,
+      "reference_answer": "Declare it without a default value.",
+      "gold_sources": [
+        "query-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params.md",
+          "quote": "But when you want to make a query parameter required, you can just not declare any default value:"
+        }
+      ]
+    },
+    {
+      "id": "q010",
+      "category": "unanswerable",
+      "split": "dev",
+      "question": "Which Docker base image and Dockerfile instructions should I use to deploy this FastAPI application?",
+      "answerable": false,
+      "reference_answer": "I cannot find this in the provided documentation.",
+      "gold_sources": [],
+      "evidence": []
+    },
+    {
+      "id": "q011",
+      "category": "direct",
+      "split": "dev",
+      "question": "What class should a request-body data model inherit from?",
+      "answerable": true,
+      "reference_answer": "It should inherit from Pydantic BaseModel.",
+      "gold_sources": [
+        "body.md"
+      ],
+      "evidence": [
+        {
+          "source": "body.md",
+          "quote": "Then you declare your data model as a class that inherits from `BaseModel`."
+        }
+      ]
+    },
+    {
+      "id": "q012",
+      "category": "direct",
+      "split": "dev",
+      "question": "When both response_model and a return type annotation are declared, which does FastAPI use?",
+      "answerable": true,
+      "reference_answer": "FastAPI gives response_model priority.",
+      "gold_sources": [
+        "response-model.md"
+      ],
+      "evidence": [
+        {
+          "source": "response-model.md",
+          "quote": "If you declare both a return type and a `response_model`, the `response_model` will take priority and be used by FastAPI."
+        }
+      ]
+    },
+    {
+      "id": "q013",
+      "category": "direct",
+      "split": "dev",
+      "question": "Should a dependency function be called when it is passed to Depends?",
+      "answerable": true,
+      "reference_answer": "No. Pass the function itself without calling it.",
+      "gold_sources": [
+        "dependencies__index.md"
+      ],
+      "evidence": [
+        {
+          "source": "dependencies__index.md",
+          "quote": "You **don't call it** directly (don't add the parenthesis at the end), you just pass it as a parameter to `Depends()`."
+        }
+      ]
+    },
+    {
+      "id": "q014",
+      "category": "direct",
+      "split": "dev",
+      "question": "What status code does OAuth2PasswordBearer return when the Authorization header has no Bearer token?",
+      "answerable": true,
+      "reference_answer": "It returns HTTP 401 Unauthorized.",
+      "gold_sources": [
+        "security__first-steps.md"
+      ],
+      "evidence": [
+        {
+          "source": "security__first-steps.md",
+          "quote": "If it doesn't see an `Authorization` header, or the value doesn't have a `Bearer ` token, it will respond with a 401 status code error (`UNAUTHORIZED`) directly."
+        }
+      ]
+    },
+    {
+      "id": "q015",
+      "category": "direct",
+      "split": "dev",
+      "question": "Can a path parameter become optional by setting its default to None?",
+      "answerable": true,
+      "reference_answer": "No. Path parameters are always required, even when a default or None is declared.",
+      "gold_sources": [
+        "path-params-numeric-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "path-params-numeric-validations.md",
+          "quote": "A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required."
+        }
+      ]
+    },
+    {
+      "id": "q016",
+      "category": "direct",
+      "split": "dev",
+      "question": "Why must /users/me be declared before /users/{user_id}?",
+      "answerable": true,
+      "reference_answer": "Routes are evaluated in order; otherwise the variable route can match me as user_id.",
+      "gold_sources": [
+        "path-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "path-params.md",
+          "quote": "Because *path operations* are evaluated in order, you need to make sure that the path for `/users/me` is declared before the one for `/users/{user_id}`:"
+        },
+        {
+          "source": "path-params.md",
+          "quote": "Otherwise, the path for `/users/{user_id}` would match also for `/users/me`, \"thinking\" that it's receiving a parameter `user_id` with a value of `\"me\"`."
+        }
+      ]
+    },
+    {
+      "id": "q017",
+      "category": "direct",
+      "split": "dev",
+      "question": "Which query declaration option hides a parameter from OpenAPI documentation?",
+      "answerable": true,
+      "reference_answer": "Set Query include_in_schema to False.",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params-str-validations.md",
+          "quote": "To exclude a query parameter from the generated OpenAPI schema (and thus, from the automatic documentation systems), set the parameter `include_in_schema` of `Query` to `False`:"
+        }
+      ]
+    },
+    {
+      "id": "q018",
+      "category": "direct",
+      "split": "dev",
+      "question": "Where is the raw OpenAPI schema available in the tutorial application?",
+      "answerable": true,
+      "reference_answer": "At /openapi.json.",
+      "gold_sources": [
+        "first-steps.md"
+      ],
+      "evidence": [
+        {
+          "source": "first-steps.md",
+          "quote": "You can see it directly at: [http://127.0.0.1:8000/openapi.json](http://127.0.0.1:8000/openapi.json)."
+        }
+      ]
+    },
+    {
+      "id": "q022",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "Which helpers add validation metadata to query parameters and path parameters respectively?",
+      "answerable": true,
+      "reference_answer": "Use Query for query parameters and Path for path parameters.",
+      "gold_sources": [
+        "path-params-numeric-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "path-params-numeric-validations.md",
+          "quote": "In the same way that you can declare more validations and metadata for query parameters with `Query`, you can declare the same type of validations and metadata for path parameters with `Path`."
+        }
+      ]
+    },
+    {
+      "id": "q023",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "Does a Pydantic model parameter represent a query parameter or a request body?",
+      "answerable": true,
+      "reference_answer": "A parameter typed as a Pydantic model is interpreted as the request body.",
+      "gold_sources": [
+        "body.md"
+      ],
+      "evidence": [
+        {
+          "source": "body.md",
+          "quote": "* If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**."
+        }
+      ]
+    },
+    {
+      "id": "q024",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "How do I receive a list from repeated query parameters rather than from the request body?",
+      "answerable": true,
+      "reference_answer": "Explicitly use Query for the list-typed parameter; otherwise a list parameter is interpreted as a request body.",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params-str-validations.md",
+          "quote": "To declare a query parameter with a type of `list`, like in the example above, you need to explicitly use `Query`, otherwise it would be interpreted as a request body."
+        }
+      ]
+    },
+    {
+      "id": "q025",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "Is Depends used to specify an HTTP header value or to supply the result of a dependency function?",
+      "answerable": true,
+      "reference_answer": "Depends supplies the dependency function result to a path-operation parameter; Header declares a header parameter.",
+      "gold_sources": [
+        "dependencies__index.md",
+        "header-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "dependencies__index.md",
+          "quote": "* Assign that result to the parameter in your *path operation function*."
+        },
+        {
+          "source": "header-params.md",
+          "quote": "To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters."
+        }
+      ]
+    },
+    {
+      "id": "q026",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "How do request-body models and response models differ in which direction they handle data?",
+      "answerable": true,
+      "reference_answer": "A request body is client-to-API data; a response body is API-to-client data. A Pydantic request model declares input, while response_model converts and filters output.",
+      "gold_sources": [
+        "body.md",
+        "response-model.md"
+      ],
+      "evidence": [
+        {
+          "source": "body.md",
+          "quote": "A **request** body is data sent by the client to your API. A **response** body is the data your API sends to the client."
+        },
+        {
+          "source": "body.md",
+          "quote": "Then you declare your data model as a class that inherits from `BaseModel`."
+        },
+        {
+          "source": "response-model.md",
+          "quote": "FastAPI will use this `response_model` to do all the data documentation, validation, etc. and also to **convert and filter the output data** to its type declaration."
+        }
+      ]
+    },
+    {
+      "id": "q027",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "Can query parameters have optional defaults in the same way as path parameters?",
+      "answerable": true,
+      "reference_answer": "Query parameters can be optional and have defaults; path parameters are always required.",
+      "gold_sources": [
+        "query-params.md",
+        "path-params-numeric-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params.md",
+          "quote": "As query parameters are not a fixed part of a path, they can be optional and can have default values."
+        },
+        {
+          "source": "path-params-numeric-validations.md",
+          "quote": "A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required."
+        }
+      ]
+    },
+    {
+      "id": "q028",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "What differs between FastAPI HTTPException and Starlette HTTPException in the accepted detail value?",
+      "answerable": true,
+      "reference_answer": "FastAPI accepts any JSON-able detail value, whereas Starlette accepts only strings.",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "evidence": [
+        {
+          "source": "handling-errors.md",
+          "quote": "The only difference is that **FastAPI**'s `HTTPException` accepts any JSON-able data for the `detail` field, while Starlette's `HTTPException` only accepts strings for it."
+        }
+      ]
+    },
+    {
+      "id": "q031",
+      "category": "multi_part",
+      "split": "dev",
+      "question": "Can normal def and async def dependencies be mixed with either type of path-operation function?",
+      "answerable": true,
+      "reference_answer": "Yes. Dependencies may use normal def or async def, and can be mixed with either kind of path-operation function.",
+      "gold_sources": [
+        "dependencies__index.md"
+      ],
+      "evidence": [
+        {
+          "source": "dependencies__index.md",
+          "quote": "You can use `async def` or normal `def`."
+        },
+        {
+          "source": "dependencies__index.md",
+          "quote": "And you can declare dependencies with `async def` inside of normal `def` *path operation functions*, or `def` dependencies inside of `async def` *path operation functions*, etc."
+        }
+      ]
+    },
+    {
+      "id": "q032",
+      "category": "multi_part",
+      "split": "dev",
+      "question": "What happens if HTTPException is raised inside a utility called by a path operation, and does the remaining path-operation code execute?",
+      "answerable": true,
+      "reference_answer": "The request terminates immediately, the HTTP error is sent to the client, and the remaining path-operation code does not execute.",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "evidence": [
+        {
+          "source": "handling-errors.md",
+          "quote": "This also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client."
+        }
+      ]
+    },
+    {
+      "id": "q033",
+      "category": "multi_part",
+      "split": "dev",
+      "question": "Which comparisons do the numeric validation options gt and ge represent, and can numeric validation apply to floats?",
+      "answerable": true,
+      "reference_answer": "gt means greater than, ge means greater than or equal, and numeric validation also supports floats.",
+      "gold_sources": [
+        "path-params-numeric-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "path-params-numeric-validations.md",
+          "quote": "* `gt`: `g`reater `t`han"
+        },
+        {
+          "source": "path-params-numeric-validations.md",
+          "quote": "* `ge`: `g`reater than or `e`qual"
+        },
+        {
+          "source": "path-params-numeric-validations.md",
+          "quote": "Number validations also work for `float` values."
+        }
+      ]
+    },
+    {
+      "id": "q034",
+      "category": "multi_part",
+      "split": "dev",
+      "question": "What does FastAPI do when a Pydantic request body has invalid data, and how are model schemas exposed?",
+      "answerable": true,
+      "reference_answer": "It returns an error indicating the invalid data; model JSON Schemas are included in OpenAPI and used by automatic documentation.",
+      "gold_sources": [
+        "body.md"
+      ],
+      "evidence": [
+        {
+          "source": "body.md",
+          "quote": "* If the data is invalid, it will return a nice and clear error, indicating exactly where and what was the incorrect data."
+        },
+        {
+          "source": "body.md",
+          "quote": "* Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title=\"User Interfaces\">UIs</abbr>."
+        }
+      ]
+    },
+    {
+      "id": "q037",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "My Python argument name cannot contain a dash, but the URL must use item-query. What feature maps those names?",
+      "answerable": true,
+      "reference_answer": "Declare an alias for the query parameter; the alias is used to find its value.",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params-str-validations.md",
+          "quote": "Then you can declare an `alias`, and that alias is what will be used to find the parameter value:"
+        }
+      ]
+    },
+    {
+      "id": "q038",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "I want older clients to keep using a query argument while the docs mark it obsolete. What should I set?",
+      "answerable": true,
+      "reference_answer": "Set deprecated=True on Query.",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params-str-validations.md",
+          "quote": "Then pass the parameter `deprecated=True` to `Query`:"
+        }
+      ]
+    },
+    {
+      "id": "q039",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "Can a request argument allow null yet still require the caller to supply a value?",
+      "answerable": true,
+      "reference_answer": "Yes. Allow None in its type but do not declare a default value.",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params-str-validations.md",
+          "quote": "You can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`."
+        },
+        {
+          "source": "query-params-str-validations.md",
+          "quote": "To do that, you can declare that `None` is a valid type but simply do not declare a default value:"
+        }
+      ]
+    },
+    {
+      "id": "q040",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "Must I manually register a class before FastAPI can execute a shared dependency?",
+      "answerable": true,
+      "reference_answer": "No. Pass the dependency to Depends; no special registration class is required.",
+      "gold_sources": [
+        "dependencies__index.md"
+      ],
+      "evidence": [
+        {
+          "source": "dependencies__index.md",
+          "quote": "Notice that you don't have to create a special class and pass it somewhere to **FastAPI** to \"register\" it or anything similar."
+        },
+        {
+          "source": "dependencies__index.md",
+          "quote": "You just pass it to `Depends` and **FastAPI** knows how to do the rest."
+        }
+      ]
+    },
+    {
+      "id": "q041",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "Why do my typed query inputs arrive as integers even though a URL carries text?",
+      "answerable": true,
+      "reference_answer": "FastAPI converts the query strings to their declared Python types and validates them.",
+      "gold_sources": [
+        "query-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params.md",
+          "quote": "As they are part of the URL, they are \"naturally\" strings."
+        },
+        {
+          "source": "query-params.md",
+          "quote": "But when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it."
+        }
+      ]
+    },
+    {
+      "id": "q042",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "Can I constrain a URL path variable to a fixed set of named choices?",
+      "answerable": true,
+      "reference_answer": "Yes. Use a standard Python Enum for predefined path parameter values.",
+      "gold_sources": [
+        "path-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "path-params.md",
+          "quote": "If you have a *path operation* that receives a *path parameter*, but you want the possible valid *path parameter* values to be predefined, you can use a standard Python <abbr title=\"Enumeration\">`Enum`</abbr>."
+        }
+      ]
+    },
+    {
+      "id": "q043",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "I filled in a cookie in the interactive docs, but Execute behaves as though no cookie was supplied. Why?",
+      "answerable": true,
+      "reference_answer": "The docs UI uses JavaScript, and browser cookie handling prevents those entered cookies from being sent by that UI.",
+      "gold_sources": [
+        "cookie-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "cookie-params.md",
+          "quote": "But even if you **fill the data** and click \"Execute\", because the docs UI works with **JavaScript**, the cookies won't be sent, and you will see an **error** message as if you didn't write any values."
+        }
+      ]
+    },
+    {
+      "id": "q044",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "Can the schema produced by FastAPI help generate clients for other applications?",
+      "answerable": true,
+      "reference_answer": "Yes. The OpenAPI schema can be used to automatically generate client code for applications communicating with the API.",
+      "gold_sources": [
+        "first-steps.md"
+      ],
+      "evidence": [
+        {
+          "source": "first-steps.md",
+          "quote": "You could also use it to generate code automatically, for clients that communicate with your API. For example, frontend, mobile or IoT applications."
+        }
+      ]
+    },
+    {
+      "id": "q047",
+      "category": "unanswerable",
+      "split": "dev",
+      "question": "What Alembic commands create and apply a PostgreSQL database migration for this application?",
+      "answerable": false,
+      "reference_answer": "I cannot find this in the provided documentation.",
+      "gold_sources": [],
+      "evidence": []
+    },
+    {
+      "id": "q048",
+      "category": "unanswerable",
+      "split": "dev",
+      "question": "How should a Redis connection be configured to cache API responses with a time-to-live?",
+      "answerable": false,
+      "reference_answer": "I cannot find this in the provided documentation.",
+      "gold_sources": [],
+      "evidence": []
+    },
+    {
+      "id": "q049",
+      "category": "unanswerable",
+      "split": "dev",
+      "question": "What Kubernetes deployment and service YAML should expose this application?",
+      "answerable": false,
+      "reference_answer": "I cannot find this in the provided documentation.",
+      "gold_sources": [],
+      "evidence": []
+    }
+  ]
+}

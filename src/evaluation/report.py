@@ -11,7 +11,8 @@ from src.ingestion.loader import load_documents
 
 def render_markdown(report):
     lines = ['# Draft baseline retrieval report', '',
-             f"K = {report['k']}; metric contract v2; draft development benchmark.", '',
+             f"K = {report['k']}; metric contract v2; draft benchmark; splits: {', '.join(report['splits'])}.", '',
+             f"Retrieval complete: {report['retrieval_complete']}.", '',
              f"Questions: {report['requested']}; answerable: {report['answerable_requested']}; "
              f"missing answerable retrievals: {report['answerable_missing_retrieval']}.", '',
              'Scores are fractions from 0 to 1. Answer quality has not been evaluated.', '',
@@ -23,6 +24,9 @@ def render_markdown(report):
         lines.append('| ' + ' | '.join([name, str(group['count']), *values]) + ' |')
     latency = report['retrieval_latency']
     lines.extend(['', f"Retrieval timing samples: {latency['count']}.", '', '## Limitations', ''])
+    if latency['count']:
+        lines.insert(lines.index('## Limitations'),
+                     f"Retrieval only: mean {latency['mean_s']:.4f} s; nearest-rank P95 {latency['p95_s']:.4f} s.\n")
     lines.extend('- ' + text for text in report['limitations'])
     lines.extend(['', '## Questions needing evidence investigation', ''])
     for row in report['questions']:

@@ -244,3 +244,29 @@ Added `src/evaluation/run.py` with retrieval-only and explicitly selected answer
 Validation: all 13 unit tests passed. The existing index matched the current corpus/chunks. The first offline attempt failed because the embedding model was not cached in this environment. Downloaded the existing public MiniLM model into the ignored project cache, then completed 10/10 retrieval observations with zero errors. An offline repeat reused all 10 saved checkpoints without rewriting them. No generator or judge calls were made, and no quality scores are claimed.
 
 Milestone 3 remains in progress: the 10-question development set is still draft; expansion to about 50, human review, evidence-level metric definitions, judge scoring/validation and final quality reporting remain pending. See RUNNING_EVAL.md for commands and limitations.
+
+
+## 15. Expanded draft benchmark and retrieval scoring: 25 October 2026
+
+Expanded the draft to 50 questions: 15 direct, 10 similar-content, 8 multi-part,
+12 paraphrase and 5 unanswerable. Forty are development questions and ten are
+reserved test questions. All 12 source pages are represented. All evidence
+quotes pass exact source validation, but human semantic review and freezing
+are pending; the splits share source pages and some concepts.
+
+Versioned METRICS.md to v2 before scoring. Added page Hit@K/MRR, required-source
+recall, union-based exact evidence coverage and complete-evidence scoring.
+Added offline per-category reports with missing-retrieval counts and explicit
+exclusion of unanswerable questions. All 23 tests passed.
+
+Ran configuration A locally on 40 development questions, with zero retrieval
+errors and no LLM API calls. Across 36 answerable questions: Hit@5 36/36,
+MRR@5 0.9583, source recall 1.0, evidence coverage 0.8375 and complete evidence
+27/36. Nine questions lack full gold evidence despite correct-page hits.
+Preserved the poor evidence results without adjusting the labels or pipeline.
+Saved selected provenance, observations and reports under reports/.
+
+Milestones 1 and 2 remain implemented. Milestone 3 is still in progress: review
+and freeze the dataset, implement answer judging and human judge validation,
+and report correctness, faithfulness, abstention and answer latency. Milestones
+4 (controlled comparison) and 5 (regression gate/CI) have not started.
