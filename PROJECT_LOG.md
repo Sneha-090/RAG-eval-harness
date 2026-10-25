@@ -232,3 +232,7 @@ The corpus is small (12 pages) and prose-only, the questions are written by one 
 ## 12. How to update this log
 
 After every milestone, add a section with: what was done, why, how (the files and the settings), the real numbers, what went wrong, and what was learned. Record every setting that affects a result (model names, chunk size, K, prompt version, date). Never paste API keys, and never replace real results with example numbers.
+
+## 13. Milestone 3 started: 25 October 2026
+
+Added a draft JSONL evaluation format, 10 development questions across five categories, a standard-library corpus-evidence validator, and six validator tests. All 10 records pass validation and all six tests pass. The set is not frozen; semantic correctness and unanswerability still require author review. No LLM calls or quality measurements were made. Next: review and expand the benchmark, version evidence-level metric definitions, then implement the resumable evaluation runner.
