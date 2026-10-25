@@ -236,3 +236,11 @@ After every milestone, add a section with: what was done, why, how (the files an
 ## 13. Milestone 3 started: 25 October 2026
 
 Added a draft JSONL evaluation format, 10 development questions across five categories, a standard-library corpus-evidence validator, and six validator tests. All 10 records pass validation and all six tests pass. The set is not frozen; semantic correctness and unanswerability still require author review. No LLM calls or quality measurements were made. Next: review and expand the benchmark, version evidence-level metric definitions, then implement the resumable evaluation runner.
+
+## 14. Resumable observation runner: 25 October 2026
+
+Added `src/evaluation/run.py` with retrieval-only and explicitly selected answer modes. Each run records source/corpus/dataset hashes and settings, saves retrieved text and timings per question, supports resuming and explicit error retries, and refuses incompatible inputs. Successful retrieval survives an interrupted or failed generator call. Atomic checkpoints and an exclusive lock protect saved results. Provider error bodies and response headers are not stored.
+
+Validation: all 13 unit tests passed. The existing index matched the current corpus/chunks. The first offline attempt failed because the embedding model was not cached in this environment. Downloaded the existing public MiniLM model into the ignored project cache, then completed 10/10 retrieval observations with zero errors. An offline repeat reused all 10 saved checkpoints without rewriting them. No generator or judge calls were made, and no quality scores are claimed.
+
+Milestone 3 remains in progress: the 10-question development set is still draft; expansion to about 50, human review, evidence-level metric definitions, judge scoring/validation and final quality reporting remain pending. See RUNNING_EVAL.md for commands and limitations.
