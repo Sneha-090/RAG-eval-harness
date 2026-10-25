@@ -98,7 +98,7 @@ def run_records(rows, output, contract, retrieve_fn, generate_fn=None, retry_err
         summary = {'requested': len(rows), 'completed': sum(r['status'] == 'ok' for r in results),
                    'failed': sum(r['status'] == 'error' for r in results),
                    'quality_scores': None,
-                   'note': 'Draft observations only. Judge and quality scoring are not implemented.'}
+                   'note': 'Capture complete. Use src.evaluation.report for retrieval scores; answer judging is pending.'}
         atomic_json(output / 'summary.json', summary)
         return summary
     finally:
