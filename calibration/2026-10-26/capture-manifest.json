@@ -1,0 +1,333 @@
+{
+  "signature": "0185067f4603623258fd67103ba845232902d93b431c791d3e7e5d9140d5238b",
+  "created_utc": "2026-10-26T18:22:45.206167+00:00",
+  "contract": {
+    "version": 1,
+    "config": "A",
+    "mode": "answers",
+    "k": 5,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "collection": "fastapi_baseline",
+    "chunk_size": 550,
+    "overlap": 80,
+    "dataset_sha256": "a3a5df854be64a1f3dd803cf3f6a3fb57cfc368cebca5be7b03be70f64364e02",
+    "files": {
+      "data/CORPUS.md": "3044fcf8b4b9bd851e9bc3ccf2b58541e33e822d8fac5f5eaca6de0977774f88",
+      "data/raw/body.md": "f93940f261696e7112108207f117d2b7079a59391ca426383dce4b0f1462ae62",
+      "data/raw/cookie-params.md": "478b9caa27f40b98232c8e9e4e28f1aedf656e7a7293ca181cddd8319638bdac",
+      "data/raw/dependencies__index.md": "7ab140531a4fc05e67255c87e16f64a858a0151d4eaaaa98a315c316138c3dd8",
+      "data/raw/first-steps.md": "12e2a79c194740bbe192a1ff11ebf633b60ce6651b97e2d5891777f6803f8779",
+      "data/raw/handling-errors.md": "61fae95bbbf9d3b29882cbc01b5220f81271814083662e8a790e47a4c90e822c",
+      "data/raw/header-params.md": "8ec0728cd6a16226d4513b226c42ba6e9396a5787f8ccec7eaad76090ef20cff",
+      "data/raw/path-params-numeric-validations.md": "321e328de941b2c24753f634c63d54c66f1d2cb451d84dbb0eca8b51e03f9038",
+      "data/raw/path-params.md": "555eb4692bdfbc864a78c451f4a90bae12217f1c943d9093ab1f8e4bec247b11",
+      "data/raw/query-params-str-validations.md": "d4a59c80d39f99d3f4054b24f43ccd309a741d53f4e56d64cfa7827194bca36c",
+      "data/raw/query-params.md": "2fece32d99d9dbc399013bb91e0714a488297ad01e467e7cf37783ec4717995a",
+      "data/raw/response-model.md": "7a68126ccca77a077ddd5e58feb015e069359bbfe06702028211bfbde5faec36",
+      "data/raw/security__first-steps.md": "d0223e826961fae0733e3df2bde2455ffb03f942d5ea987f2663a4f451698d7c",
+      "METRICS.md": "41c421816780d83d35d4ee2f7116ae71bd36c3a3ed0de57542acf2b09e4d09cc",
+      "requirements.txt": "eb9d61c479bd025f2a233ebcf09d8bf8db990836d9bbcf68c310bff0cccc7e69",
+      "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/chunking/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/chunking/fixed.py": "dd65eb4781b6d4082d4f43658e608b48b1a803ef5e05257e109f0700c8f4efbc",
+      "src/evaluation/__init__.py": "8fd4f8d2dee0a54f1d234145da1f6cea312e1327295a0d6a2950218bd817691e",
+      "src/evaluation/human_review.py": "39d2ff3840da2c20b46d5738f6d040d2529888d1658b8c33c92650514540038f",
+      "src/evaluation/judge.py": "674bf1bcb8cba0b7cbf5dd44e5c10d89e9e799fdf1ce99539244c879b291ecbe",
+      "src/evaluation/metrics.py": "6cf23cf92111bb4c92af9052c8b1a9fba4a08530148eca3ddc52346e88e8dad6",
+      "src/evaluation/report.py": "2a32f97409246d4c5643e18d384e87d94e35fb36e44b48b9ee7efbf0a9346187",
+      "src/evaluation/run.py": "aeead4594f3ed095d8b0620e69c3957c47afb24127bd1c8aa19365c013e9d7ff",
+      "src/evaluation/validate.py": "e7db423810acfd8828be26b2a353281c2980600679193444726a3cba861de6ee",
+      "src/generation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/generation/answer.py": "312a20e9234c75d23d2152c997aa62c6ac3998a0959274f7b7a18c761d41e8f1",
+      "src/generation/check_keys.py": "995294b7f5b1faac55a15e6d86ca8d29e0c41e5e059be8b24ea93147dd0d22bd",
+      "src/generation/latency_probe.py": "1e31f39e92a65a3cfa24af0ed44f695d43be285364786423be2b6b65587a5f48",
+      "src/generation/llm.py": "662a3221f3de8e76fbf01e684b1fc189c151c8bec01f01f3c8f6ffddef126153",
+      "src/ingestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ingestion/loader.py": "1cd943eb2fb7b37881c6bc1a9aba593e40d3289147580da7b58bc4303c77ef87",
+      "src/retrieval/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/retrieval/dense.py": "19e80d6d07262dd3d090a1926511cd3a6eec481d2d8e239242d53b8e69322cd7",
+      "src/retrieval/embeddings.py": "2a9eb6ba5faf0df53735c13e609671f58c37363ed289651969bfef499934d5f5",
+      "src/retrieval/index.py": "9f083001e85583974310623f268a2ce4cd744e19eb5f935df2f37c59e8c55075"
+    },
+    "python": "3.13.2",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "generator": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    },
+    "prompt_sha256": "b266c465e696eca289428171bd0b0c2b96e9b42296edc1faf4b33a4c6012ca97",
+    "index_content_sha256": "a170880aad13cd06a18d17d23dead21375526f3e101a047030610a89190f755f",
+    "index_metadata": {
+      "hnsw:space": "cosine"
+    },
+    "embedding_max_length": 256,
+    "git_commit": "e62a09984f0359106368b594a78ac5e55ea507f8"
+  },
+  "dataset": [
+    {
+      "id": "q001",
+      "category": "direct",
+      "split": "dev",
+      "question": "Which declaration is needed to read a cookie instead of a query parameter?",
+      "answerable": true,
+      "reference_answer": "Use Cookie; without it the parameter is interpreted as a query parameter.",
+      "gold_sources": [
+        "cookie-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "cookie-params.md",
+          "quote": "To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters."
+        }
+      ]
+    },
+    {
+      "id": "q002",
+      "category": "direct",
+      "split": "dev",
+      "question": "How does Header handle underscores in parameter names by default?",
+      "answerable": true,
+      "reference_answer": "Header converts underscores to hyphens when extracting and documenting headers.",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "header-params.md",
+          "quote": "So, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers."
+        }
+      ]
+    },
+    {
+      "id": "q003",
+      "category": "direct",
+      "split": "dev",
+      "question": "Should HTTPException be returned or raised?",
+      "answerable": true,
+      "reference_answer": "It must be raised because it is a Python exception.",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "evidence": [
+        {
+          "source": "handling-errors.md",
+          "quote": "Because it's a Python exception, you don't `return` it, you `raise` it."
+        }
+      ]
+    },
+    {
+      "id": "q004",
+      "category": "direct",
+      "split": "dev",
+      "question": "Where do query parameters appear in a URL and how are they separated?",
+      "answerable": true,
+      "reference_answer": "They follow the question mark and are separated by ampersands.",
+      "gold_sources": [
+        "query-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params.md",
+          "quote": "The query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters."
+        }
+      ]
+    },
+    {
+      "id": "q005",
+      "category": "similar_page",
+      "split": "dev",
+      "question": "How do I explicitly read a header versus a cookie, rather than treating either as a query parameter?",
+      "answerable": true,
+      "reference_answer": "Use Header for headers and Cookie for cookies; without those declarations they are interpreted as query parameters.",
+      "gold_sources": [
+        "header-params.md",
+        "cookie-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "header-params.md",
+          "quote": "To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters."
+        },
+        {
+          "source": "cookie-params.md",
+          "quote": "To declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters."
+        }
+      ]
+    },
+    {
+      "id": "q006",
+      "category": "multi_part",
+      "split": "dev",
+      "question": "How do I disable header underscore conversion, and what compatibility issue should I consider?",
+      "answerable": true,
+      "reference_answer": "Set convert_underscores to False on Header. Some HTTP proxies and servers disallow headers containing underscores.",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "header-params.md",
+          "quote": "If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:"
+        },
+        {
+          "source": "header-params.md",
+          "quote": "Before setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores."
+        }
+      ]
+    },
+    {
+      "id": "q007",
+      "category": "multi_part",
+      "split": "dev",
+      "question": "How can duplicate header values be declared, and what Python type receives their values?",
+      "answerable": true,
+      "reference_answer": "Use a list in the type declaration; the duplicate values are received as a Python list.",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "header-params.md",
+          "quote": "You can define those cases using a list in the type declaration."
+        },
+        {
+          "source": "header-params.md",
+          "quote": "You will receive all the values from the duplicate header as a Python `list`."
+        }
+      ]
+    },
+    {
+      "id": "q008",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "Can the detail of an HTTPException contain structured data rather than just text?",
+      "answerable": true,
+      "reference_answer": "Yes. It accepts JSON-convertible values, including dictionaries and lists.",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "evidence": [
+        {
+          "source": "handling-errors.md",
+          "quote": "When raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`."
+        },
+        {
+          "source": "handling-errors.md",
+          "quote": "You could pass a `dict`, a `list`, etc."
+        }
+      ]
+    },
+    {
+      "id": "q009",
+      "category": "paraphrase",
+      "split": "dev",
+      "question": "How can a query argument be made mandatory without assigning it a default?",
+      "answerable": true,
+      "reference_answer": "Declare it without a default value.",
+      "gold_sources": [
+        "query-params.md"
+      ],
+      "evidence": [
+        {
+          "source": "query-params.md",
+          "quote": "But when you want to make a query parameter required, you can just not declare any default value:"
+        }
+      ]
+    },
+    {
+      "id": "q010",
+      "category": "unanswerable",
+      "split": "dev",
+      "question": "Which Docker base image and Dockerfile instructions should I use to deploy this FastAPI application?",
+      "answerable": false,
+      "reference_answer": "I cannot find this in the provided documentation.",
+      "gold_sources": [],
+      "evidence": []
+    },
+    {
+      "id": "q011",
+      "category": "direct",
+      "split": "dev",
+      "question": "What class should a request-body data model inherit from?",
+      "answerable": true,
+      "reference_answer": "It should inherit from Pydantic BaseModel.",
+      "gold_sources": [
+        "body.md"
+      ],
+      "evidence": [
+        {
+          "source": "body.md",
+          "quote": "Then you declare your data model as a class that inherits from `BaseModel`."
+        }
+      ]
+    },
+    {
+      "id": "q012",
+      "category": "direct",
+      "split": "dev",
+      "question": "When both response_model and a return type annotation are declared, which does FastAPI use?",
+      "answerable": true,
+      "reference_answer": "FastAPI gives response_model priority.",
+      "gold_sources": [
+        "response-model.md"
+      ],
+      "evidence": [
+        {
+          "source": "response-model.md",
+          "quote": "If you declare both a return type and a `response_model`, the `response_model` will take priority and be used by FastAPI."
+        }
+      ]
+    },
+    {
+      "id": "q013",
+      "category": "direct",
+      "split": "dev",
+      "question": "Should a dependency function be called when it is passed to Depends?",
+      "answerable": true,
+      "reference_answer": "No. Pass the function itself without calling it.",
+      "gold_sources": [
+        "dependencies__index.md"
+      ],
+      "evidence": [
+        {
+          "source": "dependencies__index.md",
+          "quote": "You **don't call it** directly (don't add the parenthesis at the end), you just pass it as a parameter to `Depends()`."
+        }
+      ]
+    },
+    {
+      "id": "q014",
+      "category": "direct",
+      "split": "dev",
+      "question": "What status code does OAuth2PasswordBearer return when the Authorization header has no Bearer token?",
+      "answerable": true,
+      "reference_answer": "It returns HTTP 401 Unauthorized.",
+      "gold_sources": [
+        "security__first-steps.md"
+      ],
+      "evidence": [
+        {
+          "source": "security__first-steps.md",
+          "quote": "If it doesn't see an `Authorization` header, or the value doesn't have a `Bearer ` token, it will respond with a 401 status code error (`UNAUTHORIZED`) directly."
+        }
+      ]
+    },
+    {
+      "id": "q015",
+      "category": "direct",
+      "split": "dev",
+      "question": "Can a path parameter become optional by setting its default to None?",
+      "answerable": true,
+      "reference_answer": "No. Path parameters are always required, even when a default or None is declared.",
+      "gold_sources": [
+        "path-params-numeric-validations.md"
+      ],
+      "evidence": [
+        {
+          "source": "path-params-numeric-validations.md",
+          "quote": "A path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required."
+        }
+      ]
+    }
+  ]
+}

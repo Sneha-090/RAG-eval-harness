@@ -56,3 +56,14 @@ sample is small, developmental and deliberately diverse, not a population estima
 The initial live check on 26 October 2026 successfully generated and judged one
 answer. Both provider calls worked. All 40 offline tests passed after adding the
 human-review workflow. No real human agreement score has been measured yet.
+
+
+## Real calibration packet
+
+The first real packet is versioned at calibration/2026-10-26. The answer capture
+requested 15 development questions and completed all 15 after retrying four
+transient connection failures. The judge also completed all 15, including the
+one unanswerable question; 14 answerable outputs are exported for human review.
+No judge scores are in the blind packet. Use the commands in its README after
+filling the CSV labels. The saved local judge directory is
+runs/judge-calibration-20261026. A repeat reused all 15 saved verdicts.

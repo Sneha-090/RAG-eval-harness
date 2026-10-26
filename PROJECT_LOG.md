@@ -291,3 +291,26 @@ the configured Groq generator and judged it successfully with the configured
 Gemini judge. No benchmark labels, prompt-v1 generator behavior, retrieval
 settings or reserved test questions were changed. Human benchmark review,
 freezing, judge calibration and controlled comparisons are still pending.
+
+
+## 17. Real calibration batch prepared: 26–27 October 2026
+
+Captured 15 development answers with the unchanged prompt-v1 generator. Eleven
+initial calls succeeded; four transient ConnectionError failures were retried
+using saved retrieval context, without repeating the successful generations.
+The final capture has 15 successes and zero errors. One judge request initially
+failed and was retried separately; all 15 saved answers were ultimately judged
+successfully. Verified that resume reused the saved verdicts. No numeric
+answer-quality claim is made before human calibration.
+
+Exported a blind packet of 14 answerable questions, generated answers, reference
+answers and actual retrieved context under calibration/2026-10-26. CSV labels
+are intentionally blank. One unanswerable output is judged separately and is
+not used for correctness/faithfulness agreement. Judge verdicts stay outside
+the published packet to preserve independent human review. All ten reserved
+test questions remain untouched. All 40 offline tests passed.
+
+Next required human step: label correctness and faithfulness independently,
+then use the agreement command and inspect disagreements. Benchmark review
+and freezing, final answer-quality/latency reports, controlled pipeline
+comparisons and regression CI remain pending.

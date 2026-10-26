@@ -80,8 +80,9 @@ retrieval-only run. Never commit credentials.
 
 ## Next milestones
 
-1. Review and freeze the benchmark; add correctness/faithfulness/abstention
-   judging, human judge validation and end-to-end answer timing.
+1. Review and freeze the benchmark; independently label the calibration
+   packet, measure judge agreement, and finish answer-quality reporting and
+   end-to-end timing.
 2. Compare semantic chunking, hybrid retrieval and reranking with the baseline
    under the same corpus, questions and generation settings.
 3. Add regression thresholds and CI; demonstrate both a failing degraded
@@ -89,3 +90,14 @@ retrieval-only run. Never commit credentials.
 
 After those milestones: a second corpus and a small demo/API, if useful.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
+
+
+## Human review ready (26 October 2026)
+
+Generated and provisionally judged 15 development answers, with zero final
+errors after resuming four transient connection failures. Fourteen answerable
+outputs are ready for independent correctness/faithfulness labels:
+[review sheet](calibration/2026-10-26/review.md) and
+[blank labels](calibration/2026-10-26/labels.csv).
+Judge verdicts are deliberately excluded from the blind packet. All ten test
+questions remain untouched. No human judge-agreement number exists yet.

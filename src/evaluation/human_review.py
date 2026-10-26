@@ -59,7 +59,7 @@ def export_packet(capture, output, limit=15):
                   'Retrieved context:', '']
         for chunk in observation['chunks']:
             lines += [f"### {chunk['chunk_id']}", '', chunk['text'], '']
-    (output / 'review.md').write_text('\n'.join(lines), encoding='utf-8')
+    (output / 'review.md').write_text('\n'.join(line.rstrip() for line in '\n'.join(lines).splitlines()) + '\n', encoding='utf-8')
     return len(items)
 
 
