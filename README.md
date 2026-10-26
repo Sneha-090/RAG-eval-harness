@@ -5,8 +5,9 @@ quality separately from generated-answer quality. The first benchmark uses 12
 version-pinned FastAPI tutorial pages; core ingestion and retrieval are generic.
 
 **Current status:** baseline implemented; Milestone 3 evaluation work in progress.
-The benchmark is draft. LLM judging, four-configuration experiments and CI quality
-gates are not implemented yet. No production-readiness claim is made.
+The benchmark is draft. Provisional LLM judging and blind human-review tools
+are implemented; human validation, four-configuration experiments and CI quality
+gates remain pending. No production-readiness claim is made.
 
 ## Implemented
 
@@ -17,7 +18,9 @@ gates are not implemented yet. No production-readiness claim is made.
 - A 50-question draft with exact evidence: 40 development, 10 reserved test.
 - Corpus/evidence validation, atomic question checkpoints and resumable capture.
 - Deterministic retrieval scoring and per-category JSON/Markdown reports.
-- 23 automated tests covering validation, resume/error handling and metric math.
+- Provisional correctness/faithfulness/abstention judging with strict output validation.
+- Blind human-review export and input-pinned agreement comparison.
+- 40 automated tests covering validation, resume/error handling, metrics and judging.
 
 ## Draft development results
 
@@ -71,7 +74,7 @@ described in [RUNNING_EVAL.md](RUNNING_EVAL.md). Retrieval results and caches ar
 ignored by Git; selected report snapshots are deliberately versioned.
 
 To explicitly generate answers, configure GROQ_API_KEY in an ignored local .env
-and use --mode answers. GEMINI_API_KEY is reserved for the planned judge.
+and use --mode answers. GEMINI_API_KEY is used by the provisional judge. See [JUDGING.md](JUDGING.md).
 Provider/model availability and clean installation are not verified by the
 retrieval-only run. Never commit credentials.
 

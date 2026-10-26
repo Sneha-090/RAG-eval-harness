@@ -39,6 +39,6 @@ The developer may correct factual/format errors during review, recording the
 reason and changing the dataset hash. Do not revise labels because a pipeline
 scored poorly. After human review, create a named dataset version and content
 hash before comparison experiments. METRICS.md version 2 defines deterministic
-retrieval scoring. Answer judging and human judge validation remain pending.
+retrieval scoring. Provisional answer judging is implemented; human judge validation remains pending (see JUDGING.md).
 
 See RUNNING_EVAL.md for observation capture and offline report commands.

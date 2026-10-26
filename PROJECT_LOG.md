@@ -270,3 +270,24 @@ Milestones 1 and 2 remain implemented. Milestone 3 is still in progress: review
 and freeze the dataset, implement answer judging and human judge validation,
 and report correctness, faithfulness, abstention and answer latency. Milestones
 4 (controlled comparison) and 5 (regression gate/CI) have not started.
+
+
+## 16. Provisional answer judge and blind human review: 26 October 2026
+
+Added a resumable judge for saved answer-mode captures. It independently scores
+correctness (0/0.5/1), faithfulness (0/1), and unanswerable abstention (0/1), with
+strict JSON validation. Malformed responses and provider errors are recorded as
+failures, not zero scores. Successful verdicts are cached; changed inputs require
+a new output directory. Scores remain explicitly unvalidated.
+
+Added blind review packets with blank CSV labels and actual retrieved context.
+The author reviews 10–15 successful answerable development answers before
+seeing judge verdicts. Selection does not read judge scores. The comparison
+checks input identity and reports separate correctness/faithfulness agreement
+and disagreements. No human labels or agreement numbers have been fabricated.
+
+Validation: all 40 offline tests passed. A live check generated one answer with
+the configured Groq generator and judged it successfully with the configured
+Gemini judge. No benchmark labels, prompt-v1 generator behavior, retrieval
+settings or reserved test questions were changed. Human benchmark review,
+freezing, judge calibration and controlled comparisons are still pending.
