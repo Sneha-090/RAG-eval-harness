@@ -20,7 +20,7 @@ gates remain pending. No production-readiness claim is made.
 - Deterministic retrieval scoring and per-category JSON/Markdown reports.
 - Provisional correctness/faithfulness/abstention judging with strict output validation.
 - Blind human-review export and input-pinned agreement comparison.
-- 40 automated tests covering validation, resume/error handling, metrics and judging.
+- 43 automated tests covering validation, resume/error handling, metrics and judging.
 
 ## Draft development results
 
@@ -47,6 +47,15 @@ See [the report](reports/config-a-dev-draft-v2/report.md),
 [benchmark review sheet](data/eval/REVIEW.md). The published report includes
 observations and provenance for inspection. Original embedding-index revision
 provenance remains a limitation before controlled comparisons.
+
+## Dense vs. hybrid development pilot
+
+Dense search (A) found complete evidence on **27/36** answerable
+development questions. Hybrid search (C) found complete evidence on
+**26/36**. Both used the same corpus, chunks and top-five limit.
+The [paired report](reports/dense-vs-hybrid-dev-2026-11-11/report.md)
+shows the timing and question-level changes. Human judge validation and
+reserved-test evaluation remain pending.
 
 ## Run locally
 

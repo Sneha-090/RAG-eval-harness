@@ -1,0 +1,1766 @@
+{
+  "split": "dev",
+  "questions": 40,
+  "answerable": 36,
+  "complete_evidence": {
+    "A": 27,
+    "C": 26
+  },
+  "gained": [
+    "q011",
+    "q017",
+    "q023"
+  ],
+  "lost": [
+    "q005",
+    "q018",
+    "q039",
+    "q042"
+  ],
+  "runs": {
+    "A": {
+      "signature": "a3e85dc6648c2abac2ba4a62d8877f9a0ec6dd46bec6b51d385d7f3d6f77839c",
+      "contract": {
+        "version": 1,
+        "config": "A",
+        "mode": "retrieval",
+        "k": 5,
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "collection": "fastapi_baseline",
+        "chunk_size": 550,
+        "overlap": 80,
+        "dataset_sha256": "a3a5df854be64a1f3dd803cf3f6a3fb57cfc368cebca5be7b03be70f64364e02",
+        "files": {
+          "data/CORPUS.md": "3044fcf8b4b9bd851e9bc3ccf2b58541e33e822d8fac5f5eaca6de0977774f88",
+          "data/raw/body.md": "f93940f261696e7112108207f117d2b7079a59391ca426383dce4b0f1462ae62",
+          "data/raw/cookie-params.md": "478b9caa27f40b98232c8e9e4e28f1aedf656e7a7293ca181cddd8319638bdac",
+          "data/raw/dependencies__index.md": "7ab140531a4fc05e67255c87e16f64a858a0151d4eaaaa98a315c316138c3dd8",
+          "data/raw/first-steps.md": "12e2a79c194740bbe192a1ff11ebf633b60ce6651b97e2d5891777f6803f8779",
+          "data/raw/handling-errors.md": "61fae95bbbf9d3b29882cbc01b5220f81271814083662e8a790e47a4c90e822c",
+          "data/raw/header-params.md": "8ec0728cd6a16226d4513b226c42ba6e9396a5787f8ccec7eaad76090ef20cff",
+          "data/raw/path-params-numeric-validations.md": "321e328de941b2c24753f634c63d54c66f1d2cb451d84dbb0eca8b51e03f9038",
+          "data/raw/path-params.md": "555eb4692bdfbc864a78c451f4a90bae12217f1c943d9093ab1f8e4bec247b11",
+          "data/raw/query-params-str-validations.md": "d4a59c80d39f99d3f4054b24f43ccd309a741d53f4e56d64cfa7827194bca36c",
+          "data/raw/query-params.md": "2fece32d99d9dbc399013bb91e0714a488297ad01e467e7cf37783ec4717995a",
+          "data/raw/response-model.md": "7a68126ccca77a077ddd5e58feb015e069359bbfe06702028211bfbde5faec36",
+          "data/raw/security__first-steps.md": "d0223e826961fae0733e3df2bde2455ffb03f942d5ea987f2663a4f451698d7c",
+          "METRICS.md": "41c421816780d83d35d4ee2f7116ae71bd36c3a3ed0de57542acf2b09e4d09cc",
+          "requirements.txt": "eb9d61c479bd025f2a233ebcf09d8bf8db990836d9bbcf68c310bff0cccc7e69",
+          "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/chunking/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/chunking/fixed.py": "dd65eb4781b6d4082d4f43658e608b48b1a803ef5e05257e109f0700c8f4efbc",
+          "src/evaluation/__init__.py": "8fd4f8d2dee0a54f1d234145da1f6cea312e1327295a0d6a2950218bd817691e",
+          "src/evaluation/human_review.py": "d311afcca706791ffa238679b560fdc8571f61d939140a535ad34180634b2607",
+          "src/evaluation/judge.py": "674bf1bcb8cba0b7cbf5dd44e5c10d89e9e799fdf1ce99539244c879b291ecbe",
+          "src/evaluation/metrics.py": "6cf23cf92111bb4c92af9052c8b1a9fba4a08530148eca3ddc52346e88e8dad6",
+          "src/evaluation/report.py": "2a32f97409246d4c5643e18d384e87d94e35fb36e44b48b9ee7efbf0a9346187",
+          "src/evaluation/run.py": "ba396eb94eca752c5df2f0b67db2d019730e46da93d598ba7172bf9f46a5497e",
+          "src/evaluation/validate.py": "e7db423810acfd8828be26b2a353281c2980600679193444726a3cba861de6ee",
+          "src/generation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/generation/answer.py": "312a20e9234c75d23d2152c997aa62c6ac3998a0959274f7b7a18c761d41e8f1",
+          "src/generation/check_keys.py": "995294b7f5b1faac55a15e6d86ca8d29e0c41e5e059be8b24ea93147dd0d22bd",
+          "src/generation/latency_probe.py": "1e31f39e92a65a3cfa24af0ed44f695d43be285364786423be2b6b65587a5f48",
+          "src/generation/llm.py": "662a3221f3de8e76fbf01e684b1fc189c151c8bec01f01f3c8f6ffddef126153",
+          "src/ingestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/ingestion/loader.py": "1cd943eb2fb7b37881c6bc1a9aba593e40d3289147580da7b58bc4303c77ef87",
+          "src/retrieval/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/retrieval/dense.py": "19e80d6d07262dd3d090a1926511cd3a6eec481d2d8e239242d53b8e69322cd7",
+          "src/retrieval/embeddings.py": "2a9eb6ba5faf0df53735c13e609671f58c37363ed289651969bfef499934d5f5",
+          "src/retrieval/hybrid.py": "80292a1c87e84a7172d6409579483363b550bbac1c2368e5b49eb05fd9ad7dfc",
+          "src/retrieval/index.py": "9f083001e85583974310623f268a2ce4cd744e19eb5f935df2f37c59e8c55075"
+        },
+        "python": "3.13.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "index_content_sha256": "a170880aad13cd06a18d17d23dead21375526f3e101a047030610a89190f755f",
+        "index_metadata": {
+          "hnsw:space": "cosine"
+        },
+        "embedding_max_length": 256,
+        "git_commit": "38618d7823dbb6ce18e8efe93315bbcc0d69dae7"
+      },
+      "overall": {
+        "count": 36,
+        "hit_at_k": 1,
+        "mrr_at_k": 0.9583333333333334,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 0.8375232329064929,
+        "evidence_complete_at_k": 0.75
+      },
+      "retrieval_latency": {
+        "count": 40,
+        "mean_s": 0.02096649999912188,
+        "p95_s": 0.025390000009792857
+      }
+    },
+    "C": {
+      "signature": "417b102b93977f76c9d0c797d9080a17832e3690d51fec5dbe14f401568c4363",
+      "contract": {
+        "version": 1,
+        "config": "C",
+        "mode": "retrieval",
+        "k": 5,
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "collection": "fastapi_baseline",
+        "chunk_size": 550,
+        "overlap": 80,
+        "dataset_sha256": "a3a5df854be64a1f3dd803cf3f6a3fb57cfc368cebca5be7b03be70f64364e02",
+        "files": {
+          "data/CORPUS.md": "3044fcf8b4b9bd851e9bc3ccf2b58541e33e822d8fac5f5eaca6de0977774f88",
+          "data/raw/body.md": "f93940f261696e7112108207f117d2b7079a59391ca426383dce4b0f1462ae62",
+          "data/raw/cookie-params.md": "478b9caa27f40b98232c8e9e4e28f1aedf656e7a7293ca181cddd8319638bdac",
+          "data/raw/dependencies__index.md": "7ab140531a4fc05e67255c87e16f64a858a0151d4eaaaa98a315c316138c3dd8",
+          "data/raw/first-steps.md": "12e2a79c194740bbe192a1ff11ebf633b60ce6651b97e2d5891777f6803f8779",
+          "data/raw/handling-errors.md": "61fae95bbbf9d3b29882cbc01b5220f81271814083662e8a790e47a4c90e822c",
+          "data/raw/header-params.md": "8ec0728cd6a16226d4513b226c42ba6e9396a5787f8ccec7eaad76090ef20cff",
+          "data/raw/path-params-numeric-validations.md": "321e328de941b2c24753f634c63d54c66f1d2cb451d84dbb0eca8b51e03f9038",
+          "data/raw/path-params.md": "555eb4692bdfbc864a78c451f4a90bae12217f1c943d9093ab1f8e4bec247b11",
+          "data/raw/query-params-str-validations.md": "d4a59c80d39f99d3f4054b24f43ccd309a741d53f4e56d64cfa7827194bca36c",
+          "data/raw/query-params.md": "2fece32d99d9dbc399013bb91e0714a488297ad01e467e7cf37783ec4717995a",
+          "data/raw/response-model.md": "7a68126ccca77a077ddd5e58feb015e069359bbfe06702028211bfbde5faec36",
+          "data/raw/security__first-steps.md": "d0223e826961fae0733e3df2bde2455ffb03f942d5ea987f2663a4f451698d7c",
+          "METRICS.md": "41c421816780d83d35d4ee2f7116ae71bd36c3a3ed0de57542acf2b09e4d09cc",
+          "requirements.txt": "eb9d61c479bd025f2a233ebcf09d8bf8db990836d9bbcf68c310bff0cccc7e69",
+          "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/chunking/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/chunking/fixed.py": "dd65eb4781b6d4082d4f43658e608b48b1a803ef5e05257e109f0700c8f4efbc",
+          "src/evaluation/__init__.py": "8fd4f8d2dee0a54f1d234145da1f6cea312e1327295a0d6a2950218bd817691e",
+          "src/evaluation/human_review.py": "d311afcca706791ffa238679b560fdc8571f61d939140a535ad34180634b2607",
+          "src/evaluation/judge.py": "674bf1bcb8cba0b7cbf5dd44e5c10d89e9e799fdf1ce99539244c879b291ecbe",
+          "src/evaluation/metrics.py": "6cf23cf92111bb4c92af9052c8b1a9fba4a08530148eca3ddc52346e88e8dad6",
+          "src/evaluation/report.py": "2a32f97409246d4c5643e18d384e87d94e35fb36e44b48b9ee7efbf0a9346187",
+          "src/evaluation/run.py": "ba396eb94eca752c5df2f0b67db2d019730e46da93d598ba7172bf9f46a5497e",
+          "src/evaluation/validate.py": "e7db423810acfd8828be26b2a353281c2980600679193444726a3cba861de6ee",
+          "src/generation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/generation/answer.py": "312a20e9234c75d23d2152c997aa62c6ac3998a0959274f7b7a18c761d41e8f1",
+          "src/generation/check_keys.py": "995294b7f5b1faac55a15e6d86ca8d29e0c41e5e059be8b24ea93147dd0d22bd",
+          "src/generation/latency_probe.py": "1e31f39e92a65a3cfa24af0ed44f695d43be285364786423be2b6b65587a5f48",
+          "src/generation/llm.py": "662a3221f3de8e76fbf01e684b1fc189c151c8bec01f01f3c8f6ffddef126153",
+          "src/ingestion/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/ingestion/loader.py": "1cd943eb2fb7b37881c6bc1a9aba593e40d3289147580da7b58bc4303c77ef87",
+          "src/retrieval/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "src/retrieval/dense.py": "19e80d6d07262dd3d090a1926511cd3a6eec481d2d8e239242d53b8e69322cd7",
+          "src/retrieval/embeddings.py": "2a9eb6ba5faf0df53735c13e609671f58c37363ed289651969bfef499934d5f5",
+          "src/retrieval/hybrid.py": "80292a1c87e84a7172d6409579483363b550bbac1c2368e5b49eb05fd9ad7dfc",
+          "src/retrieval/index.py": "9f083001e85583974310623f268a2ce4cd744e19eb5f935df2f37c59e8c55075"
+        },
+        "python": "3.13.2",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "index_content_sha256": "a170880aad13cd06a18d17d23dead21375526f3e101a047030610a89190f755f",
+        "index_metadata": {
+          "hnsw:space": "cosine"
+        },
+        "hybrid": {
+          "k1": 1.2,
+          "b": 0.75,
+          "rrf_constant": 60,
+          "candidates_per_ranker": 20
+        },
+        "embedding_max_length": 256,
+        "git_commit": "38618d7823dbb6ce18e8efe93315bbcc0d69dae7"
+      },
+      "overall": {
+        "count": 36,
+        "hit_at_k": 0.9722222222222222,
+        "mrr_at_k": 0.9050925925925926,
+        "source_recall_at_k": 0.9444444444444444,
+        "evidence_coverage_at_k": 0.8302013828280612,
+        "evidence_complete_at_k": 0.7222222222222222
+      },
+      "retrieval_latency": {
+        "count": 40,
+        "mean_s": 0.02041690500009281,
+        "p95_s": 0.02370560000417754
+      }
+    }
+  },
+  "paired_results": [
+    {
+      "id": "q001",
+      "question": "Which declaration is needed to read a cookie instead of a query parameter?",
+      "gold_sources": [
+        "cookie-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.06934529999853112,
+        "chunk_ids": [
+          "cookie-params.md::0",
+          "cookie-params.md::1",
+          "header-params.md::0",
+          "header-params.md::1",
+          "query-params.md::0"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.022134099999675527,
+        "chunk_ids": [
+          "cookie-params.md::0",
+          "cookie-params.md::1",
+          "header-params.md::0",
+          "header-params.md::1",
+          "header-params.md::2"
+        ]
+      }
+    },
+    {
+      "id": "q002",
+      "question": "How does Header handle underscores in parameter names by default?",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.01725770000484772,
+        "chunk_ids": [
+          "header-params.md::3",
+          "header-params.md::4",
+          "header-params.md::2",
+          "header-params.md::0",
+          "query-params.md::0"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.017324200001894496,
+        "chunk_ids": [
+          "header-params.md::2",
+          "header-params.md::3",
+          "header-params.md::4",
+          "header-params.md::0",
+          "header-params.md::1"
+        ]
+      }
+    },
+    {
+      "id": "q003",
+      "question": "Should HTTPException be returned or raised?",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.019195000000763685,
+        "chunk_ids": [
+          "handling-errors.md::1",
+          "handling-errors.md::2",
+          "handling-errors.md::3",
+          "handling-errors.md::6",
+          "handling-errors.md::16"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.016724600005545653,
+        "chunk_ids": [
+          "handling-errors.md::16",
+          "handling-errors.md::2",
+          "handling-errors.md::1",
+          "handling-errors.md::11",
+          "handling-errors.md::3"
+        ]
+      }
+    },
+    {
+      "id": "q004",
+      "question": "Where do query parameters appear in a URL and how are they separated?",
+      "gold_sources": [
+        "query-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.015073900009156205,
+        "chunk_ids": [
+          "query-params.md::0",
+          "query-params-str-validations.md::18",
+          "query-params.md::1",
+          "query-params.md::4",
+          "query-params.md::2"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.01622750000387896,
+        "chunk_ids": [
+          "query-params.md::0",
+          "query-params-str-validations.md::18",
+          "query-params.md::1",
+          "query-params-str-validations.md::19",
+          "query-params.md::2"
+        ]
+      }
+    },
+    {
+      "id": "q005",
+      "question": "How do I explicitly read a header versus a cookie, rather than treating either as a query parameter?",
+      "gold_sources": [
+        "header-params.md",
+        "cookie-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.01994600000034552,
+        "chunk_ids": [
+          "header-params.md::0",
+          "header-params.md::2",
+          "header-params.md::1",
+          "cookie-params.md::0",
+          "cookie-params.md::1"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.5,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.021215100001427345,
+        "chunk_ids": [
+          "header-params.md::0",
+          "header-params.md::1",
+          "header-params.md::2",
+          "cookie-params.md::0",
+          "query-params-str-validations.md::18"
+        ]
+      }
+    },
+    {
+      "id": "q006",
+      "question": "How do I disable header underscore conversion, and what compatibility issue should I consider?",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.015873399999691173,
+        "chunk_ids": [
+          "header-params.md::3",
+          "header-params.md::4",
+          "header-params.md::2",
+          "header-params.md::1",
+          "header-params.md::0"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.016702499997336417,
+        "chunk_ids": [
+          "header-params.md::2",
+          "header-params.md::3",
+          "header-params.md::1",
+          "header-params.md::0",
+          "header-params.md::4"
+        ]
+      }
+    },
+    {
+      "id": "q007",
+      "question": "How can duplicate header values be declared, and what Python type receives their values?",
+      "gold_sources": [
+        "header-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.01704289999906905,
+        "chunk_ids": [
+          "header-params.md::4",
+          "header-params.md::2",
+          "header-params.md::0",
+          "header-params.md::3",
+          "query-params-str-validations.md::31"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.017958199998247437,
+        "chunk_ids": [
+          "header-params.md::4",
+          "header-params.md::2",
+          "query-params-str-validations.md::31",
+          "header-params.md::1",
+          "header-params.md::0"
+        ]
+      }
+    },
+    {
+      "id": "q008",
+      "question": "Can the detail of an HTTPException contain structured data rather than just text?",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02103819999319967,
+        "chunk_ids": [
+          "handling-errors.md::16",
+          "handling-errors.md::5",
+          "handling-errors.md::15",
+          "handling-errors.md::1",
+          "handling-errors.md::2"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.01643119999789633,
+        "chunk_ids": [
+          "handling-errors.md::16",
+          "handling-errors.md::5",
+          "handling-errors.md::15",
+          "handling-errors.md::2",
+          "handling-errors.md::11"
+        ]
+      }
+    },
+    {
+      "id": "q009",
+      "question": "How can a query argument be made mandatory without assigning it a default?",
+      "gold_sources": [
+        "query-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.021805800002766773,
+        "chunk_ids": [
+          "query-params.md::6",
+          "path-params-numeric-validations.md::2",
+          "query-params-str-validations.md::16",
+          "query-params-str-validations.md::18",
+          "query-params-str-validations.md::17"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 0.3333333333333333,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.01887939999869559,
+        "chunk_ids": [
+          "query-params-str-validations.md::17",
+          "path-params-numeric-validations.md::3",
+          "query-params.md::6",
+          "query-params-str-validations.md::8",
+          "query-params-str-validations.md::11"
+        ]
+      }
+    },
+    {
+      "id": "q010",
+      "question": "Which Docker base image and Dockerfile instructions should I use to deploy this FastAPI application?",
+      "gold_sources": [],
+      "A": {
+        "scores": null,
+        "retrieval_s": 0.021144700003787875,
+        "chunk_ids": [
+          "first-steps.md::27",
+          "first-steps.md::17",
+          "first-steps.md::28",
+          "first-steps.md::16",
+          "dependencies__index.md::13"
+        ]
+      },
+      "C": {
+        "scores": null,
+        "retrieval_s": 0.01948479999555275,
+        "chunk_ids": [
+          "first-steps.md::17",
+          "first-steps.md::27",
+          "first-steps.md::28",
+          "first-steps.md::18",
+          "first-steps.md::29"
+        ]
+      }
+    },
+    {
+      "id": "q011",
+      "question": "What class should a request-body data model inherit from?",
+      "gold_sources": [
+        "body.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.0,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.020662899987655692,
+        "chunk_ids": [
+          "body.md::0",
+          "body.md::1",
+          "response-model.md::13",
+          "body.md::10",
+          "handling-errors.md::15"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02136840000457596,
+        "chunk_ids": [
+          "body.md::0",
+          "body.md::10",
+          "body.md::1",
+          "handling-errors.md::15",
+          "body.md::2"
+        ]
+      }
+    },
+    {
+      "id": "q012",
+      "question": "When both response_model and a return type annotation are declared, which does FastAPI use?",
+      "gold_sources": [
+        "response-model.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02030039999226574,
+        "chunk_ids": [
+          "response-model.md::19",
+          "response-model.md::6",
+          "response-model.md::20",
+          "response-model.md::22",
+          "response-model.md::5"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02226840000366792,
+        "chunk_ids": [
+          "response-model.md::6",
+          "response-model.md::19",
+          "response-model.md::16",
+          "response-model.md::22",
+          "response-model.md::7"
+        ]
+      }
+    },
+    {
+      "id": "q013",
+      "question": "Should a dependency function be called when it is passed to Depends?",
+      "gold_sources": [
+        "dependencies__index.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.015351800000644289,
+        "chunk_ids": [
+          "dependencies__index.md::6",
+          "dependencies__index.md::14",
+          "dependencies__index.md::5",
+          "dependencies__index.md::11",
+          "dependencies__index.md::0"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.017925700012710877,
+        "chunk_ids": [
+          "dependencies__index.md::14",
+          "dependencies__index.md::6",
+          "dependencies__index.md::5",
+          "security__first-steps.md::14",
+          "dependencies__index.md::8"
+        ]
+      }
+    },
+    {
+      "id": "q014",
+      "question": "What status code does OAuth2PasswordBearer return when the Authorization header has no Bearer token?",
+      "gold_sources": [
+        "security__first-steps.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.017070200003217906,
+        "chunk_ids": [
+          "security__first-steps.md::8",
+          "security__first-steps.md::16",
+          "security__first-steps.md::15",
+          "security__first-steps.md::9",
+          "security__first-steps.md::10"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.023489200000767596,
+        "chunk_ids": [
+          "security__first-steps.md::16",
+          "security__first-steps.md::8",
+          "security__first-steps.md::15",
+          "security__first-steps.md::9",
+          "security__first-steps.md::10"
+        ]
+      }
+    },
+    {
+      "id": "q015",
+      "question": "Can a path parameter become optional by setting its default to None?",
+      "gold_sources": [
+        "path-params-numeric-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 0.5,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.9299363057324841,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.023189999992609955,
+        "chunk_ids": [
+          "query-params.md::6",
+          "path-params-numeric-validations.md::2",
+          "query-params-str-validations.md::18",
+          "dependencies__index.md::3",
+          "query-params-str-validations.md::16"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 0,
+          "mrr_at_k": 0,
+          "source_recall_at_k": 0.0,
+          "evidence_coverage_at_k": 0.0,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.02137129999755416,
+        "chunk_ids": [
+          "query-params-str-validations.md::16",
+          "query-params.md::6",
+          "dependencies__index.md::3",
+          "query-params-str-validations.md::8",
+          "query-params-str-validations.md::17"
+        ]
+      }
+    },
+    {
+      "id": "q016",
+      "question": "Why must /users/me be declared before /users/{user_id}?",
+      "gold_sources": [
+        "path-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.026097100009792484,
+        "chunk_ids": [
+          "path-params.md::8",
+          "path-params.md::9",
+          "response-model.md::14",
+          "response-model.md::15",
+          "first-steps.md::20"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.018502599996281788,
+        "chunk_ids": [
+          "path-params.md::8",
+          "path-params.md::9",
+          "dependencies__index.md::19",
+          "response-model.md::14",
+          "dependencies__index.md::18"
+        ]
+      }
+    },
+    {
+      "id": "q017",
+      "question": "Which query declaration option hides a parameter from OpenAPI documentation?",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.0,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.01801020000129938,
+        "chunk_ids": [
+          "query-params-str-validations.md::22",
+          "query-params-str-validations.md::24",
+          "query-params-str-validations.md::9",
+          "query-params.md::0",
+          "query-params-str-validations.md::0"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.01755760000378359,
+        "chunk_ids": [
+          "query-params-str-validations.md::24",
+          "path-params.md::6",
+          "query-params-str-validations.md::25",
+          "query-params-str-validations.md::22",
+          "query-params-str-validations.md::9"
+        ]
+      }
+    },
+    {
+      "id": "q018",
+      "question": "Where is the raw OpenAPI schema available in the tutorial application?",
+      "gold_sources": [
+        "first-steps.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.020851699999184348,
+        "chunk_ids": [
+          "first-steps.md::10",
+          "body.md::6",
+          "first-steps.md::9",
+          "dependencies__index.md::20",
+          "first-steps.md::12"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 0.5,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.23157894736842105,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.01912060000177007,
+        "chunk_ids": [
+          "body.md::6",
+          "first-steps.md::10",
+          "first-steps.md::11",
+          "first-steps.md::13",
+          "first-steps.md::9"
+        ]
+      }
+    },
+    {
+      "id": "q022",
+      "question": "Which helpers add validation metadata to query parameters and path parameters respectively?",
+      "gold_sources": [
+        "path-params-numeric-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.01914509999915026,
+        "chunk_ids": [
+          "path-params-numeric-validations.md::0",
+          "dependencies__index.md::20",
+          "query-params-str-validations.md::0",
+          "query-params.md::6",
+          "query-params.md::0"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.021865199989406392,
+        "chunk_ids": [
+          "path-params-numeric-validations.md::0",
+          "query-params.md::5",
+          "query-params.md::6",
+          "query-params.md::1",
+          "query-params-str-validations.md::0"
+        ]
+      }
+    },
+    {
+      "id": "q023",
+      "question": "Does a Pydantic model parameter represent a query parameter or a request body?",
+      "gold_sources": [
+        "body.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.5257731958762887,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.021497599998838268,
+        "chunk_ids": [
+          "body.md::10",
+          "body.md::13",
+          "body.md::1",
+          "response-model.md::4",
+          "body.md::11"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.021171999993384816,
+        "chunk_ids": [
+          "body.md::10",
+          "body.md::1",
+          "body.md::12",
+          "response-model.md::4",
+          "body.md::11"
+        ]
+      }
+    },
+    {
+      "id": "q024",
+      "question": "How do I receive a list from repeated query parameters rather than from the request body?",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02185740000277292,
+        "chunk_ids": [
+          "query-params-str-validations.md::18",
+          "query-params-str-validations.md::19",
+          "query-params-str-validations.md::20",
+          "query-params.md::0",
+          "query-params.md::2"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02122899999085348,
+        "chunk_ids": [
+          "query-params-str-validations.md::18",
+          "query-params-str-validations.md::20",
+          "query-params-str-validations.md::19",
+          "header-params.md::4",
+          "body.md::1"
+        ]
+      }
+    },
+    {
+      "id": "q025",
+      "question": "Is Depends used to specify an HTTP header value or to supply the result of a dependency function?",
+      "gold_sources": [
+        "dependencies__index.md",
+        "header-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.0,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.017815100000007078,
+        "chunk_ids": [
+          "dependencies__index.md::6",
+          "dependencies__index.md::14",
+          "dependencies__index.md::13",
+          "dependencies__index.md::5",
+          "header-params.md::4"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 0.5,
+          "evidence_coverage_at_k": 0.0,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.022532600007252768,
+        "chunk_ids": [
+          "dependencies__index.md::6",
+          "dependencies__index.md::5",
+          "dependencies__index.md::14",
+          "security__first-steps.md::14",
+          "dependencies__index.md::13"
+        ]
+      }
+    },
+    {
+      "id": "q026",
+      "question": "How do request-body models and response models differ in which direction they handle data?",
+      "gold_sources": [
+        "body.md",
+        "response-model.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.3333333333333333,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.016283899996778928,
+        "chunk_ids": [
+          "body.md::0",
+          "body.md::1",
+          "response-model.md::4",
+          "response-model.md::13",
+          "response-model.md::28"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.6666666666666666,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.02040120000310708,
+        "chunk_ids": [
+          "body.md::0",
+          "body.md::1",
+          "body.md::10",
+          "response-model.md::5",
+          "response-model.md::11"
+        ]
+      }
+    },
+    {
+      "id": "q027",
+      "question": "Can query parameters have optional defaults in the same way as path parameters?",
+      "gold_sources": [
+        "query-params.md",
+        "path-params-numeric-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.46496815286624205,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.01588140000239946,
+        "chunk_ids": [
+          "query-params.md::6",
+          "path-params-numeric-validations.md::2",
+          "query-params-str-validations.md::18",
+          "query-params.md::0",
+          "query-params-str-validations.md::16"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 0.5,
+          "evidence_coverage_at_k": 0.5,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.02165150000655558,
+        "chunk_ids": [
+          "query-params.md::6",
+          "query-params.md::2",
+          "query-params.md::8",
+          "dependencies__index.md::3",
+          "query-params.md::5"
+        ]
+      }
+    },
+    {
+      "id": "q028",
+      "question": "What differs between FastAPI HTTPException and Starlette HTTPException in the accepted detail value?",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.022617099995841272,
+        "chunk_ids": [
+          "handling-errors.md::16",
+          "handling-errors.md::17",
+          "handling-errors.md::15",
+          "handling-errors.md::8",
+          "handling-errors.md::5"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02370560000417754,
+        "chunk_ids": [
+          "handling-errors.md::16",
+          "handling-errors.md::15",
+          "handling-errors.md::17",
+          "handling-errors.md::5",
+          "handling-errors.md::8"
+        ]
+      }
+    },
+    {
+      "id": "q031",
+      "question": "Can normal def and async def dependencies be mixed with either type of path-operation function?",
+      "gold_sources": [
+        "dependencies__index.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.0218068999965908,
+        "chunk_ids": [
+          "dependencies__index.md::11",
+          "first-steps.md::25",
+          "dependencies__index.md::10",
+          "dependencies__index.md::5",
+          "dependencies__index.md::6"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.020617000001948327,
+        "chunk_ids": [
+          "dependencies__index.md::11",
+          "first-steps.md::25",
+          "dependencies__index.md::10",
+          "dependencies__index.md::6",
+          "dependencies__index.md::14"
+        ]
+      }
+    },
+    {
+      "id": "q032",
+      "question": "What happens if HTTPException is raised inside a utility called by a path operation, and does the remaining path-operation code execute?",
+      "gold_sources": [
+        "handling-errors.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.023688000001129694,
+        "chunk_ids": [
+          "handling-errors.md::2",
+          "handling-errors.md::3",
+          "handling-errors.md::6",
+          "first-steps.md::20",
+          "handling-errors.md::17"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.023433800000930205,
+        "chunk_ids": [
+          "handling-errors.md::2",
+          "handling-errors.md::3",
+          "first-steps.md::22",
+          "handling-errors.md::16",
+          "first-steps.md::20"
+        ]
+      }
+    },
+    {
+      "id": "q033",
+      "question": "Which comparisons do the numeric validation options gt and ge represent, and can numeric validation apply to floats?",
+      "gold_sources": [
+        "path-params-numeric-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.024824799998896196,
+        "chunk_ids": [
+          "path-params-numeric-validations.md::8",
+          "path-params-numeric-validations.md::7",
+          "path-params-numeric-validations.md::9",
+          "path-params.md::7",
+          "path-params-numeric-validations.md::6"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02111440000589937,
+        "chunk_ids": [
+          "path-params-numeric-validations.md::7",
+          "path-params-numeric-validations.md::8",
+          "path-params-numeric-validations.md::9",
+          "path-params-numeric-validations.md::0",
+          "response-model.md::6"
+        ]
+      }
+    },
+    {
+      "id": "q034",
+      "question": "What does FastAPI do when a Pydantic request body has invalid data, and how are model schemas exposed?",
+      "gold_sources": [
+        "body.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.0,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.025147499996819533,
+        "chunk_ids": [
+          "body.md::10",
+          "body.md::12",
+          "response-model.md::5",
+          "response-model.md::0",
+          "response-model.md::7"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.0,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.019173199994838797,
+        "chunk_ids": [
+          "body.md::10",
+          "body.md::1",
+          "handling-errors.md::9",
+          "response-model.md::16",
+          "response-model.md::5"
+        ]
+      }
+    },
+    {
+      "id": "q037",
+      "question": "My Python argument name cannot contain a dash, but the URL must use item-query. What feature maps those names?",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.025390000009792857,
+        "chunk_ids": [
+          "query-params-str-validations.md::23",
+          "path-params-numeric-validations.md::5",
+          "path-params-numeric-validations.md::3",
+          "query-params.md::1",
+          "path-params.md::0"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.022151099998154677,
+        "chunk_ids": [
+          "query-params-str-validations.md::23",
+          "path-params-numeric-validations.md::3",
+          "header-params.md::2",
+          "query-params-str-validations.md::19",
+          "query-params.md::1"
+        ]
+      }
+    },
+    {
+      "id": "q038",
+      "question": "I want older clients to keep using a query argument while the docs mark it obsolete. What should I set?",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.021060300001408905,
+        "chunk_ids": [
+          "query-params-str-validations.md::24",
+          "query-params-str-validations.md::18",
+          "path-params-numeric-validations.md::2",
+          "query-params-str-validations.md::23",
+          "query-params-str-validations.md::16"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02148999999917578,
+        "chunk_ids": [
+          "query-params-str-validations.md::24",
+          "path-params-numeric-validations.md::11",
+          "query-params.md::6",
+          "query-params-str-validations.md::10",
+          "query-params-str-validations.md::17"
+        ]
+      }
+    },
+    {
+      "id": "q039",
+      "question": "Can a request argument allow null yet still require the caller to supply a value?",
+      "gold_sources": [
+        "query-params-str-validations.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.019791700004134327,
+        "chunk_ids": [
+          "query-params-str-validations.md::18",
+          "query-params-str-validations.md::17",
+          "query-params.md::6",
+          "path-params-numeric-validations.md::2",
+          "handling-errors.md::4"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.5,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.017522800000733696,
+        "chunk_ids": [
+          "query-params-str-validations.md::17",
+          "query-params-str-validations.md::4",
+          "query-params-str-validations.md::20",
+          "path-params-numeric-validations.md::2",
+          "query-params.md::7"
+        ]
+      }
+    },
+    {
+      "id": "q040",
+      "question": "Must I manually register a class before FastAPI can execute a shared dependency?",
+      "gold_sources": [
+        "dependencies__index.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.017192699990118854,
+        "chunk_ids": [
+          "dependencies__index.md::1",
+          "dependencies__index.md::6",
+          "dependencies__index.md::8",
+          "dependencies__index.md::14",
+          "security__first-steps.md::14"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.02324850000150036,
+        "chunk_ids": [
+          "dependencies__index.md::8",
+          "dependencies__index.md::14",
+          "security__first-steps.md::14",
+          "dependencies__index.md::7",
+          "dependencies__index.md::6"
+        ]
+      }
+    },
+    {
+      "id": "q041",
+      "question": "Why do my typed query inputs arrive as integers even though a URL carries text?",
+      "gold_sources": [
+        "query-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.019029199989745393,
+        "chunk_ids": [
+          "query-params.md::0",
+          "query-params.md::4",
+          "query-params-str-validations.md::18",
+          "query-params.md::1",
+          "query-params.md::2"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 0.5,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.022016299990355037,
+        "chunk_ids": [
+          "query-params-str-validations.md::18",
+          "query-params.md::0",
+          "query-params-str-validations.md::19",
+          "query-params.md::1",
+          "query-params.md::2"
+        ]
+      }
+    },
+    {
+      "id": "q042",
+      "question": "Can I constrain a URL path variable to a fixed set of named choices?",
+      "gold_sources": [
+        "path-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 0.5,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.017829099990194663,
+        "chunk_ids": [
+          "first-steps.md::20",
+          "path-params.md::10",
+          "query-params.md::8",
+          "path-params-numeric-validations.md::4",
+          "path-params.md::9"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 0.25,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.5921787709497207,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.02471559999685269,
+        "chunk_ids": [
+          "query-params.md::2",
+          "query-params.md::0",
+          "query-params.md::1",
+          "path-params.md::10",
+          "first-steps.md::20"
+        ]
+      }
+    },
+    {
+      "id": "q043",
+      "question": "I filled in a cookie in the interactive docs, but Execute behaves as though no cookie was supplied. Why?",
+      "gold_sources": [
+        "cookie-params.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.018983600006322376,
+        "chunk_ids": [
+          "cookie-params.md::2",
+          "cookie-params.md::1",
+          "cookie-params.md::0",
+          "header-params.md::0",
+          "header-params.md::1"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 1.0,
+          "evidence_complete_at_k": 1
+        },
+        "retrieval_s": 0.024959600006695837,
+        "chunk_ids": [
+          "cookie-params.md::2",
+          "cookie-params.md::1",
+          "cookie-params.md::0",
+          "header-params.md::0",
+          "header-params.md::2"
+        ]
+      }
+    },
+    {
+      "id": "q044",
+      "question": "Can the schema produced by FastAPI help generate clients for other applications?",
+      "gold_sources": [
+        "first-steps.md"
+      ],
+      "A": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 0.5,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.8968253968253969,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.01994620000186842,
+        "chunk_ids": [
+          "dependencies__index.md::20",
+          "first-steps.md::11",
+          "first-steps.md::13",
+          "first-steps.md::9",
+          "first-steps.md::27"
+        ]
+      },
+      "C": {
+        "scores": {
+          "hit_at_k": 1,
+          "mrr_at_k": 1.0,
+          "source_recall_at_k": 1.0,
+          "evidence_coverage_at_k": 0.8968253968253969,
+          "evidence_complete_at_k": 0
+        },
+        "retrieval_s": 0.017030800008797087,
+        "chunk_ids": [
+          "first-steps.md::13",
+          "first-steps.md::11",
+          "first-steps.md::9",
+          "body.md::6",
+          "first-steps.md::18"
+        ]
+      }
+    },
+    {
+      "id": "q047",
+      "question": "What Alembic commands create and apply a PostgreSQL database migration for this application?",
+      "gold_sources": [],
+      "A": {
+        "scores": null,
+        "retrieval_s": 0.019285699992906302,
+        "chunk_ids": [
+          "dependencies__index.md::16",
+          "dependencies__index.md::1",
+          "dependencies__index.md::20",
+          "dependencies__index.md::7",
+          "first-steps.md::26"
+        ]
+      },
+      "C": {
+        "scores": null,
+        "retrieval_s": 0.01751459999650251,
+        "chunk_ids": [
+          "dependencies__index.md::1",
+          "dependencies__index.md::7",
+          "query-params-str-validations.md::27",
+          "dependencies__index.md::16",
+          "response-model.md::3"
+        ]
+      }
+    },
+    {
+      "id": "q048",
+      "question": "How should a Redis connection be configured to cache API responses with a time-to-live?",
+      "gold_sources": [],
+      "A": {
+        "scores": null,
+        "retrieval_s": 0.016038099987781607,
+        "chunk_ids": [
+          "response-model.md::19",
+          "first-steps.md::25",
+          "dependencies__index.md::12",
+          "first-steps.md::21",
+          "response-model.md::24"
+        ]
+      },
+      "C": {
+        "scores": null,
+        "retrieval_s": 0.02142469999671448,
+        "chunk_ids": [
+          "body.md::0",
+          "response-model.md::24",
+          "handling-errors.md::8",
+          "security__first-steps.md::0",
+          "body.md::10"
+        ]
+      }
+    },
+    {
+      "id": "q049",
+      "question": "What Kubernetes deployment and service YAML should expose this application?",
+      "gold_sources": [],
+      "A": {
+        "scores": null,
+        "retrieval_s": 0.014291400002548471,
+        "chunk_ids": [
+          "first-steps.md::27",
+          "first-steps.md::17",
+          "first-steps.md::28",
+          "first-steps.md::13",
+          "first-steps.md::18"
+        ]
+      },
+      "C": {
+        "scores": null,
+        "retrieval_s": 0.023021299988613464,
+        "chunk_ids": [
+          "first-steps.md::17",
+          "first-steps.md::13",
+          "response-model.md::1",
+          "dependencies__index.md::14",
+          "first-steps.md::27"
+        ]
+      }
+    }
+  ]
+}

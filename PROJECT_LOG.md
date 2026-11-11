@@ -314,3 +314,19 @@ Next required human step: label correctness and faithfulness independently,
 then use the agreement command and inspect disagreements. Benchmark review
 and freezing, final answer-quality/latency reports, controlled pipeline
 comparisons and regression CI remain pending.
+
+
+## 18. Dense vs. hybrid development pilot: 11 November 2026
+
+Implemented roadmap configuration C using BM25 and the existing dense index,
+with reciprocal rank fusion. The same evaluation runner defaults to A and
+selects C with --config C. All 43 tests passed.
+
+Both retrieval runs completed the same 40 development questions. Of 36
+answerable questions, A returned complete evidence for 27 and C for
+26. C recovered 3 cases and lost 4 cases.
+See reports/dense-vs-hybrid-dev-2026-11-11 for paired observations and timings.
+
+This development pilot advances the roadmap's retrieval comparison. Benchmark
+review, independent judge calibration, reserved-test results, configurations B
+and D, and CI remain pending.
