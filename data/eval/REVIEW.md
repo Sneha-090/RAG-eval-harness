@@ -4,6 +4,26 @@ Status: pending author review. Checking a box requires reviewing the question,
 reference and evidence in the frozen source; text validation alone is insufficient.
 All evidence items are required. Reserved test questions must not guide tuning.
 
+## AI-assisted reference cross-check
+
+**Batch 1 (q001 to q010).** The project author supplied a Google NotebookLM
+pass over the frozen FastAPI sources. Codex compared the answers with the
+draft key and checked the stored evidence against the original Markdown.
+
+| Questions | Review result |
+|---|---|
+| q001 to q009 | The source-backed answers match the meaning of the current reference answers. |
+| q010 | Both passes classify the Docker deployment question as unsupported by the 12-file corpus. |
+
+The benchmark retains the original Markdown quotes and their source filenames.
+NotebookLM rendered code formatting as plain text in some excerpts, so the
+pasted excerpts are unsuitable for exact substring scoring. Additional evidence
+offered for q008 and q009 is unnecessary for the existing reference answers.
+
+Progress: 10 of 50 items have received an AI-assisted cross-check. The author
+review checkboxes track human review. The generated-answer judge calibration
+is tracked separately.
+
 ## q001 — direct / dev
 
 - [ ] Author reviewed
