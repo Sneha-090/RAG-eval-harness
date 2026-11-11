@@ -111,6 +111,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--mode', choices=['retrieval', 'answers'], default='retrieval')
     parser.add_argument('--split', choices=['dev', 'test'], default='dev')
+    parser.add_argument('--config', choices=['A', 'C'], default='A', help='A: dense; C: dense + BM25')
     parser.add_argument('--k', type=int, default=5)
     parser.add_argument('--limit', type=int)
     parser.add_argument('--delay', type=float, default=15, help='Seconds before each generation call')
@@ -129,7 +130,7 @@ def main():
         from src.retrieval.embeddings import MODEL_NAME, get_model
         from src.retrieval.index import COLLECTION_NAME
         from src.chunking.fixed import CHUNK_SIZE, OVERLAP
-        contract = {'version': 1, 'config': 'A', 'mode': args.mode, 'k': args.k,
+        contract = {'version': 1, 'config': args.config, 'mode': args.mode, 'k': args.k,
                     'embedding_model': MODEL_NAME, 'collection': COLLECTION_NAME,
                     'chunk_size': CHUNK_SIZE, 'overlap': OVERLAP,
                     'dataset_sha256': hashlib.sha256(args.dataset.read_bytes()).hexdigest(),
@@ -155,6 +156,13 @@ def main():
             raise ValueError('Index differs from corpus/chunking; rebuild the baseline index')
         contract['index_content_sha256'] = digest(actual)
         contract['index_metadata'] = collection.metadata
+        if args.config == 'C':
+            from src.retrieval.hybrid import B, CANDIDATES, K1, RRF_CONSTANT, HybridRetriever
+            chunks = [{'chunk_id': key, 'text': value[0], 'doc_id': value[1]}
+                      for key, value in actual.items()]
+            retrieve = HybridRetriever(chunks, retrieve).retrieve
+            contract['hybrid'] = {'k1': K1, 'b': B, 'rrf_constant': RRF_CONSTANT,
+                                  'candidates_per_ranker': max(args.k, CANDIDATES)}
         # Fail once on a missing model instead of marking every question failed.
         model = get_model()
         contract['embedding_max_length'] = model.max_seq_length
