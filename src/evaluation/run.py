@@ -111,8 +111,8 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--mode', choices=['retrieval', 'answers'], default='retrieval')
     parser.add_argument('--split', choices=['dev', 'test'], default='dev')
-    parser.add_argument('--config', choices=['A', 'B', 'C'], default='A',
-                        help='A: fixed+dense; B: semantic+dense; C: fixed+hybrid')
+    parser.add_argument('--config', choices=['A', 'B', 'C', 'D'], default='A',
+                        help='A: fixed+dense; B: semantic+dense; C: fixed+hybrid; D: hybrid+reranker')
     parser.add_argument('--k', type=int, default=5)
     parser.add_argument('--limit', type=int)
     parser.add_argument('--delay', type=float, default=15, help='Seconds before each generation call')
@@ -172,13 +172,25 @@ def main():
         contract['index_content_sha256'] = digest(actual)
         contract['index_metadata'] = collection.metadata
         retrieve = lambda question, k: dense_retrieve(question, k, collection_name)
-        if args.config == 'C':
+        if args.config in {'C', 'D'}:
             from src.retrieval.hybrid import B, CANDIDATES, K1, RRF_CONSTANT, HybridRetriever
             chunks = [{'chunk_id': key, 'text': value[0], 'doc_id': value[1]}
                       for key, value in actual.items()]
             retrieve = HybridRetriever(chunks, retrieve).retrieve
             contract['hybrid'] = {'k1': K1, 'b': B, 'rrf_constant': RRF_CONSTANT,
                                   'candidates_per_ranker': max(args.k, CANDIDATES)}
+        if args.config == 'D':
+            from src.retrieval.rerank import (RERANK_BATCH_SIZE, RERANK_CANDIDATES,
+                                              RERANKER_MODEL_NAME, RERANKER_MODEL_REVISION,
+                                              RerankedRetriever,
+                                              get_reranker, predict_scores)
+            reranker = get_reranker()
+            retrieve = RerankedRetriever(retrieve, predict_scores, RERANK_CANDIDATES).retrieve
+            contract['reranker'] = {'model': RERANKER_MODEL_NAME,
+                                    'revision': RERANKER_MODEL_REVISION,
+                                    'candidate_count': RERANK_CANDIDATES,
+                                    'batch_size': RERANK_BATCH_SIZE,
+                                    'max_length': reranker.max_seq_length}
         # Fail once on a missing model instead of marking every question failed.
         contract['embedding_max_length'] = model.max_seq_length
         try:
