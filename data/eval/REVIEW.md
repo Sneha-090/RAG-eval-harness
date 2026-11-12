@@ -30,9 +30,15 @@ match the meaning of the existing references. The original stored evidence
 and source filenames were retained because NotebookLM flattened Markdown
 formatting and rewrote some excerpts while preserving their meaning.
 
-Progress: 30 of 50 items have received an AI-assisted cross-check. The author
-review checkboxes track human review. The generated-answer judge calibration
-is tracked separately.
+**Batch 4 (q038 to q044, q047 to q049).** The seven answerable NotebookLM
+answers match the existing references. For q047 to q049, both passes find no
+support for Alembic migrations, Redis caching, or Kubernetes deployment in the
+frozen 12-page corpus, so the three unanswerable labels are retained.
+
+Progress: 40 of 50 items have received an AI-assisted cross-check. All 40
+development items are covered; the remaining ten are reserved test items. The
+author review checkboxes track human review. The generated-answer judge
+calibration is tracked separately.
 
 ## q001 — direct / dev
 
