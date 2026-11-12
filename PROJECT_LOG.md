@@ -330,3 +330,27 @@ See reports/dense-vs-hybrid-dev-2026-11-11 for paired observations and timings.
 This development pilot advances the roadmap's retrieval comparison. Benchmark
 review, independent judge calibration, reserved-test results, configurations B
 and D, and CI remain pending.
+
+
+## 19. Fixed vs. semantic chunking development pilot: 12 November 2026
+
+Implemented configuration B as source-contiguous embedding-based semantic
+chunking. Markdown paragraph/sentence units are embedded with the existing
+MiniLM model. Boundaries require both a document-relative high cosine distance
+(75th percentile) and a minimum distance of 0.25. Chunks use a soft 300-character
+minimum, hard 900-character maximum and 450-character unit maximum. The corpus
+produced 164 semantic chunks versus 215 fixed chunks. Added a separate Chroma
+collection, runner selection with --config B and five semantic-chunking tests;
+all 48 tests passed.
+
+Ran the unchanged 40-question development split at K=5 with zero retrieval
+errors and no generator or judge calls. Across 36 answerable questions, B kept
+Hit@5 and required-source recall at 1.0, changed MRR from 0.9583 to 0.9537,
+changed exact evidence coverage from 0.8375 to 0.8426, and improved complete
+evidence from 27/36 to 29/36. It recovered five questions and lost three, so the
+result is a measured trade-off rather than a universal improvement. Timing is
+descriptive only because the A and B runs occurred on different dates.
+
+See reports/fixed-vs-semantic-dev-2026-11-12. Reserved test questions were not
+run. Configuration D, generated-answer comparison, independent human judge
+calibration and regression CI remain pending.

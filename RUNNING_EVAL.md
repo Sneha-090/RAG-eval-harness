@@ -14,6 +14,17 @@ The default mode only retrieves; it makes no generator or judge API calls.
 The local embedding model must already be cached to work offline.
 The baseline Chroma index must exist and match the current document chunks.
 If necessary, build it with `python -m src.retrieval.index`.
+Build the separate semantic index with:
+
+    python -m src.retrieval.index --config B
+
+Run semantic chunking plus dense retrieval with a fresh output directory:
+
+    python -m src.evaluation.run --config B --split dev --output runs/config-b-dev
+    python -m src.evaluation.report --run runs/config-b-dev
+
+Configuration C uses the baseline fixed-chunk index with hybrid dense and BM25
+retrieval. Never reuse an output directory across configurations.
 
 To explicitly call the configured answer generator:
 
