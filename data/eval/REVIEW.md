@@ -25,7 +25,12 @@ existing references. The pasted q018 link was redacted. The frozen source
 `first-steps.md` confirms the existing reference path `/openapi.json`. The
 original evidence quotes for all ten entries were checked in the corpus.
 
-Progress: 20 of 50 items have received an AI-assisted cross-check. The author
+**Batch 3 (q024 to q028, q031 to q034, q037).** All ten NotebookLM answers
+match the meaning of the existing references. The original stored evidence
+and source filenames were retained because NotebookLM flattened Markdown
+formatting and rewrote some excerpts while preserving their meaning.
+
+Progress: 30 of 50 items have received an AI-assisted cross-check. The author
 review checkboxes track human review. The generated-answer judge calibration
 is tracked separately.
 
