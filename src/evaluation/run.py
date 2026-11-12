@@ -111,7 +111,8 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--mode', choices=['retrieval', 'answers'], default='retrieval')
     parser.add_argument('--split', choices=['dev', 'test'], default='dev')
-    parser.add_argument('--config', choices=['A', 'C'], default='A', help='A: dense; C: dense + BM25')
+    parser.add_argument('--config', choices=['A', 'B', 'C'], default='A',
+                        help='A: fixed+dense; B: semantic+dense; C: fixed+hybrid')
     parser.add_argument('--k', type=int, default=5)
     parser.add_argument('--limit', type=int)
     parser.add_argument('--delay', type=float, default=15, help='Seconds before each generation call')
@@ -126,13 +127,28 @@ def main():
             selected = selected[:args.limit]
         if not selected:
             raise ValueError('No questions selected')
-        from src.retrieval.dense import retrieve
-        from src.retrieval.embeddings import MODEL_NAME, get_model
-        from src.retrieval.index import COLLECTION_NAME
-        from src.chunking.fixed import CHUNK_SIZE, OVERLAP
+        from src.retrieval.dense import retrieve as dense_retrieve
+        from src.retrieval.embeddings import MODEL_NAME, embed_texts, get_model
+        from src.retrieval.index import COLLECTION_NAME, SEMANTIC_COLLECTION_NAME
+        model = get_model()
+        if args.config == 'B':
+            from src.chunking.semantic import (BREAKPOINT_PERCENTILE, MAX_CHUNK_CHARS,
+                                               MIN_BREAKPOINT_DISTANCE, MIN_CHUNK_CHARS, UNIT_MAX_CHARS,
+                                               semantic_chunk_documents)
+            expected_chunks = semantic_chunk_documents(load_documents(ROOT / 'data/raw'), embed_texts)
+            collection_name = SEMANTIC_COLLECTION_NAME
+            chunking = {'strategy': 'semantic', 'min_chars': MIN_CHUNK_CHARS,
+                        'max_chars': MAX_CHUNK_CHARS, 'unit_max_chars': UNIT_MAX_CHARS,
+                        'breakpoint_percentile': BREAKPOINT_PERCENTILE,
+                        'minimum_breakpoint_distance': MIN_BREAKPOINT_DISTANCE}
+        else:
+            from src.chunking.fixed import CHUNK_SIZE, OVERLAP, chunk_documents
+            expected_chunks = chunk_documents(load_documents(ROOT / 'data/raw'))
+            collection_name = COLLECTION_NAME
+            chunking = {'strategy': 'fixed', 'chunk_size': CHUNK_SIZE, 'overlap': OVERLAP}
         contract = {'version': 1, 'config': args.config, 'mode': args.mode, 'k': args.k,
-                    'embedding_model': MODEL_NAME, 'collection': COLLECTION_NAME,
-                    'chunk_size': CHUNK_SIZE, 'overlap': OVERLAP,
+                    'embedding_model': MODEL_NAME, 'collection': collection_name,
+                    'chunking': chunking,
                     'dataset_sha256': hashlib.sha256(args.dataset.read_bytes()).hexdigest(),
                     'files': snapshot(), 'python': platform.python_version(), 'platform': platform.platform()}
         generation = None
@@ -147,15 +163,15 @@ def main():
         # Verify actual stored chunks match the current corpus/chunking before reuse.
         import chromadb
         from src.retrieval.index import DB_PATH
-        from src.chunking.fixed import chunk_documents
-        collection = chromadb.PersistentClient(path=str(DB_PATH)).get_collection(COLLECTION_NAME)
+        collection = chromadb.PersistentClient(path=str(DB_PATH)).get_collection(collection_name)
         stored = collection.get(include=['documents', 'metadatas'])
         actual = {i: (text, meta['doc_id']) for i, text, meta in zip(stored['ids'], stored['documents'], stored['metadatas'])}
-        expected = {c.chunk_id: (c.text, c.doc_id) for c in chunk_documents(load_documents(ROOT / 'data/raw'))}
+        expected = {c.chunk_id: (c.text, c.doc_id) for c in expected_chunks}
         if actual != expected:
-            raise ValueError('Index differs from corpus/chunking; rebuild the baseline index')
+            raise ValueError(f'Index differs from corpus/chunking; rebuild configuration {args.config}')
         contract['index_content_sha256'] = digest(actual)
         contract['index_metadata'] = collection.metadata
+        retrieve = lambda question, k: dense_retrieve(question, k, collection_name)
         if args.config == 'C':
             from src.retrieval.hybrid import B, CANDIDATES, K1, RRF_CONSTANT, HybridRetriever
             chunks = [{'chunk_id': key, 'text': value[0], 'doc_id': value[1]}
@@ -164,7 +180,6 @@ def main():
             contract['hybrid'] = {'k1': K1, 'b': B, 'rrf_constant': RRF_CONSTANT,
                                   'candidates_per_ranker': max(args.k, CANDIDATES)}
         # Fail once on a missing model instead of marking every question failed.
-        model = get_model()
         contract['embedding_max_length'] = model.max_seq_length
         try:
             contract['git_commit'] = subprocess.check_output(['git', '-c', f'safe.directory={ROOT.as_posix()}', '-C', str(ROOT), 'rev-parse', 'HEAD'], text=True).strip()
