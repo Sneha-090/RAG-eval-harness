@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-12",
+  "scope": {
+    "split": "dev",
+    "questions": 40,
+    "answerable_questions_scored": 36,
+    "unanswerable_questions_excluded": 4,
+    "reserved_test_questions_run": 0,
+    "k": 5,
+    "dataset_sha256": "a3a5df854be64a1f3dd803cf3f6a3fb57cfc368cebca5be7b03be70f64364e02",
+    "metrics_sha256": "41c421816780d83d35d4ee2f7116ae71bd36c3a3ed0de57542acf2b09e4d09cc",
+    "scorer_sha256": "6cf23cf92111bb4c92af9052c8b1a9fba4a08530148eca3ddc52346e88e8dad6",
+    "git_commit": "a3062d6fb481c1acab164fbd1bd0dbdb8e6b575d"
+  },
+  "configurations": {
+    "A": {
+      "pipeline": "fixed-size chunking + dense retrieval",
+      "run_signature": "730a2c64d0e58f7a77efefdd173990f7f2ed9f5498d3852aed4f199700c58d04",
+      "hit_at_5": 1.0,
+      "mrr_at_5": 0.9583333333333334,
+      "source_recall_at_5": 1.0,
+      "evidence_coverage_at_5": 0.8375232329064929,
+      "complete_evidence_at_5": 0.75,
+      "complete_evidence_count": 27,
+      "retrieval_mean_s": 0.020097122501465493,
+      "retrieval_p95_s": 0.021950800000922754
+    },
+    "B": {
+      "pipeline": "semantic chunking + dense retrieval",
+      "run_signature": "96720a4919c496231b49f9737d2129286595f53a9d2e4931ce44c5e0e56bd2dd",
+      "hit_at_5": 1.0,
+      "mrr_at_5": 0.9537037037037037,
+      "source_recall_at_5": 1.0,
+      "evidence_coverage_at_5": 0.8425925925925926,
+      "complete_evidence_at_5": 0.8055555555555556,
+      "complete_evidence_count": 29,
+      "retrieval_mean_s": 0.019078892500692744,
+      "retrieval_p95_s": 0.023222299991175532
+    },
+    "C": {
+      "pipeline": "fixed-size chunking + dense/BM25 reciprocal-rank fusion",
+      "run_signature": "f843c2d445731318a5f6fb9d228b42c5588dd2a82177cb73e6f046cb7e11887c",
+      "hit_at_5": 0.9722222222222222,
+      "mrr_at_5": 0.9050925925925926,
+      "source_recall_at_5": 0.9444444444444444,
+      "evidence_coverage_at_5": 0.8302013828280612,
+      "complete_evidence_at_5": 0.7222222222222222,
+      "complete_evidence_count": 26,
+      "retrieval_mean_s": 0.021823840001161443,
+      "retrieval_p95_s": 0.023751200002152473
+    },
+    "D": {
+      "pipeline": "fixed-size chunking + hybrid retrieval + cross-encoder reranking",
+      "run_signature": "b1c4142554fdce54836acd0856f30bed87a0e22526788786a87ef482892c54bb",
+      "reranker_model": "cross-encoder/ms-marco-MiniLM-L6-v2",
+      "reranker_revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+      "rerank_candidates": 20,
+      "hit_at_5": 0.9722222222222222,
+      "mrr_at_5": 0.9212962962962963,
+      "source_recall_at_5": 0.9444444444444444,
+      "evidence_coverage_at_5": 0.851590057319224,
+      "complete_evidence_at_5": 0.75,
+      "complete_evidence_count": 27,
+      "retrieval_mean_s": 0.8973861175014463,
+      "retrieval_p95_s": 1.2003807000000961
+    }
+  },
+  "question_level_findings": {
+    "D_recovered_complete_evidence_vs_C": ["q018", "q039"],
+    "D_lost_complete_evidence_vs_C": ["q041"],
+    "C_and_D_page_misses": ["q015"]
+  },
+  "development_selection": {
+    "configuration": "B",
+    "reason": "Highest complete-evidence rate while retaining 100% Page Hit@5 and required-source recall@5.",
+    "status": "provisional until the benchmark is human-reviewed and the reserved test split is run once"
+  }
+}

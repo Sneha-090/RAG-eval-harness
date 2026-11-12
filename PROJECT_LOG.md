@@ -354,3 +354,28 @@ descriptive only because the A and B runs occurred on different dates.
 See reports/fixed-vs-semantic-dev-2026-11-12. Reserved test questions were not
 run. Configuration D, generated-answer comparison, independent human judge
 calibration and regression CI remain pending.
+
+
+## 20. Reranking and four-config development comparison: 12 November 2026
+
+Implemented configuration D using the existing fixed-chunk hybrid retriever to
+produce 20 candidates, followed by the pinned local cross-encoder
+`cross-encoder/ms-marco-MiniLM-L6-v2` revision
+`233902d25c440f23af6f7d6e94d2946bac0bee0a`. The runner records the model,
+revision, candidate count, batch size and maximum sequence length. Non-finite or
+misaligned model scores fail explicitly. Added five reranker tests; all 53 tests
+passed.
+
+Captured fresh A, B and C development runs plus D from the same Git commit,
+with 40/40 successful retrievals per configuration and no generator or judge
+calls. B produced the most complete evidence, 29/36. A and D produced 27/36;
+C produced 26/36. D improved C's MRR from 0.9051 to 0.9213, evidence coverage
+from 0.8302 to 0.8516 and complete evidence by one question, but retained a
+q015 page miss and averaged 0.8974 seconds per retrieval. The other three
+averaged about 0.02 seconds.
+
+B is the provisional development selection because it combines the highest
+complete-evidence rate with 100% Page Hit@5 and source recall. The result does
+not authorize test-set tuning or answer-quality claims. See
+reports/four-config-dev-2026-11-12. Human benchmark review, independent judge
+calibration, a one-time frozen test run and regression CI remain pending.

@@ -26,6 +26,16 @@ Run semantic chunking plus dense retrieval with a fresh output directory:
 Configuration C uses the baseline fixed-chunk index with hybrid dense and BM25
 retrieval. Never reuse an output directory across configurations.
 
+Configuration D adds a pinned local cross-encoder over 20 hybrid candidates:
+
+    python -m src.evaluation.run --config D --split dev --output runs/config-d-dev
+    python -m src.evaluation.report --run runs/config-d-dev
+
+The reranker is `cross-encoder/ms-marco-MiniLM-L6-v2` at revision
+`233902d25c440f23af6f7d6e94d2946bac0bee0a`. It downloads to the Hugging Face
+cache on first use, makes no paid API call, and is substantially slower than
+dense or BM25 retrieval on CPU.
+
 To explicitly call the configured answer generator:
 
     python -m src.evaluation.run --mode answers --limit 2 --output runs/dev-answers-01
