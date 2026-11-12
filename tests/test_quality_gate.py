@@ -12,7 +12,8 @@ class QualityGateTests(unittest.TestCase):
                 "config": "B", "mode": "retrieval", "split": "dev", "k": 5,
                 "requested": 40, "answerable_count": 36, "dataset_sha256": "data",
                 "metrics_sha256": "metrics", "scorer_sha256": "scorer",
-                "embedding_model": "embed", "chunking": {"strategy": "semantic"},
+                "embedding_model": "embed", "embedding_revision": "revision",
+                "chunking": {"strategy": "semantic"},
             },
             "baseline": {
                 "hit_at_k": 1.0, "mrr_at_k": 0.95, "source_recall_at_k": 1.0,
@@ -30,6 +31,7 @@ class QualityGateTests(unittest.TestCase):
             "contract": {
                 "config": "B", "mode": "retrieval", "k": 5,
                 "dataset_sha256": "data", "embedding_model": "embed",
+                "embedding_revision": "revision",
                 "chunking": {"strategy": "semantic"},
             },
         }

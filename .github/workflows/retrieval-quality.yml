@@ -1,0 +1,81 @@
+name: Retrieval quality gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: retrieval-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      HF_HOME: ${{ github.workspace }}/.cache/huggingface
+      HF_HUB_DISABLE_PROGRESS_BARS: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      ANONYMIZED_TELEMETRY: "false"
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Cache embedding model
+        uses: actions/cache@v6
+        with:
+          path: ${{ env.HF_HOME }}
+          key: hf-${{ runner.os }}-py313-${{ hashFiles('requirements.txt') }}-minilm-1110a243
+          restore-keys: |
+            hf-${{ runner.os }}-py313-
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -B -m unittest discover -s tests -v
+
+      - name: Validate benchmark
+        run: python -B -m src.evaluation.validate
+
+      - name: Build semantic index
+        run: python -B -m src.retrieval.index --config B
+
+      - name: Capture development retrievals
+        run: python -B -m src.evaluation.run --config B --split dev --output runs/ci-config-b
+
+      - name: Score retrievals
+        run: python -B -m src.evaluation.report --run runs/ci-config-b
+
+      - name: Enforce quality thresholds
+        run: python -B -m src.evaluation.gate --run runs/ci-config-b
+
+      - name: Prove degraded metrics fail
+        run: python -B -m src.evaluation.gate_demo --run runs/ci-config-b
+
+      - name: Upload evaluation evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: retrieval-quality-${{ github.run_id }}
+          path: |
+            runs/ci-config-b/manifest.json
+            runs/ci-config-b/evaluation.json
+            runs/ci-config-b/report.md
+            runs/ci-config-b/summary.json
+          if-no-files-found: warn
+          retention-days: 14

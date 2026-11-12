@@ -30,7 +30,8 @@ def check_gate(policy, manifest, report):
 
     if policy.get("version") != 1:
         failures.append("policy version must be 1")
-    for key in ("config", "mode", "k", "dataset_sha256", "embedding_model", "chunking"):
+    for key in ("config", "mode", "k", "dataset_sha256", "embedding_model",
+                "embedding_revision", "chunking"):
         if contract.get(key) != expected.get(key):
             failures.append(f"contract {key} differs from the policy")
     if report.get("run_signature") != manifest.get("signature"):

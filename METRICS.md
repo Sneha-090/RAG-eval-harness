@@ -4,7 +4,8 @@ Effective 25 October 2026, before scoring the expanded draft benchmark.
 Version 1 remains available in Git history. Existing Hit@K, MRR and answer-score
 scales are retained. Version 2 explicitly defines multi-source behavior and adds
 source recall and exact evidence coverage. All configurations must use this
-same contract and dataset version. No comparison result exists yet.
+same contract and dataset version. Development comparisons and the selected B
+regression policy are versioned under `reports/` and `quality-gate.json`.
 
 ## Retrieval metrics
 
@@ -75,8 +76,8 @@ do not include cold-start model loading. Retain the hardware/platform context.
 Every run records dataset/corpus hashes, corpus source commit, code version,
 model settings, chunk size/overlap, K, prompt when applicable, and date. The
 pinned upstream corpus commit is recorded in data/CORPUS.md, whose content is
-hashed in the run manifest. Index embedding revision provenance is still a
-known limitation and must be addressed before controlled comparisons.
+hashed in the run manifest. The MiniLM embedding model and cross-encoder
+reranker revisions are pinned and recorded by current runs.
 
 ## Change policy
 

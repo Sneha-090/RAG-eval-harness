@@ -379,3 +379,26 @@ complete-evidence rate with 100% Page Hit@5 and source recall. The result does
 not authorize test-set tuning or answer-quality claims. See
 reports/four-config-dev-2026-11-12. Human benchmark review, independent judge
 calibration, a one-time frozen test run and regression CI remain pending.
+
+
+## 21. Retrieval regression gate and CI: 12 November 2026
+
+Pinned the MiniLM embedding model to revision
+`1110a243fdf4706b3f48f1d95db1a4f5529b4d41` and added the revision to run
+manifests and policy checks. Added a versioned quality policy for configuration
+B, a strict gate CLI and an in-memory degraded-result demonstration. The gate
+requires 29/36 complete-evidence questions, 100% Page Hit@5 and source recall,
+with documented tolerances of 0.01 for MRR and 0.005 for evidence coverage. It
+also rejects wrong dataset/metric/scorer hashes, config/settings drift,
+incomplete runs and non-finite metrics.
+
+Added a GitHub Actions workflow that installs the pinned environment, caches
+the embedding model, runs all tests, rebuilds B, captures and scores all 40
+development questions, enforces the policy, proves a one-question degradation
+is rejected and uploads the evaluation files. It uses no secrets, paid APIs or
+reserved test questions. Local end-to-end verification reproduced the baseline
+and rejected the degraded copy. All 58 tests passed.
+
+The policy update rule forbids loosening thresholds merely to obtain a green
+build. Human benchmark review, independent judge calibration, the one-time
+frozen test run and final presentation work remain pending.

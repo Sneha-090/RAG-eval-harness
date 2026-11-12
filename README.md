@@ -1,14 +1,17 @@
 # RAG Evaluation Harness
 
+[![Retrieval quality gate](https://github.com/Sneha-090/RAG-eval-harness/actions/workflows/retrieval-quality.yml/badge.svg)](https://github.com/Sneha-090/RAG-eval-harness/actions/workflows/retrieval-quality.yml)
+
 A document-based RAG baseline and an evaluation harness for measuring retrieval
 quality separately from generated-answer quality. The first benchmark uses 12
 version-pinned FastAPI tutorial pages; core ingestion and retrieval are generic.
 
-**Current status:** all four retrieval configurations implemented and compared
-on development data; benchmark validation and answer-quality work remain open.
+**Current status:** all four retrieval configurations are compared and a
+development retrieval regression gate is implemented; human benchmark/judge
+validation and answer-quality work remain open.
 The benchmark is draft. Provisional LLM judging and blind human-review tools
-are implemented; human validation, four-configuration experiments and CI quality
-gates remain pending. No production-readiness claim is made.
+are implemented; human validation and final answer-quality experiments remain
+pending. No production-readiness claim is made.
 
 ## Implemented
 
@@ -17,13 +20,15 @@ gates remain pending. No production-readiness claim is made.
   persistent Chroma storage and top-5 dense retrieval.
 - Embedding-based semantic chunking with recorded boundary and size settings.
 - BM25/dense reciprocal-rank fusion and pinned local cross-encoder reranking.
+- A pinned embedding revision and GitHub Actions gate that rebuilds B, reruns
+  development retrieval and rejects metric or provenance regressions.
 - Context-only answer generation through a replaceable HTTP LLM client.
 - A 50-question draft with exact evidence: 40 development, 10 reserved test.
 - Corpus/evidence validation, atomic question checkpoints and resumable capture.
 - Deterministic retrieval scoring and per-category JSON/Markdown reports.
 - Provisional correctness/faithfulness/abstention judging with strict output validation.
 - Blind human-review export and input-pinned agreement comparison.
-- 53 automated tests covering chunking, retrieval, validation, resume/error handling,
+- 58 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
   metrics and judging.
 
 ## Draft development results
@@ -84,6 +89,16 @@ The [four-way report](reports/four-config-dev-2026-11-12/report.md) explains why
 more complexity did not automatically win. Test-split and generated-answer
 comparisons remain pending.
 
+## Automated regression protection
+
+The [quality-gate policy](quality-gate.json) freezes B's development baseline.
+Every push to `main` and pull request rebuilds the semantic index, retrieves all
+40 development questions and fails if complete evidence drops below 29/36,
+Page Hit@5 or source recall drops below 100%, or tolerance-limited metrics
+regress. CI also proves that a deliberately degraded one-question result is
+rejected. See [QUALITY_GATE.md](QUALITY_GATE.md) for thresholds and update rules.
+The reserved test split and paid APIs are not used in CI.
+
 ## Run locally
 
 The existing project environment uses Python 3.13 on Windows. A clean-install
@@ -130,8 +145,8 @@ retrieval-only run. Never commit credentials.
    end-to-end timing.
 2. After judge calibration, compare generated-answer quality for the selected
    pipelines and run the reserved test split once on the frozen benchmark.
-3. Add regression thresholds and CI; demonstrate both a failing degraded
-   configuration and a passing change.
+3. Run the reserved test split once after the benchmark is human-frozen, then
+   finalize architecture documentation, dashboard and resume wording.
 
 After those milestones: a second corpus and a small demo/API, if useful.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.

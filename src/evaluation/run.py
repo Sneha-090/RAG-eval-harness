@@ -128,7 +128,7 @@ def main():
         if not selected:
             raise ValueError('No questions selected')
         from src.retrieval.dense import retrieve as dense_retrieve
-        from src.retrieval.embeddings import MODEL_NAME, embed_texts, get_model
+        from src.retrieval.embeddings import MODEL_NAME, MODEL_REVISION, embed_texts, get_model
         from src.retrieval.index import COLLECTION_NAME, SEMANTIC_COLLECTION_NAME
         model = get_model()
         if args.config == 'B':
@@ -148,6 +148,7 @@ def main():
             chunking = {'strategy': 'fixed', 'chunk_size': CHUNK_SIZE, 'overlap': OVERLAP}
         contract = {'version': 1, 'config': args.config, 'mode': args.mode, 'k': args.k,
                     'embedding_model': MODEL_NAME, 'collection': collection_name,
+                    'embedding_revision': MODEL_REVISION,
                     'chunking': chunking,
                     'dataset_sha256': hashlib.sha256(args.dataset.read_bytes()).hexdigest(),
                     'files': snapshot(), 'python': platform.python_version(), 'platform': platform.platform()}

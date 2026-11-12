@@ -11,6 +11,7 @@
     "metrics_sha256": "41c421816780d83d35d4ee2f7116ae71bd36c3a3ed0de57542acf2b09e4d09cc",
     "scorer_sha256": "6cf23cf92111bb4c92af9052c8b1a9fba4a08530148eca3ddc52346e88e8dad6",
     "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
     "chunking": {
       "strategy": "semantic",
       "min_chars": 300,

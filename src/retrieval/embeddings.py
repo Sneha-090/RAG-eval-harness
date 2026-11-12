@@ -8,6 +8,7 @@ from src.chunking.fixed import chunk_documents
 from src.ingestion.loader import load_documents
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+MODEL_REVISION = "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
 
 _model = None
 
@@ -16,7 +17,7 @@ def get_model() -> SentenceTransformer:
     """Load the model once and reuse it."""
     global _model
     if _model is None:
-        _model = SentenceTransformer(MODEL_NAME)
+        _model = SentenceTransformer(MODEL_NAME, revision=MODEL_REVISION)
     return _model
 
 

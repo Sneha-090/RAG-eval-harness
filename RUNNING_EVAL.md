@@ -36,6 +36,20 @@ The reranker is `cross-encoder/ms-marco-MiniLM-L6-v2` at revision
 cache on first use, makes no paid API call, and is substantially slower than
 dense or BM25 retrieval on CPU.
 
+## Retrieval quality gate
+
+After producing a fresh B report, enforce the frozen development policy with:
+
+    python -m src.evaluation.gate --run runs/config-b-dev
+
+Prove that a one-question degradation is rejected with:
+
+    python -m src.evaluation.gate_demo --run runs/config-b-dev
+
+GitHub Actions performs the complete index, run, report and gate sequence on
+pushes to main and pull requests. See QUALITY_GATE.md. It does not run reserved
+test questions or make generator/judge API calls.
+
 To explicitly call the configured answer generator:
 
     python -m src.evaluation.run --mode answers --limit 2 --output runs/dev-answers-01
@@ -69,8 +83,8 @@ The elapsed_s field is diagnostic wall time (including pacing and failed
 attempts); it is not the benchmark latency metric. Per-stage times exclude the
 runner's pacing. No average/P95 latency result is claimed yet. First retrieval
 may include embedding model loading. The current index can validate stored text
-and metadata, but its original embedding model revision is not recorded; future
-index provenance must fix this before controlled comparisons.
+and metadata. Current runs also record the pinned embedding model revision;
+older historical runs may not.
 
 ## Verification on 25 October 2026
 
