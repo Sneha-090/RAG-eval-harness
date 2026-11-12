@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from src.evaluation.run import run_records
+from src.evaluation.run import file_digest, run_records
 
 
 class RunnerTests(unittest.TestCase):
@@ -72,6 +72,13 @@ class RunnerTests(unittest.TestCase):
         with self.assertRaises(FileExistsError):
             run_records(self.rows, self.output, self.contract, self.retrieve)
         self.assertTrue((self.output / '.lock').exists())
+
+    def test_text_hash_is_stable_across_platform_line_endings(self):
+        first = Path(self.temp.name) / 'lf.txt'
+        second = Path(self.temp.name) / 'crlf.txt'
+        first.write_bytes(b'one\ntwo\n')
+        second.write_bytes(b'one\r\ntwo\r\n')
+        self.assertEqual(file_digest(first), file_digest(second))
 
 
 if __name__ == '__main__':

@@ -18,6 +18,11 @@ def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
 
 
+def file_digest(path):
+    """Hash UTF-8 project text with platform line endings normalized to LF."""
+    return hashlib.sha256(Path(path).read_bytes().replace(b'\r\n', b'\n')).hexdigest()
+
+
 def atomic_json(path, value):
     temporary = path.with_suffix('.tmp')
     temporary.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
@@ -36,7 +41,7 @@ def snapshot(root=ROOT):
     """Hash actual source/corpus/settings, including uncommitted changes, never .env."""
     paths = list((root / 'src').rglob('*.py')) + list((root / 'data/raw').glob('*.md'))
     paths += [root / 'requirements.txt', root / 'METRICS.md', root / 'data/CORPUS.md']
-    return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+    return {p.relative_to(root).as_posix(): file_digest(p)
             for p in sorted(paths)}
 
 
@@ -150,7 +155,7 @@ def main():
                     'embedding_model': MODEL_NAME, 'collection': collection_name,
                     'embedding_revision': MODEL_REVISION,
                     'chunking': chunking,
-                    'dataset_sha256': hashlib.sha256(args.dataset.read_bytes()).hexdigest(),
+                    'dataset_sha256': file_digest(args.dataset),
                     'files': snapshot(), 'python': platform.python_version(), 'platform': platform.platform()}
         generation = None
         if args.mode == 'answers':

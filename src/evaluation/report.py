@@ -1,10 +1,9 @@
 """Score saved retrieval observations without model or API calls."""
 import argparse
-import hashlib
 import json
 from pathlib import Path
 
-from src.evaluation.run import ROOT, atomic_json
+from src.evaluation.run import ROOT, atomic_json, file_digest
 from src.evaluation.metrics import METRIC_NAMES, summarize
 from src.ingestion.loader import load_documents
 
@@ -53,7 +52,7 @@ def main():
         if current_paths != expected_paths:
             raise ValueError('Corpus file list changed; start a new run')
         for path in [*sorted(expected_paths), 'METRICS.md']:
-            actual = hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
+            actual = file_digest(ROOT / path)
             if files.get(path) != actual:
                 raise ValueError(f'{path} changed since this run; start a new run')
         rows = manifest['dataset']
@@ -62,7 +61,7 @@ def main():
         report = summarize(rows, observations, documents, manifest['contract']['k'])
         report['run_signature'] = manifest['signature']
         report['metrics_sha256'] = files['METRICS.md']
-        report['scorer_sha256'] = hashlib.sha256((ROOT / 'src/evaluation/metrics.py').read_bytes()).hexdigest()
+        report['scorer_sha256'] = file_digest(ROOT / 'src/evaluation/metrics.py')
         atomic_json(args.run / 'evaluation.json', report)
         (args.run / 'report.md').write_text(render_markdown(report), encoding='utf-8')
         print(json.dumps({k: report[k] for k in ('requested', 'answerable_missing_retrieval', 'overall')}, indent=2))
