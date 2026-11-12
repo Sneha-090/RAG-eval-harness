@@ -402,3 +402,23 @@ and rejected the degraded copy. All 58 tests passed.
 The policy update rule forbids loosening thresholds merely to obtain a green
 build. Human benchmark review, independent judge calibration, the one-time
 frozen test run and final presentation work remain pending.
+
+
+## 22. Guided blind human review: 12 November 2026
+
+Added a local Streamlit review screen for the existing 14-answer calibration
+packet. It displays one question, reference answer, generated answer and the
+actual retrieved context at a time. The author records correctness on the
+existing 0/0.5/1 scale and faithfulness on the existing 0/1 scale. Each answer
+is saved atomically to the versioned CSV and the screen resumes at the first
+unfinished item. Judge verdicts are never loaded by the app, preserving the
+independent blind-review design; no API key or provider call is required.
+
+Centralized packet validation and partial-label parsing in the existing human
+review module, added canonical CSV writing and kept the strict comparison path
+unchanged: incomplete labels are still rejected before judge agreement can be
+measured. Added a real Streamlit interaction test plus label round-trip tests.
+All 61 tests and the type checker passed. A temporary headless Streamlit server
+loaded the real packet with no exception, warning or traceback and exposed the
+expected five controls. The real human labels remain blank; agreement and final
+answer-quality claims are still pending the author's independent decisions.

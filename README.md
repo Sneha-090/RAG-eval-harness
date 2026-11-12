@@ -28,7 +28,8 @@ pending. No production-readiness claim is made.
 - Deterministic retrieval scoring and per-category JSON/Markdown reports.
 - Provisional correctness/faithfulness/abstention judging with strict output validation.
 - Blind human-review export and input-pinned agreement comparison.
-- 58 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
+- A guided local review screen that saves blind human labels without showing judge scores.
+- 61 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
   metrics and judging.
 
 ## Draft development results
@@ -138,6 +139,15 @@ and use --mode answers. GEMINI_API_KEY is used by the provisional judge. See [JU
 Provider/model availability and clean installation are not verified by the
 retrieval-only run. Never commit credentials.
 
+Review the saved real calibration packet through the local guided screen (no
+API keys or model calls required):
+
+    python -m streamlit run streamlit_app.py
+
+It shows the reference, generated answer and retrieved context, then saves two
+human decisions per item to the versioned labels file. Judge verdicts stay
+hidden until the independent review is complete.
+
 ## Next milestones
 
 1. Review and freeze the benchmark; independently label the calibration
@@ -157,6 +167,7 @@ See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
 Generated and provisionally judged 15 development answers, with zero final
 errors after resuming four transient connection failures. Fourteen answerable
 outputs are ready for independent correctness/faithfulness labels:
+[guided review screen](streamlit_app.py),
 [review sheet](calibration/2026-10-26/review.md) and
 [blank labels](calibration/2026-10-26/labels.csv).
 Judge verdicts are deliberately excluded from the blind packet. All ten test

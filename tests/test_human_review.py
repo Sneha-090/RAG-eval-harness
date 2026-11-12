@@ -5,7 +5,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from src.evaluation.human_review import compare_packet, export_packet, parse_labels, select_sample
+from src.evaluation.human_review import (compare_packet, export_packet, parse_labels,
+                                         parse_partial_labels, save_partial_labels, select_sample)
 from src.evaluation.judge import judge_records
 from src.evaluation.run import run_records
 
@@ -64,6 +65,19 @@ class HumanReviewTests(unittest.TestCase):
                     '\n'.join(text.splitlines()[:-1]), text.replace(',1,0,', ',0.7,0,')]:
             with self.assertRaises(ValueError):
                 parse_labels(bad, identifiers)
+
+    def test_partial_labels_round_trip_without_losing_notes(self):
+        export_packet(self.capture, self.packet)
+        path = self.packet / 'labels.csv'
+        identifiers = [row['id'] for row in self.rows]
+        labels = parse_partial_labels(path.read_text(encoding='utf-8'), set(identifiers))
+        labels['q00'] = {'correctness': .5, 'faithfulness': 0, 'notes': 'Needs a closer look, later.'}
+        save_partial_labels(path, identifiers, labels)
+        restored = parse_partial_labels(path.read_text(encoding='utf-8'), set(identifiers))
+        self.assertEqual(restored['q00'], labels['q00'])
+        self.assertIsNone(restored['q01']['correctness'])
+        with self.assertRaises(ValueError):
+            parse_labels(path.read_text(encoding='utf-8'), set(identifiers))
 
     def test_exact_agreement_and_disagreements_separate(self):
         export_packet(self.capture, self.packet)

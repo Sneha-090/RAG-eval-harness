@@ -5,10 +5,16 @@ The underlying development capture completed 15/15 questions with no errors;
 one question is unanswerable and is excluded from correctness/faithfulness
 calibration. All ten reserved test questions remain untouched.
 
-1. Read review.md. For correctness, compare with the reference; for faithfulness,
-   check every factual claim against the actual retrieved passages.
-2. Fill labels.csv: correctness 0, 0.5 or 1; faithfulness 0 or 1. Add notes where
-   helpful. Scores are deliberately blank and must be filled by the human author.
+1. Start the guided local review screen from the repository root:
+
+       python -m streamlit run streamlit_app.py
+
+   It shows one answer at a time, explains both decisions, saves each response
+   to labels.csv, and resumes from the first unfinished answer. It makes no API
+   calls and does not reveal judge scores.
+2. Alternatively, read review.md and fill labels.csv manually: correctness 0,
+   0.5 or 1; faithfulness 0 or 1. Add notes where helpful. Scores are deliberately
+   blank and must be filled by the human author.
 3. Do not look at judge verdicts before writing independent labels. No model
    verdicts or scores are included here.
 4. Compare with the matching local judge capture using the command below.

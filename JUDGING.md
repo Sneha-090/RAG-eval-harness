@@ -34,6 +34,16 @@ does not claim a successful live provider call or human agreement score.
 
 ## Independent human review
 
+For the versioned real packet, use the guided screen instead of manually editing
+CSV cells:
+
+    python -m streamlit run streamlit_app.py
+
+The screen shows one answer at a time, saves each decision atomically to the
+versioned labels file, and resumes at the first unfinished answer. It reads only
+the blind packet: judge verdicts stay hidden and no provider/API call is made.
+The command-line export and comparison workflow remains the source of truth.
+
     python -m src.evaluation.human_review export --run runs/answers-dev-01 --output runs/human-dev-01
 
 This selects 10–15 successful answerable DEVELOPMENT answers using category

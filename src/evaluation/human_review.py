@@ -9,6 +9,8 @@ from statistics import mean
 from src.evaluation.judge import load_capture, parse_verdict
 from src.evaluation.run import atomic_json, digest
 
+LABEL_FIELDS = ['id', 'correctness', 'faithfulness', 'notes']
+
 
 def select_sample(rows, observations, limit=15):
     if len(rows) != len(observations) or any(r['id'] != o['id'] for r, o in zip(rows, observations)):
@@ -63,9 +65,29 @@ def export_packet(capture, output, limit=15):
     return len(items)
 
 
-def parse_labels(text, ids):
+def load_review_packet(path):
+    packet = json.loads(path.read_text(encoding='utf-8'))
+    payload = {key: packet[key] for key in ('capture_signature', 'items')}
+    if digest(payload) != packet.get('signature'):
+        raise ValueError('Human packet signature mismatch')
+    items = packet['items']
+    identifiers = [item['row']['id'] for item in items]
+    if not 10 <= len(items) <= 15 or len(set(identifiers)) != len(items):
+        raise ValueError('Invalid human sample')
+    for item in items:
+        row, observation = item['row'], item['observation']
+        if not row.get('answerable') or row.get('split') != 'dev':
+            raise ValueError('Human sample must contain answerable development records')
+        if (observation.get('id') != row['id'] or observation.get('status') != 'ok'
+                or not isinstance(observation.get('answer'), str) or not observation['answer'].strip()
+                or not isinstance(observation.get('chunks'), list)):
+            raise ValueError('Human sample contains an invalid answer observation')
+    return packet
+
+
+def parse_partial_labels(text, ids):
     reader = csv.DictReader(io.StringIO(text))
-    if reader.fieldnames != ['id', 'correctness', 'faithfulness', 'notes']:
+    if reader.fieldnames != LABEL_FIELDS:
         raise ValueError('Expected id,correctness,faithfulness,notes columns')
     labels = {}
     for row in reader:
@@ -74,22 +96,50 @@ def parse_labels(text, ids):
         identifier = row['id']
         if identifier in labels or identifier not in ids:
             raise ValueError('Duplicate or unknown human label ID')
-        if row['correctness'] not in {'0', '0.5', '1'} or row['faithfulness'] not in {'0', '1'}:
-            raise ValueError('Human scores are blank or outside the required scales')
-        labels[identifier] = {'correctness': float(row['correctness']), 'faithfulness': int(row['faithfulness'])}
+        correctness, faithfulness = row['correctness'].strip(), row['faithfulness'].strip()
+        if not correctness and not faithfulness:
+            labels[identifier] = {'correctness': None, 'faithfulness': None, 'notes': row['notes']}
+        elif correctness in {'0', '0.5', '1'} and faithfulness in {'0', '1'}:
+            labels[identifier] = {'correctness': float(correctness),
+                                  'faithfulness': int(faithfulness), 'notes': row['notes']}
+        else:
+            raise ValueError('Human scores are incomplete or outside the required scales')
     if set(labels) != set(ids):
         raise ValueError('Human labels must cover every selected answer')
     return labels
 
 
+def parse_labels(text, ids):
+    labels = parse_partial_labels(text, ids)
+    if any(label['correctness'] is None or label['faithfulness'] is None for label in labels.values()):
+        raise ValueError('Human scores are blank or incomplete')
+    return {identifier: {'correctness': label['correctness'], 'faithfulness': label['faithfulness']}
+            for identifier, label in labels.items()}
+
+
+def save_partial_labels(path, identifiers, labels):
+    if set(labels) != set(identifiers):
+        raise ValueError('Human labels must cover every selected answer')
+    temporary = path.with_name(path.name + '.tmp')
+    with temporary.open('w', newline='', encoding='utf-8') as handle:
+        writer = csv.DictWriter(handle, fieldnames=LABEL_FIELDS)
+        writer.writeheader()
+        for identifier in identifiers:
+            label = labels[identifier]
+            correctness, faithfulness = label.get('correctness'), label.get('faithfulness')
+            if ((correctness is None) != (faithfulness is None)
+                    or correctness not in {None, 0, .5, 1} or faithfulness not in {None, 0, 1}):
+                raise ValueError('Human scores are incomplete or outside the required scales')
+            writer.writerow({'id': identifier,
+                             'correctness': '' if correctness is None else f'{correctness:g}',
+                             'faithfulness': '' if faithfulness is None else f'{faithfulness:g}',
+                             'notes': label.get('notes', '')})
+    temporary.replace(path)
+
+
 def compare_packet(packet_path, labels_path, judge_path):
-    packet = json.loads(packet_path.read_text(encoding='utf-8'))
-    payload = {key: packet[key] for key in ('capture_signature', 'items')}
-    if digest(payload) != packet['signature']:
-        raise ValueError('Human packet signature mismatch')
+    packet = load_review_packet(packet_path)
     items = packet['items']
-    if not 10 <= len(items) <= 15 or len({i['row']['id'] for i in items}) != len(items):
-        raise ValueError('Invalid human sample')
     labels = parse_labels(labels_path.read_text(encoding='utf-8-sig'), {i['row']['id'] for i in items})
     lock = judge_path / '.lock'
     with lock.open('x', encoding='utf-8') as handle:
