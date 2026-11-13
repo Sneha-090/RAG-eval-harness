@@ -85,3 +85,18 @@ result; the retrieved text supported the judge label in each case. The original
 agreement remains 78.6% and is not rewritten as a post-hoc 100% score. See
 calibration/2026-10-26/agreement-review.md. Abstention remains uncalibrated and
 the judge remains provisional pending a fresh independent sample.
+
+
+## Saved answer-quality report
+
+Build a deterministic report without making generator or judge API calls:
+
+    python -m src.evaluation.answer_report --run runs/answers-calibration-20261026 --judge runs/judge-calibration-20261026 --packet calibration/2026-10-26/packet.json --labels calibration/2026-10-26/labels.csv --agreement calibration/2026-10-26/agreement.json --output reports/my-answer-report
+
+The reporter recomputes and verifies human agreement, checks capture and judge
+signatures, requires complete successful records, then reports correctness,
+faithfulness, abstention, per-question results and nearest-rank P95 latency.
+Answer latency is retrieval plus successful generation only. It excludes pacing,
+judge time, model preload and failed-attempt time; resumed questions are counted
+separately. The first versioned report is under
+reports/answer-quality-config-a-calibration-2026-11-13.

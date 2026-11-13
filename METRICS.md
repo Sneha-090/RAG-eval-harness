@@ -47,7 +47,7 @@ Exact evidence coverage measures lexical availability, not whether a passage is
 semantically sufficient or the only valid evidence. Human label review remains
 required. Never tune labels or metric definitions to improve observed results.
 
-## Answer metrics (not implemented yet)
+## Answer metrics
 
 - **Correctness:** judge compares answer with the reference: 1 correct,
   0.5 partly correct, 0 incorrect; average over answerable questions.
@@ -60,6 +60,10 @@ Validate the judge against 10–15 human-labelled answers before interpreting
 comparison scores. Human correctness labels must include the same 0/0.5/1 scale;
 faithfulness uses 0/1. Report exact agreement separately for each metric.
 No invented judge score or automatic citation-based proxy may fill these fields.
+The saved-answer reporter validates capture, judge and human-agreement input
+signatures before computing these metrics. It reports judge scores as
+provisional unless the relevant metric has sufficient independent human
+calibration; abstention remains explicitly uncalibrated in the first report.
 
 ## Timing and provenance
 

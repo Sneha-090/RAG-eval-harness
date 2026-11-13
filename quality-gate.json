@@ -8,7 +8,7 @@
     "requested": 40,
     "answerable_count": 36,
     "dataset_sha256": "27edfd10794d9b0148fa821f79223b48a6c10624f7242df9dcbb2b6f1d0f1bd0",
-    "metrics_sha256": "cad635e73ffdbc51aa15fa853c413ccb20ba5d689e2a6f0f0bd6d0308f8d3a68",
+    "metrics_sha256": "74dd08f3925c6ff670daa2417921e2efc8ea3cf3889f658ac77f62e2614f5f57",
     "scorer_sha256": "6cf23cf92111bb4c92af9052c8b1a9fba4a08530148eca3ddc52346e88e8dad6",
     "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
     "embedding_revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",

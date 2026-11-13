@@ -28,6 +28,7 @@ production-readiness claim is made.
 - Corpus/evidence validation, atomic question checkpoints and resumable capture.
 - Deterministic retrieval scoring and per-category JSON/Markdown reports.
 - Provisional correctness/faithfulness/abstention judging with strict output validation.
+- Deterministic answer-quality, calibration and successful-stage latency reports.
 - Blind human-review export and input-pinned agreement comparison.
 - A guided local review screen that saves blind human labels without showing judge scores.
 - 61 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
@@ -172,3 +173,21 @@ and **11/14 (78.6%) for faithfulness**. The
 [agreement review](calibration/2026-10-26/agreement-review.md) inspects all
 three differences without rewriting the initial blind score. All ten test
 questions remain untouched; abstention has not been human-calibrated.
+
+## First provisional answer-quality result (13 November 2026)
+
+The version-pinned historical configuration A capture contains 15 development
+answers: 14 answerable and one unanswerable. The calibrated-but-still-
+provisional judge scored correctness **13/14 (92.9%)**, faithfulness **13/14
+(92.9%)** and abstention **1/1**. The abstention result is not human-calibrated.
+Mean successful-stage answer latency (retrieval plus generation) was **1.1107
+seconds** and nearest-rank P95 was **1.8977 seconds**. Scheduling waits, judge
+time, model preload and failed-attempt time are excluded.
+
+The two observed failures are useful: q011 incorrectly refused an answerable
+request-body question, while q001 added a code example absent from its retrieved
+context. Four questions resumed after earlier transient failures, so historical
+total retry cost cannot be reconstructed. See the
+[full answer-quality report](reports/answer-quality-config-a-calibration-2026-11-13/report.md).
+These numbers describe a small development sample for configuration A, not the
+selected B pipeline, the reserved test split or general RAG accuracy.

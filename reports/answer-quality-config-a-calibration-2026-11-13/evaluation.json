@@ -1,0 +1,357 @@
+{
+  "report_version": 1,
+  "status": "provisional_development_result",
+  "requested": 15,
+  "completed": 15,
+  "answerable_count": 14,
+  "unanswerable_count": 1,
+  "capture": {
+    "signature": "0185067f4603623258fd67103ba845232902d93b431c791d3e7e5d9140d5238b",
+    "created_utc": "2026-10-26T18:22:45.206167+00:00",
+    "config": "A",
+    "generator": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    },
+    "prompt_sha256": "b266c465e696eca289428171bd0b0c2b96e9b42296edc1faf4b33a4c6012ca97",
+    "git_commit": "e62a09984f0359106368b594a78ac5e55ea507f8",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "judge": {
+    "signature": "b7c47daa81acf38daddd476da89bf5e3942072231dba96abfb162ae3ecca91ae",
+    "created_utc": "2026-10-26T18:29:35.399602+00:00",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash",
+    "prompt_sha256": "7cbf8f9ab234d679dde53e611ba26758d25f6e5d55d4e85d6e0886352508abeb"
+  },
+  "human_calibration": {
+    "sample_size": 14,
+    "exact_agreement": {
+      "correctness": 1,
+      "faithfulness": 0.7857142857142857
+    },
+    "disagreement_count": 3,
+    "abstention_human_validated": false
+  },
+  "answer_quality": {
+    "correctness": {
+      "count": 14,
+      "score_sum": 13,
+      "mean": 0.9285714285714286,
+      "distribution": {
+        "0": 1,
+        "0.5": 0,
+        "1": 13
+      }
+    },
+    "faithfulness": {
+      "count": 14,
+      "score_sum": 13,
+      "mean": 0.9285714285714286,
+      "distribution": {
+        "0": 1,
+        "1": 13
+      }
+    },
+    "abstention": {
+      "count": 1,
+      "score_sum": 1,
+      "mean": 1,
+      "distribution": {
+        "0": 0,
+        "1": 1
+      }
+    }
+  },
+  "latency": {
+    "retrieval": {
+      "count": 15,
+      "mean_s": 0.03662319332361221,
+      "p95_s": 0.1349807000369765
+    },
+    "generation": {
+      "count": 15,
+      "mean_s": 1.0740313533344306,
+      "p95_s": 1.8680951000424102
+    },
+    "answer_successful_stages": {
+      "count": 15,
+      "mean_s": 1.1106545466580429,
+      "p95_s": 1.8977366000181064
+    },
+    "judge_excluded_from_answer_latency": {
+      "count": 15,
+      "mean_s": 6.203157346652976,
+      "p95_s": 18.629714099981356
+    },
+    "resumed_question_count": 4
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 0,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.1349807000369765,
+        "generation": 1.0225769000244327,
+        "answer_successful_stages": 1.1575576000614092,
+        "judge": 7.571218999975827
+      }
+    },
+    {
+      "id": "q002",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.024383399984799325,
+        "generation": 1.2362769999890588,
+        "answer_successful_stages": 1.2606603999738581,
+        "judge": 12.59174509998411
+      }
+    },
+    {
+      "id": "q003",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.02793699997710064,
+        "generation": 0.9439016999676824,
+        "answer_successful_stages": 0.971838699944783,
+        "judge": 10.55612269998528
+      }
+    },
+    {
+      "id": "q004",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.030604999978095293,
+        "generation": 1.4536181999719702,
+        "answer_successful_stages": 1.4842231999500655,
+        "judge": 18.629714099981356
+      }
+    },
+    {
+      "id": "q005",
+      "category": "similar_page",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.029641499975696206,
+        "generation": 1.8680951000424102,
+        "answer_successful_stages": 1.8977366000181064,
+        "judge": 3.2749481999780983
+      }
+    },
+    {
+      "id": "q006",
+      "category": "multi_part",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.0395763999549672,
+        "generation": 0.9391458999598399,
+        "answer_successful_stages": 0.9787222999148071,
+        "judge": 5.392338500008918
+      }
+    },
+    {
+      "id": "q007",
+      "category": "multi_part",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.02068030001828447,
+        "generation": 1.1338807999854907,
+        "answer_successful_stages": 1.1545611000037752,
+        "judge": 5.3897880999720655
+      }
+    },
+    {
+      "id": "q008",
+      "category": "paraphrase",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.03459220001241192,
+        "generation": 1.1416299000266008,
+        "answer_successful_stages": 1.1762221000390127,
+        "judge": 4.422981699986849
+      }
+    },
+    {
+      "id": "q009",
+      "category": "paraphrase",
+      "answerable": true,
+      "resumed": true,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.028047300002072006,
+        "generation": 1.29202350002015,
+        "answer_successful_stages": 1.320070800022222,
+        "judge": 3.408066299976781
+      }
+    },
+    {
+      "id": "q010",
+      "category": "unanswerable",
+      "answerable": false,
+      "resumed": true,
+      "scores": {
+        "correctness": null,
+        "faithfulness": null,
+        "abstention": 1
+      },
+      "latency_s": {
+        "retrieval": 0.03143179998733103,
+        "generation": 0.665326600021217,
+        "answer_successful_stages": 0.696758400008548,
+        "judge": 3.094038699986413
+      }
+    },
+    {
+      "id": "q011",
+      "category": "direct",
+      "answerable": true,
+      "resumed": true,
+      "scores": {
+        "correctness": 0,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.0368904999922961,
+        "generation": 0.8796518000308424,
+        "answer_successful_stages": 0.9165423000231385,
+        "judge": 4.595958599995356
+      }
+    },
+    {
+      "id": "q012",
+      "category": "direct",
+      "answerable": true,
+      "resumed": true,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.025471899949479848,
+        "generation": 0.9749310000333935,
+        "answer_successful_stages": 1.0004028999828734,
+        "judge": 4.873061000020243
+      }
+    },
+    {
+      "id": "q013",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.024805499997455627,
+        "generation": 0.7874958000029437,
+        "answer_successful_stages": 0.8123013000003994,
+        "judge": 3.2164090999867767
+      }
+    },
+    {
+      "id": "q014",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.03332689998205751,
+        "generation": 0.9721470999647863,
+        "answer_successful_stages": 1.0054739999468438,
+        "judge": 2.8540529999881983
+      }
+    },
+    {
+      "id": "q015",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.026977500005159527,
+        "generation": 0.7997689999756403,
+        "answer_successful_stages": 0.8267464999807999,
+        "judge": 3.1769160999683663
+      }
+    }
+  ],
+  "limitations": [
+    "Draft development sample of 15 questions; the reserved test split was not used.",
+    "Judge scores are provisional: correctness agreement was measured on 14 answers, faithfulness agreement was 78.6%, and abstention has no human calibration.",
+    "The historical capture uses configuration A, not the selected configuration B.",
+    "Successful-stage answer latency is retrieval plus successful generation; scheduling delays, judge time, model preload and failed-attempt time are excluded.",
+    "Four resumed questions are identified, but total retry cost cannot be reconstructed from the saved historical checkpoints."
+  ],
+  "provenance": {
+    "metrics_sha256": "74dd08f3925c6ff670daa2417921e2efc8ea3cf3889f658ac77f62e2614f5f57",
+    "reporter_sha256": "f2a965bdf7d4eac9533feba8d4fdb6828c9b1d6c8929ed27662c0c4a2fe0eb20"
+  }
+}

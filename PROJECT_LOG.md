@@ -443,3 +443,26 @@ not final automated claims. The sample has one reviewer, only 14 answerable
 outputs, one generator run and no human abstention labels. Next: human-freeze
 the benchmark and measure a fresh independent calibration sample including
 unanswerable questions before final answer-quality comparisons.
+
+
+## 24. First provisional answer-quality report: 13 November 2026
+
+Implemented a deterministic saved-answer reporter. It validates capture and
+judge signatures, recomputes the versioned human agreement, rejects incomplete
+or non-finite records, and reports answer scores plus stage-separated mean and
+nearest-rank P95 latency. Scheduling waits and judge latency are excluded from
+answer latency. Resumed records are counted because the historical checkpoints
+cannot reconstruct total failed-attempt cost.
+
+Applied it to the existing configuration A development capture: 15/15 answers
+and verdicts were complete. Across 14 answerable questions, provisional judge
+correctness was 13/14 (92.9%) and faithfulness was 13/14 (92.9%). The one
+unanswerable question abstained successfully, but abstention has no human
+calibration. Mean successful-stage answer latency was 1.1107 seconds and P95
+was 1.8977 seconds. Four questions had resumed after transient failures.
+
+The failure cases are preserved: q011 unjustifiably refused an answerable
+`BaseModel` question, and q001 added a code example absent from its retrieved
+context. These are small-sample configuration A development results, not the
+selected B pipeline, reserved-test performance or general accuracy. See
+reports/answer-quality-config-a-calibration-2026-11-13.
