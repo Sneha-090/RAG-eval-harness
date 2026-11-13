@@ -1,0 +1,28 @@
+{
+  "sample_size": 14,
+  "agreement_measured": true,
+  "packet_signature": "b10bdf9588d9fbb15cc565d278adb83a0d3a18c30619ca8630745b67e34b0a9b",
+  "judge_signature": "b7c47daa81acf38daddd476da89bf5e3942072231dba96abfb162ae3ecca91ae",
+  "exact_agreement": {
+    "correctness": 1.0,
+    "faithfulness": 0.7857142857142857
+  },
+  "disagreements": [
+    {
+      "id": "q001",
+      "human": {"correctness": 1.0, "faithfulness": 1},
+      "judge": {"correctness": 1, "faithfulness": 0}
+    },
+    {
+      "id": "q003",
+      "human": {"correctness": 1.0, "faithfulness": 0},
+      "judge": {"correctness": 1, "faithfulness": 1}
+    },
+    {
+      "id": "q012",
+      "human": {"correctness": 1.0, "faithfulness": 0},
+      "judge": {"correctness": 1, "faithfulness": 1}
+    }
+  ],
+  "note": "Small development calibration sample. Inspect disagreements before accepting the judge; no automatic approval threshold is inferred."
+}

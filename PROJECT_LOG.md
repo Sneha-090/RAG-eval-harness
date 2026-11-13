@@ -422,3 +422,24 @@ All 61 tests and the type checker passed. A temporary headless Streamlit server
 loaded the real packet with no exception, warning or traceback and exposed the
 expected five controls. The real human labels remain blank; agreement and final
 answer-quality claims are still pending the author's independent decisions.
+
+
+## 23. First blind human–judge agreement: 13 November 2026
+
+The author completed all 14 answerable items in the version-pinned blind packet
+without seeing the saved Gemini verdicts. The input/signature checks passed.
+Initial exact agreement was 14/14 (100.0%) for correctness and 11/14 (78.6%)
+for faithfulness. The three differences were q001, q003 and q012.
+
+Post-hoc evidence inspection found direct support for the judge label in all
+three cases: q001 added a code example absent from its retrieved context; q003's
+retrieved chunks explicitly supported request termination and sending the HTTP
+error; q012's chunks supported documentation, validation and output
+conversion/filtering through `response_model`. This inspection is recorded
+separately and does not change the original 78.6% blind agreement.
+
+The result supports using the judge for continued development experiments but
+not final automated claims. The sample has one reviewer, only 14 answerable
+outputs, one generator run and no human abstention labels. Next: human-freeze
+the benchmark and measure a fresh independent calibration sample including
+unanswerable questions before final answer-quality comparisons.

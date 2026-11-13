@@ -77,3 +77,11 @@ one unanswerable question; 14 answerable outputs are exported for human review.
 No judge scores are in the blind packet. Use the commands in its README after
 filling the CSV labels. The saved local judge directory is
 runs/judge-calibration-20261026. A repeat reused all 15 saved verdicts.
+
+The author completed the blind 14-answer review on 13 November 2026. Exact
+human–judge agreement was 100.0% for correctness and 78.6% for faithfulness.
+All three faithfulness differences were inspected only after saving the blind
+result; the retrieved text supported the judge label in each case. The original
+agreement remains 78.6% and is not rewritten as a post-hoc 100% score. See
+calibration/2026-10-26/agreement-review.md. Abstention remains uncalibrated and
+the judge remains provisional pending a fresh independent sample.

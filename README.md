@@ -7,11 +7,12 @@ quality separately from generated-answer quality. The first benchmark uses 12
 version-pinned FastAPI tutorial pages; core ingestion and retrieval are generic.
 
 **Current status:** all four retrieval configurations are compared and a
-development retrieval regression gate is implemented; human benchmark/judge
-validation and answer-quality work remain open.
-The benchmark is draft. Provisional LLM judging and blind human-review tools
-are implemented; human validation and final answer-quality experiments remain
-pending. No production-readiness claim is made.
+development retrieval regression gate is implemented. The first blind
+human–judge calibration measured 100.0% correctness agreement and 78.6%
+faithfulness agreement on 14 answerable development outputs. The benchmark,
+judge and answer-quality results remain provisional; a fresh calibration,
+human benchmark review and final answer experiments are still pending. No
+production-readiness claim is made.
 
 ## Implemented
 
@@ -150,25 +151,24 @@ hidden until the independent review is complete.
 
 ## Next milestones
 
-1. Review and freeze the benchmark; independently label the calibration
-   packet, measure judge agreement, and finish answer-quality reporting and
-   end-to-end timing.
-2. After judge calibration, compare generated-answer quality for the selected
-   pipelines and run the reserved test split once on the frozen benchmark.
-3. Run the reserved test split once after the benchmark is human-frozen, then
-   finalize architecture documentation, dashboard and resume wording.
+1. Review and freeze the benchmark, then run a fresh blind calibration sample
+   that also validates abstention on unanswerable questions.
+2. Compare generated-answer quality and end-to-end timing for the selected
+   pipelines using the calibrated judge.
+3. Run the reserved test split once on the frozen benchmark, then finalize
+   architecture documentation, results dashboard and resume wording.
 
 After those milestones: a second corpus and a small demo/API, if useful.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
 
 
-## Human review ready (26 October 2026)
+## First human calibration measured (13 November 2026)
 
 Generated and provisionally judged 15 development answers, with zero final
 errors after resuming four transient connection failures. Fourteen answerable
-outputs are ready for independent correctness/faithfulness labels:
-[guided review screen](streamlit_app.py),
-[review sheet](calibration/2026-10-26/review.md) and
-[blank labels](calibration/2026-10-26/labels.csv).
-Judge verdicts are deliberately excluded from the blind packet. All ten test
-questions remain untouched. No human judge-agreement number exists yet.
+outputs were independently labelled through the [guided review screen](streamlit_app.py).
+Exact agreement with the hidden judge was **14/14 (100.0%) for correctness**
+and **11/14 (78.6%) for faithfulness**. The
+[agreement review](calibration/2026-10-26/agreement-review.md) inspects all
+three differences without rewriting the initial blind score. All ten test
+questions remain untouched; abstention has not been human-calibrated.

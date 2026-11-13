@@ -23,8 +23,14 @@ calibration. All ten reserved test questions remain untouched.
 
 packet.json pins the selected questions, answers and context. capture-manifest.json
 records the original capture settings and source hashes. The packet cannot be
-silently substituted with answers from another run. Blank labels will be rejected
-by the agreement command. No human agreement result exists yet.
+silently substituted with answers from another run. Blank labels are rejected
+by the agreement command.
+
+The blind review was completed on 13 November 2026. Exact agreement was 14/14
+(100.0%) for correctness and 11/14 (78.6%) for faithfulness. See
+[agreement.json](agreement.json) for the immutable initial result and
+[agreement-review.md](agreement-review.md) for the post-hoc inspection of all
+three disagreements. That inspection does not replace the blind score.
 
 This is a small developmental calibration sample, not a frozen benchmark, final
 quality comparison or assessment of the system on unseen domains.
