@@ -466,3 +466,32 @@ The failure cases are preserved: q011 unjustifiably refused an answerable
 context. These are small-sample configuration A development results, not the
 selected B pipeline, reserved-test performance or general accuracy. See
 reports/answer-quality-config-a-calibration-2026-11-13.
+
+
+## 25. First paired A-versus-B answer experiment: 14 November 2026
+
+Generated 15 configuration B development answers with the same question
+records, corpus, K=5, Groq `openai/gpt-oss-120b` generator and frozen answer
+prompt as the historical configuration A calibration run. All 15 completed
+without a final error. Gemini `gemini-3.5-flash` judged the fixed saved answers;
+all 15 verdicts completed after one handled 429 retry.
+
+Added a deterministic paired reporter with strict comparability checks,
+historical cross-platform corpus-hash validation, per-question score deltas,
+stage-separated latency and self-contained answer/context evidence. It refuses
+to label the provisional result as a winner. Three focused tests cover paired
+scores and latency, confounded inputs, invalid timing and mismatched human
+agreement.
+
+Across 14 answerable questions, both A and B scored 13/14 (92.9%) correctness
+and 13/14 (92.9%) faithfulness; the single unanswerable question abstained in
+both. Correctness tied question-by-question. Faithfulness improved for q001,
+regressed for q009 and tied for 12 questions, producing zero net change. Both
+configurations unjustifiably refused q011. Mean successful-stage latency was
+1.1107 seconds for A and 1.3936 seconds for B, but the separate historical runs
+do not support a controlled speed claim.
+
+This is development evidence, not a selected-pipeline answer-quality win.
+Candidate outputs have not received a fresh independent blind review,
+abstention remains uncalibrated and all ten reserved test questions remain
+untouched. See reports/config-a-vs-b-calibration-2026-11-14.

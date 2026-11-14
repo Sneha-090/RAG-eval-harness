@@ -100,3 +100,23 @@ Answer latency is retrieval plus successful generation only. It excludes pacing,
 judge time, model preload and failed-attempt time; resumed questions are counted
 separately. The first versioned report is under
 reports/answer-quality-config-a-calibration-2026-11-13.
+
+
+## Paired answer comparison
+
+Compare two complete saved answer and judge runs without making new API calls:
+
+    python -m src.evaluation.compare_answers --baseline-run runs/answers-calibration-20261026 --baseline-judge runs/judge-calibration-20261026 --candidate-run runs/answers-config-b-comparison-20261114 --candidate-judge runs/judge-config-b-comparison-20261114 --baseline-agreement calibration/2026-10-26/agreement.json --output reports/config-a-vs-b-calibration-2026-11-14
+
+The reporter rejects different questions/references, corpus content, retrieval
+depth, generator, answer prompt, embedding model, judge or judge prompt. It
+reports each metric as paired improvements, regressions and ties, keeps answer
+latency separate by stage, and versions exact answers and retrieved contexts for
+audit. Historical raw-byte Windows corpus hashes and current LF-normalized
+hashes are both accepted only when each matches the actual current corpus.
+
+The first A-versus-B report is deliberately marked provisional. Configuration
+B has no fresh blind human agreement result, abstention has one uncalibrated
+example, and the two latency samples were recorded on different dates. The
+report may guide development and failure analysis but must not be presented as
+a pipeline winner or reserved-test result.

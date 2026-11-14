@@ -154,8 +154,8 @@ hidden until the independent review is complete.
 
 1. Review and freeze the benchmark, then run a fresh blind calibration sample
    that also validates abstention on unanswerable questions.
-2. Compare generated-answer quality and end-to-end timing for the selected
-   pipelines using the calibrated judge.
+2. Independently review a fresh candidate sample before promoting the completed
+   provisional A-versus-B answer experiment into a winner claim.
 3. Run the reserved test split once on the frozen benchmark, then finalize
    architecture documentation, results dashboard and resume wording.
 
@@ -191,3 +191,26 @@ total retry cost cannot be reconstructed. See the
 [full answer-quality report](reports/answer-quality-config-a-calibration-2026-11-13/report.md).
 These numbers describe a small development sample for configuration A, not the
 selected B pipeline, the reserved test split or general RAG accuracy.
+
+## First provisional A-versus-B answer comparison (14 November 2026)
+
+Generated and judged 15 configuration B answers with zero final failures, then
+paired them question-by-question with the existing configuration A calibration
+run. Fairness checks require identical questions, references, corpus, retrieval
+depth, generator, answer prompt, embedding model, judge and judge prompt; only
+the retrieval configuration differs.
+
+Both configurations scored **13/14 (92.9%) correctness**, **13/14 (92.9%)
+faithfulness** and **1/1 abstention**. Correctness tied on all 14 answerable
+questions. Faithfulness improved on q001, regressed on q009 and tied on the
+remaining 12. Both configurations incorrectly refused q011. Mean successful-
+stage answer latency was 1.1107 seconds for A and 1.3936 seconds for B, but the
+runs happened on different dates, so this is descriptive rather than a
+controlled speed comparison.
+
+The [paired report](reports/config-a-vs-b-calibration-2026-11-14/report.md)
+preserves exact answers, retrieved contexts, scores and provenance. It is
+explicitly provisional: candidate outputs have not received a fresh independent
+blind review, abstention has one uncalibrated example and the reserved test
+split remains untouched. Therefore the report does **not** claim an answer-
+quality winner.

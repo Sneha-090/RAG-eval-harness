@@ -1,0 +1,1883 @@
+{
+  "report_version": 1,
+  "status": "provisional_unvalidated_pipeline_comparison",
+  "winner_claim_allowed": false,
+  "requested": 15,
+  "completed": 15,
+  "baseline": {
+    "config": "A",
+    "capture_signature": "0185067f4603623258fd67103ba845232902d93b431c791d3e7e5d9140d5238b",
+    "judge_signature": "b7c47daa81acf38daddd476da89bf5e3942072231dba96abfb162ae3ecca91ae",
+    "human_calibration": {
+      "measured": true,
+      "sample_size": 14,
+      "exact_agreement": {
+        "correctness": 1.0,
+        "faithfulness": 0.7857142857142857
+      },
+      "abstention_human_validated": false
+    }
+  },
+  "candidate": {
+    "config": "B",
+    "capture_signature": "da5890919bbf67b3c7176cc644acbc347609b25d53b0020f77de4c4b70b52743",
+    "judge_signature": "f3d89d7946ee52054bc22f387906a2fd0ea9b87d0a00e0eb3bd02c70cb82dbfe",
+    "human_calibration": {
+      "measured": false
+    }
+  },
+  "fairness_checks": {
+    "same_questions_and_references": true,
+    "same_corpus": true,
+    "same_generator": true,
+    "same_answer_prompt": true,
+    "same_retrieval_depth": true,
+    "same_embedding_model": true,
+    "same_judge": true,
+    "same_judge_prompt": true
+  },
+  "answer_quality": {
+    "baseline": {
+      "correctness": {
+        "count": 14,
+        "score_sum": 13,
+        "mean": 0.9285714285714286,
+        "distribution": {
+          "0": 1,
+          "0.5": 0,
+          "1": 13
+        }
+      },
+      "faithfulness": {
+        "count": 14,
+        "score_sum": 13,
+        "mean": 0.9285714285714286,
+        "distribution": {
+          "0": 1,
+          "1": 13
+        }
+      },
+      "abstention": {
+        "count": 1,
+        "score_sum": 1,
+        "mean": 1,
+        "distribution": {
+          "0": 0,
+          "1": 1
+        }
+      }
+    },
+    "candidate": {
+      "correctness": {
+        "count": 14,
+        "score_sum": 13,
+        "mean": 0.9285714285714286,
+        "distribution": {
+          "0": 1,
+          "0.5": 0,
+          "1": 13
+        }
+      },
+      "faithfulness": {
+        "count": 14,
+        "score_sum": 13,
+        "mean": 0.9285714285714286,
+        "distribution": {
+          "0": 1,
+          "1": 13
+        }
+      },
+      "abstention": {
+        "count": 1,
+        "score_sum": 1,
+        "mean": 1,
+        "distribution": {
+          "0": 0,
+          "1": 1
+        }
+      }
+    }
+  },
+  "paired_deltas": {
+    "correctness": {
+      "count": 14,
+      "mean_delta": 0,
+      "improved": 0,
+      "regressed": 0,
+      "tied": 14
+    },
+    "faithfulness": {
+      "count": 14,
+      "mean_delta": 0,
+      "improved": 1,
+      "regressed": 1,
+      "tied": 12
+    },
+    "abstention": {
+      "count": 1,
+      "mean_delta": 0,
+      "improved": 0,
+      "regressed": 0,
+      "tied": 1
+    }
+  },
+  "latency": {
+    "baseline": {
+      "retrieval": {
+        "count": 15,
+        "mean_s": 0.03662319332361221,
+        "p95_s": 0.1349807000369765
+      },
+      "generation": {
+        "count": 15,
+        "mean_s": 1.0740313533344306,
+        "p95_s": 1.8680951000424102
+      },
+      "answer_successful_stages": {
+        "count": 15,
+        "mean_s": 1.1106545466580429,
+        "p95_s": 1.8977366000181064
+      }
+    },
+    "candidate": {
+      "retrieval": {
+        "count": 15,
+        "mean_s": 0.05088715334034835,
+        "p95_s": 0.09401649999199435
+      },
+      "generation": {
+        "count": 15,
+        "mean_s": 1.3427402599869918,
+        "p95_s": 1.8155928999767639
+      },
+      "answer_successful_stages": {
+        "count": 15,
+        "mean_s": 1.39362741332734,
+        "p95_s": 1.8600449999794364
+      }
+    }
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "You must declare the parameter with `Cookie` (e.g., `my_cookie: str = Cookie(...)`) so that FastAPI treats it as a cookie rather than a query parameter. [ cookie-params.md::0 ]",
+        "candidate": "You must import and declare the parameter with **`Cookie`** (instead of using the default query‑parameter handling) — i.e., use `Cookie` to read a cookie value. [cookie-params.md::s0]"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "cookie-params.md::0",
+            "doc_id": "cookie-params.md",
+            "similarity": 0.6681134700775146,
+            "text": "# Cookie Parameters { #cookie-parameters }\n\nYou can define Cookie parameters the same way you define `Query` and `Path` parameters.\n\n## Import `Cookie` { #import-cookie }\n\nFirst import `Cookie`:\n\n## Declare `Cookie` parameters { #declare-cookie-parameters }\n\nThen declare the cookie parameters using the same structure as with `Path` and `Query`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details\n\n`Cookie` is a \"sister\" class of `Path` and `Query`. It also inherits from"
+          },
+          {
+            "chunk_id": "cookie-params.md::1",
+            "doc_id": "cookie-params.md",
+            "similarity": 0.6012780666351318,
+            "text": "tails\n\n`Cookie` is a \"sister\" class of `Path` and `Query`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Cookie` and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note\n\nTo declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n/// note\n\nHave in mind that, as **browsers handle cookies** in special ways and behind the scenes, they **don't** easily allow **JavaScript** to"
+          },
+          {
+            "chunk_id": "header-params.md::0",
+            "doc_id": "header-params.md",
+            "similarity": 0.5539894104003906,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and"
+          },
+          {
+            "chunk_id": "header-params.md::1",
+            "doc_id": "header-params.md",
+            "similarity": 0.5052032470703125,
+            "text": "// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note\n\nTo declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n## Automatic conversion { #automatic-conversion }\n\n`Header` has a little extra functionality on top of what `Path`,"
+          },
+          {
+            "chunk_id": "query-params.md::0",
+            "doc_id": "query-params.md",
+            "similarity": 0.5009840726852417,
+            "text": "# Query Parameters { #query-parameters }\n\nWhen you declare other function parameters that are not part of the path parameters, they are automatically interpreted as \"query\" parameters.\n\nThe query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.\n\nFor example, in the URL:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\n...the query parameters are:\n\n* `skip`: with a value of `0`\n* `limit`: with a value of `10`\n\nAs they are part of the URL, they are \"naturally\" strings.\n\nBut when you declare them"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "cookie-params.md::s1",
+            "doc_id": "cookie-params.md",
+            "similarity": 0.6924208402633667,
+            "text": "`Cookie` is a \"sister\" class of `Path` and `Query`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Cookie` and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note\n\nTo declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n/// note"
+          },
+          {
+            "chunk_id": "cookie-params.md::s0",
+            "doc_id": "cookie-params.md",
+            "similarity": 0.6498805284500122,
+            "text": "# Cookie Parameters { #cookie-parameters }\n\nYou can define Cookie parameters the same way you define `Query` and `Path` parameters.\n\n## Import `Cookie` { #import-cookie }\n\nFirst import `Cookie`:\n\n## Declare `Cookie` parameters { #declare-cookie-parameters }\n\nThen declare the cookie parameters using the same structure as with `Path` and `Query`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details"
+          },
+          {
+            "chunk_id": "header-params.md::s0",
+            "doc_id": "header-params.md",
+            "similarity": 0.560075044631958,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:"
+          },
+          {
+            "chunk_id": "header-params.md::s1",
+            "doc_id": "header-params.md",
+            "similarity": 0.5200624465942383,
+            "text": "/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note"
+          },
+          {
+            "chunk_id": "query-params.md::s0",
+            "doc_id": "query-params.md",
+            "similarity": 0.47839170694351196,
+            "text": "# Query Parameters { #query-parameters }\n\nWhen you declare other function parameters that are not part of the path parameters, they are automatically interpreted as \"query\" parameters.\n\nThe query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.\n\nFor example, in the URL:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\n...the query parameters are:\n\n* `skip`: with a value of `0`\n* `limit`: with a value of `10`"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "c9dc1312f61a42ec9212f10347640cce59763da85b534809bd1fc468372c677d",
+        "candidate": "3baf0c6a286fd2bcb8a152fa8af5dcdc0c8c7f72d035df7b099b327c66149191"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 0,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 1,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer is completely correct and matches the reference answer. However, faithfulness is 0 because the answer includes an invented code example (`my_cookie: str = Cookie(...)`) that is not present in the retrieved context.",
+        "candidate": "The answer accurately states that `Cookie` must be imported and declared to read a cookie instead of a query parameter, which agrees with the reference answer and is fully supported by the retrieved context."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.1349807000369765,
+          "generation": 1.0225769000244327,
+          "answer_successful_stages": 1.1575576000614092
+        },
+        "candidate": {
+          "retrieval": 0.051358999975491315,
+          "generation": 1.1401313000242226,
+          "answer_successful_stages": 1.191490299999714
+        }
+      }
+    },
+    {
+      "id": "q002",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "By default, `Header` automatically converts underscores (`_`) in parameter names to hyphens (`-`) when extracting and documenting HTTP headers. This allows you to use standard Python snake_case names (e.g., `user_agent`) while the actual header sent is `User-Agent`. The conversion can be disabled by setting `convert_underscores=False`, but some proxies/servers may then reject such headers. [header-params.md::2][header-params.md::0]",
+        "candidate": "By default, `Header` automatically converts underscores (`_`) in parameter names to hyphens (`-`) when extracting and documenting HTTP headers【header-params.md::s2】. This allows you to use snake_case names like `user_agent` in Python while they are sent as standard hyphenated header names such as `User-Agent`【header-params.md::s2】."
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "header-params.md::3",
+            "doc_id": "header-params.md",
+            "similarity": 0.6068850159645081,
+            "text": "u can declare them with standard Python style (also known as \"snake_case\").\n\nSo, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar.\n\nIf for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:\n\n/// warning\n\nBefore setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.\n\n///"
+          },
+          {
+            "chunk_id": "header-params.md::4",
+            "doc_id": "header-params.md",
+            "similarity": 0.5520014762878418,
+            "text": "e HTTP proxies and servers disallow the usage of headers with underscores.\n\n///\n\n## Duplicate headers { #duplicate-headers }\n\nIt is possible to receive duplicate headers. That means, the same header with multiple values.\n\nYou can define those cases using a list in the type declaration.\n\nYou will receive all the values from the duplicate header as a Python `list`.\n\nFor example, to declare a header of `X-Token` that can appear more than once, you can write:\n\nIf you communicate with that *path operation* sending two HTTP headers like:\n\n```"
+          },
+          {
+            "chunk_id": "header-params.md::2",
+            "doc_id": "header-params.md",
+            "similarity": 0.49531978368759155,
+            "text": "c-conversion }\n\n`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.\n\nMost of the standard headers are separated by a \"hyphen\" character, also known as the \"minus symbol\" (`-`).\n\nBut a variable like `user-agent` is invalid in Python.\n\nSo, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.\n\nAlso, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as \"snake_case\").\n\nSo,"
+          },
+          {
+            "chunk_id": "header-params.md::0",
+            "doc_id": "header-params.md",
+            "similarity": 0.47572505474090576,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and"
+          },
+          {
+            "chunk_id": "query-params.md::0",
+            "doc_id": "query-params.md",
+            "similarity": 0.47094810009002686,
+            "text": "# Query Parameters { #query-parameters }\n\nWhen you declare other function parameters that are not part of the path parameters, they are automatically interpreted as \"query\" parameters.\n\nThe query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.\n\nFor example, in the URL:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\n...the query parameters are:\n\n* `skip`: with a value of `0`\n* `limit`: with a value of `10`\n\nAs they are part of the URL, they are \"naturally\" strings.\n\nBut when you declare them"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "header-params.md::s3",
+            "doc_id": "header-params.md",
+            "similarity": 0.6013802289962769,
+            "text": "If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:\n\n/// warning\n\nBefore setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores."
+          },
+          {
+            "chunk_id": "header-params.md::s0",
+            "doc_id": "header-params.md",
+            "similarity": 0.48353397846221924,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:"
+          },
+          {
+            "chunk_id": "body.md::s8",
+            "doc_id": "body.md",
+            "similarity": 0.4607042670249939,
+            "text": "* If the parameter is also declared in the **path**, it will be used as a path parameter.\n* If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.\n* If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**."
+          },
+          {
+            "chunk_id": "header-params.md::s2",
+            "doc_id": "header-params.md",
+            "similarity": 0.4518827199935913,
+            "text": "To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n## Automatic conversion { #automatic-conversion }\n\n`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.\n\nMost of the standard headers are separated by a \"hyphen\" character, also known as the \"minus symbol\" (`-`).\n\nBut a variable like `user-agent` is invalid in Python.\n\nSo, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.\n\nAlso, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as \"snake_case\").\n\nSo, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar."
+          },
+          {
+            "chunk_id": "query-params.md::s0",
+            "doc_id": "query-params.md",
+            "similarity": 0.43247777223587036,
+            "text": "# Query Parameters { #query-parameters }\n\nWhen you declare other function parameters that are not part of the path parameters, they are automatically interpreted as \"query\" parameters.\n\nThe query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.\n\nFor example, in the URL:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\n...the query parameters are:\n\n* `skip`: with a value of `0`\n* `limit`: with a value of `10`"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "254c743df13b82edc1786e86aa7b7b369391537c4183351c714165a283d7b0f9",
+        "candidate": "8b081a8f37fed0f986917a401dd6f43a041063b83468a5a3d0214e3af7f3b47e"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer correctly states that Header converts underscores to hyphens by default when extracting and documenting headers, matching the reference answer. Every statement in the answer is fully supported by the retrieved context.",
+        "candidate": "The answer fully matches the reference answer and all facts provided in the answer are supported by chunk header-params.md::s2."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.024383399984799325,
+          "generation": 1.2362769999890588,
+          "answer_successful_stages": 1.2606603999738581
+        },
+        "candidate": {
+          "retrieval": 0.057728400046471506,
+          "generation": 1.3503892999724485,
+          "answer_successful_stages": 1.40811770001892
+        }
+      }
+    },
+    {
+      "id": "q003",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "`HTTPException` should be **raised**, not returned; because it is a normal Python exception, you raise it to terminate the request and send the error response. [handling-errors.md::2]",
+        "candidate": "`HTTPException` should be **raised**, not returned. Because it is a normal Python exception, you raise it to terminate the request and send the error response immediately【handling-errors.md::s1】."
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "handling-errors.md::1",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5968900322914124,
+            "text": "cases, you would normally return an **HTTP status code** in the range of **400** (from 400 to 499).\n\nThis is similar to the 200 HTTP status codes (from 200 to 299). Those \"200\" status codes mean that somehow there was a \"success\" in the request.\n\nThe status codes in the 400 range mean that there was an error from the client.\n\nRemember all those **\"404 Not Found\"** errors (and jokes)?\n\n## Use `HTTPException` { #use-httpexception }\n\nTo return HTTP responses with errors to the client you use `HTTPException`.\n\n### Import `HTTPException` {"
+          },
+          {
+            "chunk_id": "handling-errors.md::2",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5877200961112976,
+            "text": "with errors to the client you use `HTTPException`.\n\n### Import `HTTPException` { #import-httpexception }\n\n### Raise an `HTTPException` in your code { #raise-an-httpexception-in-your-code }\n\n`HTTPException` is a normal Python exception with additional data relevant for APIs.\n\nBecause it's a Python exception, you don't `return` it, you `raise` it.\n\nThis also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the `HTTPException` from inside of that utility function, it"
+          },
+          {
+            "chunk_id": "handling-errors.md::3",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5396035313606262,
+            "text": "ion*, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.\n\nThe benefit of raising an exception over returning a value will be more evident in the section about Dependencies and Security.\n\nIn this example, when the client requests an item by an ID that doesn't exist, raise an exception with a status code of `404`:\n\n### The resulting response {"
+          },
+          {
+            "chunk_id": "handling-errors.md::6",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5330681800842285,
+            "text": "he HTTP error. For example, for some types of security.\n\nYou probably won't need to use it directly in your code.\n\nBut in case you needed it for an advanced scenario, you can add custom headers:\n\n## Install custom exception handlers { #install-custom-exception-handlers }\n\nYou can add custom exception handlers with [the same exception utilities from Starlette](https://starlette.dev/exceptions/).\n\nLet's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`.\n\nAnd you want to handle this exception"
+          },
+          {
+            "chunk_id": "handling-errors.md::16",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5059350728988647,
+            "text": "pts any JSON-able data for the `detail` field, while Starlette's `HTTPException` only accepts strings for it.\n\nSo, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.\n\nBut when you register an exception handler, you should register it for Starlette's `HTTPException`.\n\nThis way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises a Starlette `HTTPException`, your handler will be able to catch and handle it.\n\nIn this example, to be able to have both `HTTPException`s in the same code,"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "handling-errors.md::s1",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5818524360656738,
+            "text": "To return HTTP responses with errors to the client you use `HTTPException`.\n\n### Import `HTTPException` { #import-httpexception }\n\n### Raise an `HTTPException` in your code { #raise-an-httpexception-in-your-code }\n\n`HTTPException` is a normal Python exception with additional data relevant for APIs.\n\nBecause it's a Python exception, you don't `return` it, you `raise` it.\n\nThis also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the `HTTPException` from inside of that utility function, it won't run the rest of the code in the *path operation function*, it will terminate that request right away and send the HTTP error from the `HTTPException` to the client.\n\nThe benefit of raising an exception over returning a value will be more evident in the section about Dependencies and Security."
+          },
+          {
+            "chunk_id": "handling-errors.md::s0",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5166823863983154,
+            "text": "# Handling Errors { #handling-errors }\n\nThere are many situations in which you need to report an error to a client that is using your API.\n\nThis client could be a browser with a frontend, a code from someone else, an IoT device, etc.\n\nYou could need to tell the client that:\n\n* The client doesn't have enough privileges for that operation.\n* The client doesn't have access to that resource.\n* The item the client was trying to access doesn't exist.\n* etc.\n\nIn these cases, you would normally return an **HTTP status code** in the range of **400** (from 400 to 499).\n\nThis is similar to the 200 HTTP status codes (from 200 to 299). Those \"200\" status codes mean that somehow there was a \"success\" in the request.\n\nThe status codes in the 400 range mean that there was an error from the client.\n\nRemember all those **\"404 Not Found\"** errors (and jokes)?\n\n## Use `HTTPException` { #use-httpexception }"
+          },
+          {
+            "chunk_id": "handling-errors.md::s12",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.49944132566452026,
+            "text": "So, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.\n\nBut when you register an exception handler, you should register it for Starlette's `HTTPException`.\n\nThis way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises a Starlette `HTTPException`, your handler will be able to catch and handle it.\n\nIn this example, to be able to have both `HTTPException`s in the same code, Starlette's exceptions is renamed to `StarletteHTTPException`:\n\n```Python\nfrom starlette.exceptions import HTTPException as StarletteHTTPException\n```\n\n### Reuse **FastAPI**'s exception handlers { #reuse-fastapis-exception-handlers }\n\nIf you want to use the exception along with the same default exception handlers from  **FastAPI**, you can import and reuse the default exception handlers from `fastapi.exception_handlers`:"
+          },
+          {
+            "chunk_id": "handling-errors.md::s3",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.47677648067474365,
+            "text": "/// tip\n\nWhen raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`.\n\nYou could pass a `dict`, a `list`, etc.\n\nThey are handled automatically by **FastAPI** and converted to JSON.\n\n///\n\n## Add custom headers { #add-custom-headers }\n\nThere are some situations where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.\n\nYou probably won't need to use it directly in your code.\n\nBut in case you needed it for an advanced scenario, you can add custom headers:\n\n## Install custom exception handlers { #install-custom-exception-handlers }\n\nYou can add custom exception handlers with [the same exception utilities from Starlette](https://starlette.dev/exceptions/).\n\nLet's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`."
+          },
+          {
+            "chunk_id": "handling-errors.md::s2",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.43167346715927124,
+            "text": "In this example, when the client requests an item by an ID that doesn't exist, raise an exception with a status code of `404`:\n\n### The resulting response { #the-resulting-response }\n\nIf the client requests `http://example.com/items/foo` (an `item_id` `\"foo\"`), that client will receive an HTTP status code of 200, and a JSON response of:\n\n```JSON\n{\n  \"item\": \"The Foo Wrestlers\"\n}\n```\n\nBut if the client requests `http://example.com/items/bar` (a non-existent `item_id` `\"bar\"`), that client will receive an HTTP status code of 404 (the \"not found\" error), and a JSON response of:\n\n```JSON\n{\n  \"detail\": \"Item not found\"\n}\n```"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "fd8814101f109a1b00e9536dc2bc3d221531dce8214a001d07a46d0507fabb50",
+        "candidate": "e041fad6f8f93b661d46be5c38572e816eb1b7e471467562aa2f450033898a8a"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer accurately states that HTTPException should be raised rather than returned because it is a normal Python exception, matching both the reference answer and the retrieved context.",
+        "candidate": "The answer correctly states that `HTTPException` should be raised rather than returned because it is a Python exception, matching the reference answer. All details provided in the answer are fully supported by chunk `handling-errors.md::s1`."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.02793699997710064,
+          "generation": 0.9439016999676824,
+          "answer_successful_stages": 0.971838699944783
+        },
+        "candidate": {
+          "retrieval": 0.03494849998969585,
+          "generation": 1.2445731000043452,
+          "answer_successful_stages": 1.279521599994041
+        }
+      }
+    },
+    {
+      "id": "q004",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "Query parameters appear after the `?` in a URL, and each key‑value pair is separated from the next by an `&` character.【query-params.md::0】",
+        "candidate": "Query parameters appear after the `?` in a URL, and each key‑value pair is separated from the next by an `&` character.【query-params.md::s0】"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "query-params.md::0",
+            "doc_id": "query-params.md",
+            "similarity": 0.8000540733337402,
+            "text": "# Query Parameters { #query-parameters }\n\nWhen you declare other function parameters that are not part of the path parameters, they are automatically interpreted as \"query\" parameters.\n\nThe query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.\n\nFor example, in the URL:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\n...the query parameters are:\n\n* `skip`: with a value of `0`\n* `limit`: with a value of `10`\n\nAs they are part of the URL, they are \"naturally\" strings.\n\nBut when you declare them"
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::18",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.574627161026001,
+            "text": "required. This would force clients to send a value, even if the value is `None`.\n\nTo do that, you can declare that `None` is a valid type but simply do not declare a default value:\n\n## Query parameter list / multiple values { #query-parameter-list-multiple-values }\n\nWhen you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.\n\nFor example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:\n\nThen, with a"
+          },
+          {
+            "chunk_id": "query-params.md::1",
+            "doc_id": "query-params.md",
+            "similarity": 0.5701485872268677,
+            "text": "ey are part of the URL, they are \"naturally\" strings.\n\nBut when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it.\n\nAll the same processes that apply to path parameters also apply to query parameters:\n\n* Editor support (obviously)\n* Data <dfn title=\"converting the string that comes from an HTTP request into Python data\">\"parsing\"</dfn>\n* Data validation\n* Automatic documentation\n\n## Defaults { #defaults }\n\nAs query parameters are not a fixed part of a path, they can be"
+          },
+          {
+            "chunk_id": "query-params.md::4",
+            "doc_id": "query-params.md",
+            "similarity": 0.5473349094390869,
+            "text": "` is not, so, it's a query parameter.\n\n///\n\n## Query parameter type conversion { #query-parameter-type-conversion }\n\nYou can also declare `bool` types, and they will be converted:\n\nIn this case, if you go to:\n\n```\nhttp://127.0.0.1:8000/items/foo?short=1\n```\n\nor\n\n```\nhttp://127.0.0.1:8000/items/foo?short=True\n```\n\nor\n\n```\nhttp://127.0.0.1:8000/items/foo?short=true\n```\n\nor\n\n```\nhttp://127.0.0.1:8000/items/foo?short=on\n```\n\nor\n\n```\nhttp://127.0.0.1:8000/items/foo?short=yes\n```\n\nor any other case variation (uppercase, first letter in uppercase,"
+          },
+          {
+            "chunk_id": "query-params.md::2",
+            "doc_id": "query-params.md",
+            "similarity": 0.5320574641227722,
+            "text": "s { #defaults }\n\nAs query parameters are not a fixed part of a path, they can be optional and can have default values.\n\nIn the example above they have default values of `skip=0` and `limit=10`.\n\nSo, going to the URL:\n\n```\nhttp://127.0.0.1:8000/items/\n```\n\nwould be the same as going to:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\nBut if you go to, for example:\n\n```\nhttp://127.0.0.1:8000/items/?skip=20\n```\n\nThe parameter values in your function will be:\n\n* `skip=20`: because you set it in the URL\n* `limit=10`: because that was the"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "query-params.md::s0",
+            "doc_id": "query-params.md",
+            "similarity": 0.7833194732666016,
+            "text": "# Query Parameters { #query-parameters }\n\nWhen you declare other function parameters that are not part of the path parameters, they are automatically interpreted as \"query\" parameters.\n\nThe query is the set of key-value pairs that go after the `?` in a URL, separated by `&` characters.\n\nFor example, in the URL:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\n...the query parameters are:\n\n* `skip`: with a value of `0`\n* `limit`: with a value of `10`"
+          },
+          {
+            "chunk_id": "query-params.md::s1",
+            "doc_id": "query-params.md",
+            "similarity": 0.6488856077194214,
+            "text": "As they are part of the URL, they are \"naturally\" strings.\n\nBut when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it.\n\nAll the same processes that apply to path parameters also apply to query parameters:\n\n* Editor support (obviously)\n* Data <dfn title=\"converting the string that comes from an HTTP request into Python data\">\"parsing\"</dfn>\n* Data validation\n* Automatic documentation\n\n## Defaults { #defaults }\n\nAs query parameters are not a fixed part of a path, they can be optional and can have default values.\n\nIn the example above they have default values of `skip=0` and `limit=10`.\n\nSo, going to the URL:\n\n```\nhttp://127.0.0.1:8000/items/\n```"
+          },
+          {
+            "chunk_id": "body.md::s8",
+            "doc_id": "body.md",
+            "similarity": 0.5560206770896912,
+            "text": "* If the parameter is also declared in the **path**, it will be used as a path parameter.\n* If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.\n* If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**."
+          },
+          {
+            "chunk_id": "query-params.md::s2",
+            "doc_id": "query-params.md",
+            "similarity": 0.5502347946166992,
+            "text": "would be the same as going to:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\nBut if you go to, for example:\n\n```\nhttp://127.0.0.1:8000/items/?skip=20\n```\n\nThe parameter values in your function will be:\n\n* `skip=20`: because you set it in the URL\n* `limit=10`: because that was the default value\n\n## Optional parameters { #optional-parameters }\n\nThe same way, you can declare optional query parameters, by setting their default to `None`:\n\nIn this case, the function parameter `q` will be optional, and will be `None` by default."
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::s15",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.516981303691864,
+            "text": "To do that, you can declare that `None` is a valid type but simply do not declare a default value:\n\n## Query parameter list / multiple values { #query-parameter-list-multiple-values }\n\nWhen you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.\n\nFor example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:\n\nThen, with a URL like:\n\n```\nhttp://localhost:8000/items/?q=foo&q=bar\n```\n\nyou would receive the multiple `q` *query parameters'* values (`foo` and `bar`) in a Python `list` inside your *path operation function*, in the *function parameter* `q`.\n\nSo, the response to that URL would be:\n\n```JSON\n{\n  \"q\": [\n    \"foo\",\n    \"bar\"\n  ]\n}\n```"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "88a822357914e42862883f54adbbfee245babfeb11b21aac3155c5c38da1cde7",
+        "candidate": "40ed3d01e9d5015825afdd31b6064fc37a40fe9d5e0d884adde4f57c6d653b99"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer accurately states that query parameters appear after the '?' in a URL and are separated by '&', matching the reference answer and fully supported by the context.",
+        "candidate": "The answer accurately states that query parameters appear after the question mark and are separated by ampersands, matching the reference answer (correctness = 1). This is directly supported by the retrieved context query-params.md::s0 (faithfulness = 1)."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.030604999978095293,
+          "generation": 1.4536181999719702,
+          "answer_successful_stages": 1.4842231999500655
+        },
+        "candidate": {
+          "retrieval": 0.04453829996054992,
+          "generation": 1.1480445999768563,
+          "answer_successful_stages": 1.1925828999374062
+        }
+      }
+    },
+    {
+      "id": "q005",
+      "category": "similar_page",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "To read a request header you must declare the parameter with `Header`; otherwise FastAPI would treat it as a query parameter.  \nTo read a cookie you must declare the parameter with `Cookie`; otherwise it would also be interpreted as a query parameter.  \nBoth `Header` and `Cookie` are “sister” classes of `Path` and `Query` that return special classes when imported from FastAPI.  \n\nSources: [header-params.md::0], [cookie-params.md::0]",
+        "candidate": "To read a header you must import and declare it with `Header`; otherwise FastAPI would treat the parameter as a query parameter [header-params.md::s2].  \nTo read a cookie you must import and declare it with `Cookie`; otherwise the parameter would also be interpreted as a query parameter [cookie-params.md::s1]."
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "header-params.md::0",
+            "doc_id": "header-params.md",
+            "similarity": 0.6370338797569275,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and"
+          },
+          {
+            "chunk_id": "header-params.md::2",
+            "doc_id": "header-params.md",
+            "similarity": 0.6202555894851685,
+            "text": "c-conversion }\n\n`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.\n\nMost of the standard headers are separated by a \"hyphen\" character, also known as the \"minus symbol\" (`-`).\n\nBut a variable like `user-agent` is invalid in Python.\n\nSo, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.\n\nAlso, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as \"snake_case\").\n\nSo,"
+          },
+          {
+            "chunk_id": "header-params.md::1",
+            "doc_id": "header-params.md",
+            "similarity": 0.5945338010787964,
+            "text": "// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note\n\nTo declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n## Automatic conversion { #automatic-conversion }\n\n`Header` has a little extra functionality on top of what `Path`,"
+          },
+          {
+            "chunk_id": "cookie-params.md::0",
+            "doc_id": "cookie-params.md",
+            "similarity": 0.5774697065353394,
+            "text": "# Cookie Parameters { #cookie-parameters }\n\nYou can define Cookie parameters the same way you define `Query` and `Path` parameters.\n\n## Import `Cookie` { #import-cookie }\n\nFirst import `Cookie`:\n\n## Declare `Cookie` parameters { #declare-cookie-parameters }\n\nThen declare the cookie parameters using the same structure as with `Path` and `Query`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details\n\n`Cookie` is a \"sister\" class of `Path` and `Query`. It also inherits from"
+          },
+          {
+            "chunk_id": "cookie-params.md::1",
+            "doc_id": "cookie-params.md",
+            "similarity": 0.5582125782966614,
+            "text": "tails\n\n`Cookie` is a \"sister\" class of `Path` and `Query`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Cookie` and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note\n\nTo declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n/// note\n\nHave in mind that, as **browsers handle cookies** in special ways and behind the scenes, they **don't** easily allow **JavaScript** to"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "header-params.md::s0",
+            "doc_id": "header-params.md",
+            "similarity": 0.6379335522651672,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:"
+          },
+          {
+            "chunk_id": "header-params.md::s2",
+            "doc_id": "header-params.md",
+            "similarity": 0.5899310111999512,
+            "text": "To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n## Automatic conversion { #automatic-conversion }\n\n`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.\n\nMost of the standard headers are separated by a \"hyphen\" character, also known as the \"minus symbol\" (`-`).\n\nBut a variable like `user-agent` is invalid in Python.\n\nSo, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.\n\nAlso, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as \"snake_case\").\n\nSo, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar."
+          },
+          {
+            "chunk_id": "cookie-params.md::s1",
+            "doc_id": "cookie-params.md",
+            "similarity": 0.5879607796669006,
+            "text": "`Cookie` is a \"sister\" class of `Path` and `Query`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Cookie` and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note\n\nTo declare cookies, you need to use `Cookie`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n/// note"
+          },
+          {
+            "chunk_id": "header-params.md::s1",
+            "doc_id": "header-params.md",
+            "similarity": 0.5813642740249634,
+            "text": "/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note"
+          },
+          {
+            "chunk_id": "cookie-params.md::s0",
+            "doc_id": "cookie-params.md",
+            "similarity": 0.5665537118911743,
+            "text": "# Cookie Parameters { #cookie-parameters }\n\nYou can define Cookie parameters the same way you define `Query` and `Path` parameters.\n\n## Import `Cookie` { #import-cookie }\n\nFirst import `Cookie`:\n\n## Declare `Cookie` parameters { #declare-cookie-parameters }\n\nThen declare the cookie parameters using the same structure as with `Path` and `Query`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "acf8855ef5ca5beb19cb94ff964fd7f6cc6116e130fb7ae0620b6b6acf6c2af2",
+        "candidate": "724f596680bd13bd0ec4ce53821f7c741fcd5506bf546823c54a3a9f664997c9"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer accurately addresses how to explicitly read headers and cookies using `Header` and `Cookie` to avoid them being treated as query parameters. Every claim in the response is directly supported by the retrieved context.",
+        "candidate": "The answer accurately addresses the question and matches the reference answer. All factual claims are fully supported by the retrieved context chunks."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.029641499975696206,
+          "generation": 1.8680951000424102,
+          "answer_successful_stages": 1.8977366000181064
+        },
+        "candidate": {
+          "retrieval": 0.037752100033685565,
+          "generation": 1.1049904999672435,
+          "answer_successful_stages": 1.142742600000929
+        }
+      }
+    },
+    {
+      "id": "q006",
+      "category": "multi_part",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "To stop FastAPI from turning underscores (`_`) in a header name into hyphens (`-`), set the `convert_underscores` argument of `Header` to `False`. However, be aware that many HTTP proxies and servers do not allow headers that contain underscores, so disabling the conversion may cause those proxies or servers to reject the request. [header-params.md::3][header-params.md::4]",
+        "candidate": "Disable the automatic conversion by setting `Header(convert_underscores=False)`. Be aware that many HTTP proxies and servers may reject headers that contain underscores, so using this option can cause compatibility problems with such infrastructure. [header-params.md::s3]"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "header-params.md::3",
+            "doc_id": "header-params.md",
+            "similarity": 0.6172754764556885,
+            "text": "u can declare them with standard Python style (also known as \"snake_case\").\n\nSo, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar.\n\nIf for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:\n\n/// warning\n\nBefore setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.\n\n///"
+          },
+          {
+            "chunk_id": "header-params.md::4",
+            "doc_id": "header-params.md",
+            "similarity": 0.48003143072128296,
+            "text": "e HTTP proxies and servers disallow the usage of headers with underscores.\n\n///\n\n## Duplicate headers { #duplicate-headers }\n\nIt is possible to receive duplicate headers. That means, the same header with multiple values.\n\nYou can define those cases using a list in the type declaration.\n\nYou will receive all the values from the duplicate header as a Python `list`.\n\nFor example, to declare a header of `X-Token` that can appear more than once, you can write:\n\nIf you communicate with that *path operation* sending two HTTP headers like:\n\n```"
+          },
+          {
+            "chunk_id": "header-params.md::2",
+            "doc_id": "header-params.md",
+            "similarity": 0.4756411910057068,
+            "text": "c-conversion }\n\n`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.\n\nMost of the standard headers are separated by a \"hyphen\" character, also known as the \"minus symbol\" (`-`).\n\nBut a variable like `user-agent` is invalid in Python.\n\nSo, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.\n\nAlso, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as \"snake_case\").\n\nSo,"
+          },
+          {
+            "chunk_id": "header-params.md::1",
+            "doc_id": "header-params.md",
+            "similarity": 0.46415406465530396,
+            "text": "// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note\n\nTo declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n## Automatic conversion { #automatic-conversion }\n\n`Header` has a little extra functionality on top of what `Path`,"
+          },
+          {
+            "chunk_id": "header-params.md::0",
+            "doc_id": "header-params.md",
+            "similarity": 0.35625243186950684,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "header-params.md::s3",
+            "doc_id": "header-params.md",
+            "similarity": 0.7602154016494751,
+            "text": "If for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:\n\n/// warning\n\nBefore setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores."
+          },
+          {
+            "chunk_id": "header-params.md::s2",
+            "doc_id": "header-params.md",
+            "similarity": 0.42405760288238525,
+            "text": "To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n## Automatic conversion { #automatic-conversion }\n\n`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.\n\nMost of the standard headers are separated by a \"hyphen\" character, also known as the \"minus symbol\" (`-`).\n\nBut a variable like `user-agent` is invalid in Python.\n\nSo, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.\n\nAlso, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as \"snake_case\").\n\nSo, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar."
+          },
+          {
+            "chunk_id": "header-params.md::s1",
+            "doc_id": "header-params.md",
+            "similarity": 0.37492311000823975,
+            "text": "/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note"
+          },
+          {
+            "chunk_id": "header-params.md::s0",
+            "doc_id": "header-params.md",
+            "similarity": 0.3585313558578491,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:"
+          },
+          {
+            "chunk_id": "path-params-numeric-validations.md::s6",
+            "doc_id": "path-params-numeric-validations.md",
+            "similarity": 0.3171355128288269,
+            "text": "Here's where it becomes important to be able to declare <abbr title=\"greater than\"><code>gt</code></abbr> and not just <abbr title=\"greater than or equal\"><code>ge</code></abbr>. As with it you can require, for example, that a value must be greater than `0`, even if it is less than `1`.\n\nSo, `0.5` would be a valid value. But `0.0` or `0` would not.\n\nAnd the same for <abbr title=\"less than\"><code>lt</code></abbr>."
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "aa3951caec002302cd63136f647f7acc5ee604e723da1a3b893bb29c6091fd57",
+        "candidate": "1263ce5aa2fa361ff91ca80e56e454b6b425d01a278a3c6516f27fef09ac2f14"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer accurately addresses both parts of the question, matching the reference answer and fully supported by the retrieved context.",
+        "candidate": "The answer accurately addresses both parts of the question in alignment with the reference answer, and all factual claims are directly supported by the retrieved context."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.0395763999549672,
+          "generation": 0.9391458999598399,
+          "answer_successful_stages": 0.9787222999148071
+        },
+        "candidate": {
+          "retrieval": 0.039967200020328164,
+          "generation": 1.1260754999821074,
+          "answer_successful_stages": 1.1660427000024356
+        }
+      }
+    },
+    {
+      "id": "q007",
+      "category": "multi_part",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "Duplicate header values are declared by specifying the header’s type as a list in the parameter declaration, which tells the framework to collect all occurrences of that header. When a request contains the same header multiple times, the framework returns all of its values as a Python `list` [header-params.md::4].",
+        "candidate": "Duplicate header values are declared by specifying the header’s type as a `list` in the parameter declaration, and FastAPI will collect all occurrences of that header into a Python `list` [header-params.md::s4]."
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "header-params.md::4",
+            "doc_id": "header-params.md",
+            "similarity": 0.6963648796081543,
+            "text": "e HTTP proxies and servers disallow the usage of headers with underscores.\n\n///\n\n## Duplicate headers { #duplicate-headers }\n\nIt is possible to receive duplicate headers. That means, the same header with multiple values.\n\nYou can define those cases using a list in the type declaration.\n\nYou will receive all the values from the duplicate header as a Python `list`.\n\nFor example, to declare a header of `X-Token` that can appear more than once, you can write:\n\nIf you communicate with that *path operation* sending two HTTP headers like:\n\n```"
+          },
+          {
+            "chunk_id": "header-params.md::2",
+            "doc_id": "header-params.md",
+            "similarity": 0.5844709873199463,
+            "text": "c-conversion }\n\n`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.\n\nMost of the standard headers are separated by a \"hyphen\" character, also known as the \"minus symbol\" (`-`).\n\nBut a variable like `user-agent` is invalid in Python.\n\nSo, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.\n\nAlso, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as \"snake_case\").\n\nSo,"
+          },
+          {
+            "chunk_id": "header-params.md::0",
+            "doc_id": "header-params.md",
+            "similarity": 0.5410474538803101,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:\n\n/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and"
+          },
+          {
+            "chunk_id": "header-params.md::3",
+            "doc_id": "header-params.md",
+            "similarity": 0.47033941745758057,
+            "text": "u can declare them with standard Python style (also known as \"snake_case\").\n\nSo, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar.\n\nIf for some reason you need to disable automatic conversion of underscores to hyphens, set the parameter `convert_underscores` of `Header` to `False`:\n\n/// warning\n\nBefore setting `convert_underscores` to `False`, bear in mind that some HTTP proxies and servers disallow the usage of headers with underscores.\n\n///"
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::31",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.45077788829803467,
+            "text": "estion.\n\n...we do all this in a **single simple line**. 🤯 Don't you love Python? 🐍\n\n## Recap { #recap }\n\nYou can declare additional validations and metadata for your parameters.\n\nGeneric validations and metadata:\n\n* `alias`\n* `title`\n* `description`\n* `deprecated`\n\nValidations specific for strings:\n\n* `min_length`\n* `max_length`\n* `pattern`\n\nCustom validations using `AfterValidator`.\n\nIn these examples you saw how to declare validations for `str` values.\n\nSee the next chapters to learn how to declare validations for other types, like numbers."
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "header-params.md::s4",
+            "doc_id": "header-params.md",
+            "similarity": 0.6775301098823547,
+            "text": "///\n\n## Duplicate headers { #duplicate-headers }\n\nIt is possible to receive duplicate headers. That means, the same header with multiple values.\n\nYou can define those cases using a list in the type declaration.\n\nYou will receive all the values from the duplicate header as a Python `list`.\n\nFor example, to declare a header of `X-Token` that can appear more than once, you can write:\n\nIf you communicate with that *path operation* sending two HTTP headers like:\n\n```\nX-Token: foo\nX-Token: bar\n```\n\nThe response would be like:\n\n```JSON\n{\n    \"X-Token values\": [\n        \"bar\",\n        \"foo\"\n    ]\n}\n```\n\n## Recap { #recap }\n\nDeclare headers with `Header`, using the same common pattern as `Query`, `Path` and `Cookie`.\n\nAnd don't worry about underscores in your variables, **FastAPI** will take care of converting them."
+          },
+          {
+            "chunk_id": "header-params.md::s2",
+            "doc_id": "header-params.md",
+            "similarity": 0.5414036512374878,
+            "text": "To declare headers, you need to use `Header`, because otherwise the parameters would be interpreted as query parameters.\n\n///\n\n## Automatic conversion { #automatic-conversion }\n\n`Header` has a little extra functionality on top of what `Path`, `Query` and `Cookie` provide.\n\nMost of the standard headers are separated by a \"hyphen\" character, also known as the \"minus symbol\" (`-`).\n\nBut a variable like `user-agent` is invalid in Python.\n\nSo, by default, `Header` will convert the parameter names characters from underscore (`_`) to hyphen (`-`) to extract and document the headers.\n\nAlso, HTTP headers are case-insensitive, so, you can declare them with standard Python style (also known as \"snake_case\").\n\nSo, you can use `user_agent` as you normally would in Python code, instead of needing to capitalize the first letters as `User_Agent` or something similar."
+          },
+          {
+            "chunk_id": "header-params.md::s0",
+            "doc_id": "header-params.md",
+            "similarity": 0.5327534675598145,
+            "text": "# Header Parameters { #header-parameters }\n\nYou can define Header parameters the same way you define `Query`, `Path` and `Cookie` parameters.\n\n## Import `Header` { #import-header }\n\nFirst import `Header`:\n\n## Declare `Header` parameters { #declare-header-parameters }\n\nThen declare the header parameters using the same structure as with `Path`, `Query` and `Cookie`.\n\nYou can define the default value as well as all the extra validation or annotation parameters:"
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::s26",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.44756758213043213,
+            "text": "...we do all this in a **single simple line**. 🤯 Don't you love Python? 🐍\n\n## Recap { #recap }\n\nYou can declare additional validations and metadata for your parameters.\n\nGeneric validations and metadata:\n\n* `alias`\n* `title`\n* `description`\n* `deprecated`\n\nValidations specific for strings:\n\n* `min_length`\n* `max_length`\n* `pattern`\n\nCustom validations using `AfterValidator`.\n\nIn these examples you saw how to declare validations for `str` values.\n\nSee the next chapters to learn how to declare validations for other types, like numbers."
+          },
+          {
+            "chunk_id": "header-params.md::s1",
+            "doc_id": "header-params.md",
+            "similarity": 0.42240285873413086,
+            "text": "/// note | Technical Details\n\n`Header` is a \"sister\" class of `Path`, `Query` and `Cookie`. It also inherits from the same common `Param` class.\n\nBut remember that when you import `Query`, `Path`, `Header`, and others from `fastapi`, those are actually functions that return special classes.\n\n///\n\n/// note"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "21ea812b7c56a52d441096136d1f584327bb2e7a22fa7f701db9cb9d44cefd84",
+        "candidate": "05683cc13a00e5f1feeec3a37543e5c0d6b78b13a4b5d04eaf7d84f7353c58c2"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer accurately addresses both parts of the question, matching the reference answer. All statements are fully supported by the retrieved context in chunk header-params.md::4.",
+        "candidate": "The answer accurately addresses both parts of the question, matching the reference answer and fully supported by the retrieved context."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.02068030001828447,
+          "generation": 1.1338807999854907,
+          "answer_successful_stages": 1.1545611000037752
+        },
+        "candidate": {
+          "retrieval": 0.04164220002712682,
+          "generation": 1.1970015999977477,
+          "answer_successful_stages": 1.2386438000248745
+        }
+      }
+    },
+    {
+      "id": "q008",
+      "category": "paraphrase",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "Yes. FastAPI’s `HTTPException` allows the `detail` field to be any JSON‑able value (e.g., a dict, list, etc.), not only a plain string [handling-errors.md::16][handling-errors.md::5].",
+        "candidate": "Yes. FastAPI’s `HTTPException` allows the `detail` field to be any value that can be converted to JSON (e.g., a dict, list, etc.), not only a plain string. [handling-errors.md::s3]"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "handling-errors.md::16",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5619978904724121,
+            "text": "pts any JSON-able data for the `detail` field, while Starlette's `HTTPException` only accepts strings for it.\n\nSo, you can keep raising **FastAPI**'s `HTTPException` as normally in your code.\n\nBut when you register an exception handler, you should register it for Starlette's `HTTPException`.\n\nThis way, if any part of Starlette's internal code, or a Starlette extension or plug-in, raises a Starlette `HTTPException`, your handler will be able to catch and handle it.\n\nIn this example, to be able to have both `HTTPException`s in the same code,"
+          },
+          {
+            "chunk_id": "handling-errors.md::5",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.5598906874656677,
+            "text": "found\" error), and a JSON response of:\n\n```JSON\n{\n  \"detail\": \"Item not found\"\n}\n```\n\n/// tip\n\nWhen raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`.\n\nYou could pass a `dict`, a `list`, etc.\n\nThey are handled automatically by **FastAPI** and converted to JSON.\n\n///\n\n## Add custom headers { #add-custom-headers }\n\nThere are some situations where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.\n\nYou probably won't need"
+          },
+          {
+            "chunk_id": "handling-errors.md::15",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.4840366840362549,
+            "text": "\"value is not a valid integer\",\n      \"type\": \"type_error.integer\"\n    }\n  ],\n  \"body\": {\n    \"title\": \"towel\",\n    \"size\": \"XL\"\n  }\n}\n```\n\n#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception }\n\n**FastAPI** has its own `HTTPException`.\n\nAnd **FastAPI**'s `HTTPException` error class inherits from Starlette's `HTTPException` error class.\n\nThe only difference is that **FastAPI**'s `HTTPException` accepts any JSON-able data for the `detail` field, while Starlette's `HTTPException`"
+          },
+          {
+            "chunk_id": "handling-errors.md::1",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.46474695205688477,
+            "text": "cases, you would normally return an **HTTP status code** in the range of **400** (from 400 to 499).\n\nThis is similar to the 200 HTTP status codes (from 200 to 299). Those \"200\" status codes mean that somehow there was a \"success\" in the request.\n\nThe status codes in the 400 range mean that there was an error from the client.\n\nRemember all those **\"404 Not Found\"** errors (and jokes)?\n\n## Use `HTTPException` { #use-httpexception }\n\nTo return HTTP responses with errors to the client you use `HTTPException`.\n\n### Import `HTTPException` {"
+          },
+          {
+            "chunk_id": "handling-errors.md::2",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.4307537078857422,
+            "text": "with errors to the client you use `HTTPException`.\n\n### Import `HTTPException` { #import-httpexception }\n\n### Raise an `HTTPException` in your code { #raise-an-httpexception-in-your-code }\n\n`HTTPException` is a normal Python exception with additional data relevant for APIs.\n\nBecause it's a Python exception, you don't `return` it, you `raise` it.\n\nThis also means that if you are inside a utility function that you are calling inside of your *path operation function*, and you raise the `HTTPException` from inside of that utility function, it"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "handling-errors.md::s11",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.51112300157547,
+            "text": "```JSON\n{\n  \"title\": \"towel\",\n  \"size\": \"XL\"\n}\n```\n\nYou will receive a response telling you that the data is invalid containing the received body:\n\n```JSON hl_lines=\"12-15\"\n{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"body\",\n        \"size\"\n      ],\n      \"msg\": \"value is not a valid integer\",\n      \"type\": \"type_error.integer\"\n    }\n  ],\n  \"body\": {\n    \"title\": \"towel\",\n    \"size\": \"XL\"\n  }\n}\n```\n\n#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception }\n\n**FastAPI** has its own `HTTPException`.\n\nAnd **FastAPI**'s `HTTPException` error class inherits from Starlette's `HTTPException` error class.\n\nThe only difference is that **FastAPI**'s `HTTPException` accepts any JSON-able data for the `detail` field, while Starlette's `HTTPException` only accepts strings for it."
+          },
+          {
+            "chunk_id": "handling-errors.md::s3",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.49455034732818604,
+            "text": "/// tip\n\nWhen raising an `HTTPException`, you can pass any value that can be converted to JSON as the parameter `detail`, not only `str`.\n\nYou could pass a `dict`, a `list`, etc.\n\nThey are handled automatically by **FastAPI** and converted to JSON.\n\n///\n\n## Add custom headers { #add-custom-headers }\n\nThere are some situations where it's useful to be able to add custom headers to the HTTP error. For example, for some types of security.\n\nYou probably won't need to use it directly in your code.\n\nBut in case you needed it for an advanced scenario, you can add custom headers:\n\n## Install custom exception handlers { #install-custom-exception-handlers }\n\nYou can add custom exception handlers with [the same exception utilities from Starlette](https://starlette.dev/exceptions/).\n\nLet's say you have a custom exception `UnicornException` that you (or a library you use) might `raise`."
+          },
+          {
+            "chunk_id": "handling-errors.md::s8",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.45207536220550537,
+            "text": "### Override the `HTTPException` error handler { #override-the-httpexception-error-handler }\n\nThe same way, you can override the `HTTPException` handler.\n\nFor example, you could want to return a plain text response instead of JSON for these errors:\n\n/// note | Technical Details\n\nYou could also use `from starlette.responses import PlainTextResponse`.\n\n**FastAPI** provides the same `starlette.responses` as `fastapi.responses` just as a convenience for you, the developer. But most of the available responses come directly from Starlette."
+          },
+          {
+            "chunk_id": "handling-errors.md::s0",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.4478338360786438,
+            "text": "# Handling Errors { #handling-errors }\n\nThere are many situations in which you need to report an error to a client that is using your API.\n\nThis client could be a browser with a frontend, a code from someone else, an IoT device, etc.\n\nYou could need to tell the client that:\n\n* The client doesn't have enough privileges for that operation.\n* The client doesn't have access to that resource.\n* The item the client was trying to access doesn't exist.\n* etc.\n\nIn these cases, you would normally return an **HTTP status code** in the range of **400** (from 400 to 499).\n\nThis is similar to the 200 HTTP status codes (from 200 to 299). Those \"200\" status codes mean that somehow there was a \"success\" in the request.\n\nThe status codes in the 400 range mean that there was an error from the client.\n\nRemember all those **\"404 Not Found\"** errors (and jokes)?\n\n## Use `HTTPException` { #use-httpexception }"
+          },
+          {
+            "chunk_id": "handling-errors.md::s2",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.41142749786376953,
+            "text": "In this example, when the client requests an item by an ID that doesn't exist, raise an exception with a status code of `404`:\n\n### The resulting response { #the-resulting-response }\n\nIf the client requests `http://example.com/items/foo` (an `item_id` `\"foo\"`), that client will receive an HTTP status code of 200, and a JSON response of:\n\n```JSON\n{\n  \"item\": \"The Foo Wrestlers\"\n}\n```\n\nBut if the client requests `http://example.com/items/bar` (a non-existent `item_id` `\"bar\"`), that client will receive an HTTP status code of 404 (the \"not found\" error), and a JSON response of:\n\n```JSON\n{\n  \"detail\": \"Item not found\"\n}\n```"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "1df040f16a9b00aceb913758be3d5721399f8667b716003a702136de73c2b4d1",
+        "candidate": "34d5994fc8ae4993d2988a12754022b30d167a13defbeaded083b04b67c8ae2a"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer is fully correct according to the reference answer and entirely supported by the provided context.",
+        "candidate": "The answer correctly and fully answers the question in agreement with the reference answer, and all factual assertions are directly supported by the retrieved context."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.03459220001241192,
+          "generation": 1.1416299000266008,
+          "answer_successful_stages": 1.1762221000390127
+        },
+        "candidate": {
+          "retrieval": 0.04445210000267252,
+          "generation": 1.8155928999767639,
+          "answer_successful_stages": 1.8600449999794364
+        }
+      }
+    },
+    {
+      "id": "q009",
+      "category": "paraphrase",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "A query argument becomes mandatory simply by **omitting any default value** when you declare it. If you write the parameter without “= …” (e.g., `q: str`), FastAPI treats it as required, forcing the client to supply a value. Providing a default— even `None`—makes the parameter optional, so leaving the default out is the way to make it required. [query-params.md::6]",
+        "candidate": "A query argument is mandatory when you omit any default value for it. If you use `Query`, simply don’t provide a default (e.g., `q: str = Query(...)` or `q: Annotated[str, Query(...)]` without `= …`). FastAPI will then treat the parameter as required. [query-params-str-validations.md::s14]"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "query-params.md::6",
+            "doc_id": "query-params.md",
+            "similarity": 0.7562512159347534,
+            "text": ":\n\n## Required query parameters { #required-query-parameters }\n\nWhen you declare a default value for non-path parameters (for now, we have only seen query parameters), then it is not required.\n\nIf you don't want to add a specific value but just make it optional, set the default as `None`.\n\nBut when you want to make a query parameter required, you can just not declare any default value:\n\nHere the query parameter `needy` is a required query parameter of type `str`.\n\nIf you open in your browser a URL like:\n\n```"
+          },
+          {
+            "chunk_id": "path-params-numeric-validations.md::2",
+            "doc_id": "path-params-numeric-validations.md",
+            "similarity": 0.7253925800323486,
+            "text": "ter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.\n\n///\n\n## Order the parameters as you need { #order-the-parameters-as-you-need }\n\n/// tip\n\nThis is probably not as important or necessary if you use `Annotated`.\n\n///\n\nLet's say that you want to declare the query parameter `q` as a required `str`.\n\nAnd you don't need to declare anything else for that parameter, so you don't really need to use `Query`.\n\nBut you still"
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::16",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.7018767595291138,
+            "text": "e, use default values other than `None`.\n\nLet's say that you want to declare the `q` query parameter to have a `min_length` of `3`, and to have a default value of `\"fixedquery\"`:\n\n/// note\n\nHaving a default value of any type, including `None`, makes the parameter optional (not required).\n\n///\n\n## Required parameters { #required-parameters }\n\nWhen we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:\n\n```Python\nq: str\n```\n\ninstead of:\n\n```Python\nq: str |"
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::18",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.6550191640853882,
+            "text": "required. This would force clients to send a value, even if the value is `None`.\n\nTo do that, you can declare that `None` is a valid type but simply do not declare a default value:\n\n## Query parameter list / multiple values { #query-parameter-list-multiple-values }\n\nWhen you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.\n\nFor example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:\n\nThen, with a"
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::17",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.628853976726532,
+            "text": "ng a default value, like:\n\n```Python\nq: str\n```\n\ninstead of:\n\n```Python\nq: str | None = None\n```\n\nBut we are now declaring it with `Query`, for example like:\n\n```Python\nq: Annotated[str | None, Query(min_length=3)] = None\n```\n\nSo, when you need to declare a value as required while using `Query`, you can simply not declare a default value:\n\n### Required, can be `None` { #required-can-be-none }\n\nYou can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`."
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "query-params-str-validations.md::s14",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.7324466705322266,
+            "text": "/// note\n\nHaving a default value of any type, including `None`, makes the parameter optional (not required).\n\n///\n\n## Required parameters { #required-parameters }\n\nWhen we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:\n\n```Python\nq: str\n```\n\ninstead of:\n\n```Python\nq: str | None = None\n```\n\nBut we are now declaring it with `Query`, for example like:\n\n```Python\nq: Annotated[str | None, Query(min_length=3)] = None\n```\n\nSo, when you need to declare a value as required while using `Query`, you can simply not declare a default value:\n\n### Required, can be `None` { #required-can-be-none }\n\nYou can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`."
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::s8",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.5653146505355835,
+            "text": "So:\n\n```Python\nq: str | None = Query(default=None)\n```\n\n...makes the parameter optional, with a default value of `None`, the same as:\n\n```Python\nq: str | None = None\n```\n\nBut the `Query` version declares it explicitly as being a query parameter.\n\nThen, we can pass more parameters to `Query`. In this case, the `max_length` parameter that applies to strings:\n\n```Python\nq: str | None = Query(default=None, max_length=50)\n```"
+          },
+          {
+            "chunk_id": "query-params.md::s5",
+            "doc_id": "query-params.md",
+            "similarity": 0.5441668629646301,
+            "text": "If you don't want to add a specific value but just make it optional, set the default as `None`.\n\nBut when you want to make a query parameter required, you can just not declare any default value:\n\nHere the query parameter `needy` is a required query parameter of type `str`.\n\nIf you open in your browser a URL like:\n\n```\nhttp://127.0.0.1:8000/items/foo-item\n```\n\n...without adding the required parameter `needy`, you will see an error like:\n\n```JSON\n{\n  \"detail\": [\n    {\n      \"type\": \"missing\",\n      \"loc\": [\n        \"query\",\n        \"needy\"\n      ],\n      \"msg\": \"Field required\",\n      \"input\": null\n    }\n  ]\n}\n```\n\nAs `needy` is a required parameter, you would need to set it in the URL:\n\n```\nhttp://127.0.0.1:8000/items/foo-item?needy=sooooneedy\n```\n\n...this would work:"
+          },
+          {
+            "chunk_id": "query-params.md::s2",
+            "doc_id": "query-params.md",
+            "similarity": 0.5410076975822449,
+            "text": "would be the same as going to:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\nBut if you go to, for example:\n\n```\nhttp://127.0.0.1:8000/items/?skip=20\n```\n\nThe parameter values in your function will be:\n\n* `skip=20`: because you set it in the URL\n* `limit=10`: because that was the default value\n\n## Optional parameters { #optional-parameters }\n\nThe same way, you can declare optional query parameters, by setting their default to `None`:\n\nIn this case, the function parameter `q` will be optional, and will be `None` by default."
+          },
+          {
+            "chunk_id": "path-params-numeric-validations.md::s2",
+            "doc_id": "path-params-numeric-validations.md",
+            "similarity": 0.53166264295578,
+            "text": "///\n\n## Order the parameters as you need { #order-the-parameters-as-you-need }\n\n/// tip\n\nThis is probably not as important or necessary if you use `Annotated`.\n\n///\n\nLet's say that you want to declare the query parameter `q` as a required `str`.\n\nAnd you don't need to declare anything else for that parameter, so you don't really need to use `Query`.\n\nBut you still need to use `Path` for the `item_id` path parameter. And you don't want to use `Annotated` for some reason.\n\nPython will complain if you put a value with a \"default\" before a value that doesn't have a \"default\".\n\nBut you can re-order them, and have the value without a default (the query parameter `q`) first.\n\nIt doesn't matter for **FastAPI**. It will detect the parameters by their names, types and default declarations (`Query`, `Path`, etc), it doesn't care about the order.\n\nSo, you can declare your function as:"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "aedacc14b1eb0b53f4b357927cc109f069b5a804036ff2bb8f34d6535fa1024e",
+        "candidate": "3e1aff32533303f28f8cb6b1ba5fcd8b6dd877a76e1727ec0aee4e8151ba2e87"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 0,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": -1,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer accurately states that a query argument is made required by omitting a default value (e.g. `q: str`), fully agreeing with the reference answer and supported by the retrieved context.",
+        "candidate": "The answer correctly states that a query argument is made mandatory by omitting a default value, matching the reference answer. However, it fails faithfulness because it includes code examples using `Query(...)` (ellipsis syntax) which are not present anywhere in the retrieved context."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.028047300002072006,
+          "generation": 1.29202350002015,
+          "answer_successful_stages": 1.320070800022222
+        },
+        "candidate": {
+          "retrieval": 0.05945639999117702,
+          "generation": 1.3646445000194944,
+          "answer_successful_stages": 1.4241009000106715
+        }
+      }
+    },
+    {
+      "id": "q010",
+      "category": "unanswerable",
+      "answerable": false,
+      "answer_changed": false,
+      "context_changed": true,
+      "answers": {
+        "baseline": "I cannot find this in the provided documentation.",
+        "candidate": "I cannot find this in the provided documentation."
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "first-steps.md::27",
+            "doc_id": "first-steps.md",
+            "similarity": 0.6353926062583923,
+            "text": "ted.\n\n### Step 6: Deploy it { #step-6-deploy-it }\n\nDeploy your app to **[FastAPI Cloud](https://fastapicloud.com)** with one command: `fastapi deploy`. 🎉\n\n#### About FastAPI Cloud { #about-fastapi-cloud }\n\n**[FastAPI Cloud](https://fastapicloud.com)** is built by the same author and team behind **FastAPI**.\n\nIt streamlines the process of **building**, **deploying**, and **accessing** an API with minimal effort.\n\nIt brings the same **developer experience** of building apps with FastAPI to **deploying** them to the cloud. 🎉\n\nFastAPI Cloud is the"
+          },
+          {
+            "chunk_id": "first-steps.md::17",
+            "doc_id": "first-steps.md",
+            "similarity": 0.628912627696991,
+            "text": "oud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.\n\n### Deploy your app (optional) { #deploy-your-app-optional }\n\nYou can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with a single command. 🚀\n\n<div class=\"termy\">\n\n```console\n$ uv run fastapi deploy\n\nDeploying to FastAPI Cloud...\n\n✅ Deployment successful!\n\n🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev\n```\n\n</div>\n\nThe CLI will automatically detect your FastAPI application and deploy it to the cloud. If you"
+          },
+          {
+            "chunk_id": "first-steps.md::28",
+            "doc_id": "first-steps.md",
+            "similarity": 0.4888920783996582,
+            "text": "ng apps with FastAPI to **deploying** them to the cloud. 🎉\n\nFastAPI Cloud is the primary sponsor and funding provider for the *FastAPI and friends* open source projects. ✨\n\n#### Deploy to other cloud providers { #deploy-to-other-cloud-providers }\n\nFastAPI is open source and based on standards. You can deploy FastAPI apps to any cloud provider you choose.\n\nFollow your cloud provider's guides to deploy FastAPI apps with them. 🤓\n\n## Recap { #recap }\n\n* Import `FastAPI`.\n* Create an `app` instance.\n* Write a **path operation decorator** using"
+          },
+          {
+            "chunk_id": "first-steps.md::16",
+            "doc_id": "first-steps.md",
+            "similarity": 0.4860130548477173,
+            "text": "API app object to use:\n\n```console\n$ uv run fastapi dev main.py\n```\n\nOr, you can also pass the `--entrypoint` option to the `fastapi dev` command:\n\n```console\n$ uv run fastapi dev --entrypoint main:app\n```\n\nBut you would have to remember to pass the correct path\\entrypoint every time you call the `fastapi` command.\n\nAdditionally, other tools might not be able to find it, for example the [VS Code Extension](../editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.\n\n###"
+          },
+          {
+            "chunk_id": "dependencies__index.md::13",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.48087477684020996,
+            "text": "src=\"/img/tutorial/dependencies/image01.png\">\n\n## Simple usage { #simple-usage }\n\nIf you look at it, *path operation functions* are declared to be used whenever a *path* and *operation* matches, and then **FastAPI** takes care of calling the function with the correct parameters, extracting the data from the request.\n\nActually, all (or most) of the web frameworks work in this same way.\n\nYou never call those functions directly. They are called by your framework (in this case, **FastAPI**).\n\nWith the Dependency Injection system, you can also tell"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "first-steps.md::s20",
+            "doc_id": "first-steps.md",
+            "similarity": 0.6290682554244995,
+            "text": "### Step 6: Deploy it { #step-6-deploy-it }\n\nDeploy your app to **[FastAPI Cloud](https://fastapicloud.com)** with one command: `fastapi deploy`. 🎉\n\n#### About FastAPI Cloud { #about-fastapi-cloud }\n\n**[FastAPI Cloud](https://fastapicloud.com)** is built by the same author and team behind **FastAPI**.\n\nIt streamlines the process of **building**, **deploying**, and **accessing** an API with minimal effort.\n\nIt brings the same **developer experience** of building apps with FastAPI to **deploying** them to the cloud. 🎉\n\nFastAPI Cloud is the primary sponsor and funding provider for the *FastAPI and friends* open source projects. ✨\n\n#### Deploy to other cloud providers { #deploy-to-other-cloud-providers }\n\nFastAPI is open source and based on standards. You can deploy FastAPI apps to any cloud provider you choose.\n\nFollow your cloud provider's guides to deploy FastAPI apps with them. 🤓"
+          },
+          {
+            "chunk_id": "first-steps.md::s12",
+            "doc_id": "first-steps.md",
+            "similarity": 0.5271255373954773,
+            "text": "<div class=\"termy\">\n\n```console\n$ uv run fastapi deploy\n\nDeploying to FastAPI Cloud...\n\n✅ Deployment successful!\n\n🐔 Ready the chicken! Your app is ready at https://myapp.fastapicloud.dev\n```\n\n</div>\n\nThe CLI will automatically detect your FastAPI application and deploy it to the cloud. If you are not logged in, your browser will open to complete the authentication process.\n\nThat's it! Now you can access your app at that URL. ✨\n\n## Recap, step by step { #recap-step-by-step }\n\n### Step 1: import `FastAPI` { #step-1-import-fastapi }\n\n`FastAPI` is a Python class that provides all the functionality for your API.\n\n/// note | Technical Details\n\n`FastAPI` is a class that inherits directly from `Starlette`.\n\nYou can use all the [Starlette](https://starlette.dev/) functionality with `FastAPI` too."
+          },
+          {
+            "chunk_id": "first-steps.md::s11",
+            "doc_id": "first-steps.md",
+            "similarity": 0.502662181854248,
+            "text": "Additionally, other tools might not be able to find it, for example the [VS Code Extension](../editor-support.md) or [FastAPI Cloud](https://fastapicloud.com), so it is recommended to use the `entrypoint` in `pyproject.toml`.\n\n### Deploy your app (optional) { #deploy-your-app-optional }\n\nYou can optionally deploy your FastAPI app to [FastAPI Cloud](https://fastapicloud.com) with a single command. 🚀"
+          },
+          {
+            "chunk_id": "first-steps.md::s10",
+            "doc_id": "first-steps.md",
+            "similarity": 0.4686814546585083,
+            "text": "If your code was structured like:\n\n```\n.\n├── backend\n│   ├── main.py\n│   ├── __init__.py\n```\n\nThen you would set the `entrypoint` as:\n\n```toml\n[tool.fastapi]\nentrypoint = \"backend.main:app\"\n```\n\nwhich would be equivalent to:\n\n```python\nfrom backend.main import app\n```\n\n### `fastapi dev` with path or with `--entrypoint` CLI option { #fastapi-dev-with-path-or-with-entrypoint-cli-option }\n\nYou can also pass the file path to the `fastapi dev` command, and it will guess the FastAPI app object to use:\n\n```console\n$ uv run fastapi dev main.py\n```\n\nOr, you can also pass the `--entrypoint` option to the `fastapi dev` command:\n\n```console\n$ uv run fastapi dev --entrypoint main:app\n```\n\nBut you would have to remember to pass the correct path\\entrypoint every time you call the `fastapi` command."
+          },
+          {
+            "chunk_id": "first-steps.md::s21",
+            "doc_id": "first-steps.md",
+            "similarity": 0.4684638977050781,
+            "text": "## Recap { #recap }\n\n* Import `FastAPI`.\n* Create an `app` instance.\n* Write a **path operation decorator** using decorators like `@app.get(\"/\")`.\n* Define a **path operation function**; for example, `def root(): ...`.\n* Run the development server using the command `fastapi dev`.\n* Optionally deploy your app with `fastapi deploy`."
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "09bb71c5c9fd7d760aefc59265c058d36e3279310dfb3bc79226ada86f9afb90",
+        "candidate": "09bb71c5c9fd7d760aefc59265c058d36e3279310dfb3bc79226ada86f9afb90"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": null,
+          "faithfulness": null,
+          "abstention": 1
+        },
+        "candidate": {
+          "correctness": null,
+          "faithfulness": null,
+          "abstention": 1
+        },
+        "delta": {
+          "correctness": null,
+          "faithfulness": null,
+          "abstention": 0
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The question is unanswerable based on the provided context, and the response correctly abstains from providing an invented answer.",
+        "candidate": "The question is unanswerable based on the provided context as there is no mention of Docker base images or Dockerfiles. The model correctly abstained from answering."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.03143179998733103,
+          "generation": 0.665326600021217,
+          "answer_successful_stages": 0.696758400008548
+        },
+        "candidate": {
+          "retrieval": 0.03657160000875592,
+          "generation": 1.4206547000212595,
+          "answer_successful_stages": 1.4572263000300154
+        }
+      }
+    },
+    {
+      "id": "q011",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": false,
+      "context_changed": true,
+      "answers": {
+        "baseline": "I cannot find this in the provided documentation.",
+        "candidate": "I cannot find this in the provided documentation."
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "body.md::0",
+            "doc_id": "body.md",
+            "similarity": 0.6158317923545837,
+            "text": "# Request Body { #request-body }\n\nWhen you need to send data from a client (let's say, a browser) to your API, you send it as a **request body**.\n\nA **request** body is data sent by the client to your API. A **response** body is the data your API sends to the client.\n\nYour API almost always has to send a **response** body. But clients don't necessarily need to send **request bodies** all the time, sometimes they only request a path, maybe with some query parameters, but don't send a body.\n\nTo declare a **request** body, you use"
+          },
+          {
+            "chunk_id": "body.md::1",
+            "doc_id": "body.md",
+            "similarity": 0.48753345012664795,
+            "text": "query parameters, but don't send a body.\n\nTo declare a **request** body, you use [Pydantic](https://pydantic.dev/docs/) models with all their power and benefits.\n\n/// note\n\nTo send data, you should use one of: `POST` (the most common), `PUT`, `DELETE` or `PATCH`.\n\nSending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases.\n\nAs it is discouraged, the interactive docs with Swagger UI won't show the documentation for the body when using"
+          },
+          {
+            "chunk_id": "response-model.md::13",
+            "doc_id": "response-model.md",
+            "similarity": 0.4770277738571167,
+            "text": "se will only include the fields declared in the response model.\n\nIn the previous example, because the classes were different, we had to use the `response_model` parameter. But that also means that we don't get the support from the editor and tools checking the function return type.\n\nBut in most of the cases where we need to do something like this, we want the model just to **filter/remove** some of the data as in this example.\n\nAnd in those cases, we can use classes and inheritance to take advantage of function **type annotations** to get"
+          },
+          {
+            "chunk_id": "body.md::10",
+            "doc_id": "body.md",
+            "similarity": 0.4210221767425537,
+            "text": "he attributes of the model object directly:\n\n## Request body + path parameters { #request-body-path-parameters }\n\nYou can declare path parameters and request body at the same time.\n\n**FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.\n\n## Request body + path + query parameters { #request-body-path-query-parameters }\n\nYou can also declare **body**, **path** and **query**"
+          },
+          {
+            "chunk_id": "handling-errors.md::15",
+            "doc_id": "handling-errors.md",
+            "similarity": 0.38303154706954956,
+            "text": "\"value is not a valid integer\",\n      \"type\": \"type_error.integer\"\n    }\n  ],\n  \"body\": {\n    \"title\": \"towel\",\n    \"size\": \"XL\"\n  }\n}\n```\n\n#### FastAPI's `HTTPException` vs Starlette's `HTTPException` { #fastapis-httpexception-vs-starlettes-httpexception }\n\n**FastAPI** has its own `HTTPException`.\n\nAnd **FastAPI**'s `HTTPException` error class inherits from Starlette's `HTTPException` error class.\n\nThe only difference is that **FastAPI**'s `HTTPException` accepts any JSON-able data for the `detail` field, while Starlette's `HTTPException`"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "body.md::s0",
+            "doc_id": "body.md",
+            "similarity": 0.5449705123901367,
+            "text": "# Request Body { #request-body }\n\nWhen you need to send data from a client (let's say, a browser) to your API, you send it as a **request body**.\n\nA **request** body is data sent by the client to your API. A **response** body is the data your API sends to the client.\n\nYour API almost always has to send a **response** body. But clients don't necessarily need to send **request bodies** all the time, sometimes they only request a path, maybe with some query parameters, but don't send a body.\n\nTo declare a **request** body, you use [Pydantic](https://pydantic.dev/docs/) models with all their power and benefits.\n\n/// note\n\nTo send data, you should use one of: `POST` (the most common), `PUT`, `DELETE` or `PATCH`.\n\nSending a body with a `GET` request has an undefined behavior in the specifications, nevertheless, it is supported by FastAPI, only for very complex/extreme use cases."
+          },
+          {
+            "chunk_id": "response-model.md::s21",
+            "doc_id": "response-model.md",
+            "similarity": 0.4097951650619507,
+            "text": "/// tip\n\nBut it is still recommended to use the ideas above, using multiple classes, instead of these parameters.\n\nThis is because the JSON Schema generated in your app's OpenAPI (and the docs) will still be the one for the complete model, even if you use `response_model_include` or `response_model_exclude` to omit some attributes.\n\nThis also applies to `response_model_by_alias` that works similarly."
+          },
+          {
+            "chunk_id": "body.md::s8",
+            "doc_id": "body.md",
+            "similarity": 0.4049777388572693,
+            "text": "* If the parameter is also declared in the **path**, it will be used as a path parameter.\n* If the parameter is of a **singular type** (like `int`, `float`, `str`, `bool`, etc) it will be interpreted as a **query** parameter.\n* If the parameter is declared to be of the type of a **Pydantic model**, it will be interpreted as a request **body**."
+          },
+          {
+            "chunk_id": "body.md::s3",
+            "doc_id": "body.md",
+            "similarity": 0.4028109908103943,
+            "text": "* Read the body of the request as JSON.\n* Convert the corresponding types (if needed).\n* Validate the data.\n    * If the data is invalid, it will return a nice and clear error, indicating exactly where and what was the incorrect data.\n* Give you the received data in the parameter `item`.\n    * As you declared it in the function to be of type `Item`, you will also have all the editor support (completion, etc) for all of the attributes and their types.\n* Generate [JSON Schema](https://json-schema.org) definitions for your model, you can also use them anywhere else you like if it makes sense for your project.\n* Those schemas will be part of the generated OpenAPI schema, and used by the automatic documentation <abbr title=\"User Interfaces\">UIs</abbr>.\n\n## Automatic docs { #automatic-docs }"
+          },
+          {
+            "chunk_id": "body.md::s7",
+            "doc_id": "body.md",
+            "similarity": 0.3986324071884155,
+            "text": "## Use the model { #use-the-model }\n\nInside of the function, you can access all the attributes of the model object directly:\n\n## Request body + path parameters { #request-body-path-parameters }\n\nYou can declare path parameters and request body at the same time.\n\n**FastAPI** will recognize that the function parameters that match path parameters should be **taken from the path**, and that function parameters that are declared to be Pydantic models should be **taken from the request body**.\n\n## Request body + path + query parameters { #request-body-path-query-parameters }\n\nYou can also declare **body**, **path** and **query** parameters, all at the same time.\n\n**FastAPI** will recognize each of them and take the data from the correct place.\n\nThe function parameters will be recognized as follows:"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "09bb71c5c9fd7d760aefc59265c058d36e3279310dfb3bc79226ada86f9afb90",
+        "candidate": "09bb71c5c9fd7d760aefc59265c058d36e3279310dfb3bc79226ada86f9afb90"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 0,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 0,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer is an unjustified refusal to answer an answerable question, resulting in a correctness score of 0. Faithfulness is 1 because a simple refusal contains no unsupported factual claims.",
+        "candidate": "The model stated it could not find the information, which constitutes an unjustified refusal since the question is marked as answerable. Faithfulness is 1 because a simple refusal contains no unsupported factual claims."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.0368904999922961,
+          "generation": 0.8796518000308424,
+          "answer_successful_stages": 0.9165423000231385
+        },
+        "candidate": {
+          "retrieval": 0.08772439998574555,
+          "generation": 1.5788284000009298,
+          "answer_successful_stages": 1.6665527999866754
+        }
+      }
+    },
+    {
+      "id": "q012",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "FastAPI gives priority to the `response_model`; when both a return‑type annotation and a `response_model` are provided, FastAPI uses the `response_model` for documentation, validation, and response handling. [response-model.md::20]",
+        "candidate": "FastAPI gives priority to the `response_model` over the function’s return‑type annotation; the `response_model` is the one that FastAPI uses for validation, documentation, and filtering. [response-model.md::s4]"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "response-model.md::19",
+            "doc_id": "response-model.md",
+            "similarity": 0.7822229266166687,
+            "text": ").\n\nThis simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass of) `Response`.\n\nAnd tools will also be happy because both `RedirectResponse` and `JSONResponse` are subclasses of `Response`, so the type annotation is correct.\n\n### Annotate a Response Subclass { #annotate-a-response-subclass }\n\nYou can also use a subclass of `Response` in the type annotation:\n\nThis will also work because `RedirectResponse` is a subclass of `Response`, and FastAPI will automatically handle this simple case."
+          },
+          {
+            "chunk_id": "response-model.md::6",
+            "doc_id": "response-model.md",
+            "similarity": 0.7699450850486755,
+            "text": "mypy, etc, you can declare the function return type as `Any`.\n\nThat way you tell the editor that you are intentionally returning anything. But FastAPI will still do the data documentation, validation, filtering, etc. with the `response_model`.\n\n///\n\n### `response_model` Priority { #response-model-priority }\n\nIf you declare both a return type and a `response_model`, the `response_model` will take priority and be used by FastAPI.\n\nThis way you can add correct type annotations to your functions even when you are returning a type different than"
+          },
+          {
+            "chunk_id": "response-model.md::20",
+            "doc_id": "response-model.md",
+            "similarity": 0.7108843326568604,
+            "text": "subclass of `Response`, and FastAPI will automatically handle this simple case.\n\n### Invalid Return Type Annotations { #invalid-return-type-annotations }\n\nBut when you return some other arbitrary object that is not a valid Pydantic type (e.g. a database object) and you annotate it like that in the function, FastAPI will try to create a Pydantic response model from that type annotation, and will fail.\n\nThe same would happen if you had something like a <dfn title='A union between multiple types means \"any of these types\".'>union</dfn> between"
+          },
+          {
+            "chunk_id": "response-model.md::22",
+            "doc_id": "response-model.md",
+            "similarity": 0.6960960626602173,
+            "text": "ght not want to have the default data validation, documentation, filtering, etc. that is performed by FastAPI.\n\nBut you might want to still keep the return type annotation in the function to get the support from tools like editors and type checkers (e.g. mypy).\n\nIn this case, you can disable the response model generation by setting `response_model=None`:\n\nThis will make FastAPI skip the response model generation and that way you can have any return type annotations you need without it affecting your FastAPI application. 🤓\n\n## Response Model"
+          },
+          {
+            "chunk_id": "response-model.md::5",
+            "doc_id": "response-model.md",
+            "similarity": 0.6881450414657593,
+            "text": "function*, like all the parameters and body.\n\n///\n\n`response_model` receives the same type you would declare for a Pydantic model field, so, it can be a Pydantic model, but it can also be, e.g. a `list` of Pydantic models, like `List[Item]`.\n\nFastAPI will use this `response_model` to do all the data documentation, validation, etc. and also to **convert and filter the output data** to its type declaration.\n\n/// tip\n\nIf you have strict type checks in your editor, mypy, etc, you can declare the function return type as `Any`.\n\nThat way you tell"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "response-model.md::s4",
+            "doc_id": "response-model.md",
+            "similarity": 0.7542202472686768,
+            "text": "/// tip\n\nIf you have strict type checks in your editor, mypy, etc, you can declare the function return type as `Any`.\n\nThat way you tell the editor that you are intentionally returning anything. But FastAPI will still do the data documentation, validation, filtering, etc. with the `response_model`.\n\n///\n\n### `response_model` Priority { #response-model-priority }\n\nIf you declare both a return type and a `response_model`, the `response_model` will take priority and be used by FastAPI.\n\nThis way you can add correct type annotations to your functions even when you are returning a type different than the response model, to be used by the editor and tools like mypy. And still you can have FastAPI do the data validation, documentation, etc. using the `response_model`."
+          },
+          {
+            "chunk_id": "response-model.md::s15",
+            "doc_id": "response-model.md",
+            "similarity": 0.7405852675437927,
+            "text": "### Disable Response Model { #disable-response-model }\n\nContinuing from the example above, you might not want to have the default data validation, documentation, filtering, etc. that is performed by FastAPI.\n\nBut you might want to still keep the return type annotation in the function to get the support from tools like editors and type checkers (e.g. mypy).\n\nIn this case, you can disable the response model generation by setting `response_model=None`:\n\nThis will make FastAPI skip the response model generation and that way you can have any return type annotations you need without it affecting your FastAPI application. 🤓\n\n## Response Model encoding parameters { #response-model-encoding-parameters }\n\nYour response model could have default values, like:"
+          },
+          {
+            "chunk_id": "response-model.md::s9",
+            "doc_id": "response-model.md",
+            "similarity": 0.7383549809455872,
+            "text": "In this case, because the two models are different, if we annotated the function return type as `UserOut`, the editor and tools would complain that we are returning an invalid type, as those are different classes.\n\nThat's why in this example we have to declare it in the `response_model` parameter.\n\n...but continue reading below to see how to overcome that.\n\n## Return Type and Data Filtering { #return-type-and-data-filtering }\n\nLet's continue from the previous example. We wanted to **annotate the function with one type**, but we wanted to be able to return from the function something that actually includes **more data**.\n\nWe want FastAPI to keep **filtering** the data using the response model. So that even though the function returns more data, the response will only include the fields declared in the response model."
+          },
+          {
+            "chunk_id": "response-model.md::s13",
+            "doc_id": "response-model.md",
+            "similarity": 0.7335410118103027,
+            "text": "## Other Return Type Annotations { #other-return-type-annotations }\n\nThere might be cases where you return something that is not a valid Pydantic field and you annotate it in the function, only to get the support provided by tooling (the editor, mypy, etc).\n\n### Return a Response Directly { #return-a-response-directly }\n\nThe most common case would be [returning a Response directly as explained later in the advanced docs](../advanced/response-directly.md).\n\nThis simple case is handled automatically by FastAPI because the return type annotation is the class (or a subclass of) `Response`.\n\nAnd tools will also be happy because both `RedirectResponse` and `JSONResponse` are subclasses of `Response`, so the type annotation is correct.\n\n### Annotate a Response Subclass { #annotate-a-response-subclass }\n\nYou can also use a subclass of `Response` in the type annotation:"
+          },
+          {
+            "chunk_id": "response-model.md::s10",
+            "doc_id": "response-model.md",
+            "similarity": 0.7289060354232788,
+            "text": "In the previous example, because the classes were different, we had to use the `response_model` parameter. But that also means that we don't get the support from the editor and tools checking the function return type.\n\nBut in most of the cases where we need to do something like this, we want the model just to **filter/remove** some of the data as in this example.\n\nAnd in those cases, we can use classes and inheritance to take advantage of function **type annotations** to get better support in the editor and tools, and still get the FastAPI **data filtering**.\n\nWith this, we get tooling support, from editors and mypy as this code is correct in terms of types, but we also get the data filtering from FastAPI.\n\nHow does this work? Let's check that out. 🤓"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "054d5b1b600bed7a5e43eb72cc524d23dc98759a4ba64c9d17da65fd8b1dc30e",
+        "candidate": "fdb43a6702e9d45df89096455401b32667457d427109f088446be332328198ab"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer accurately states that FastAPI gives priority to the response_model, matching the reference answer. All claims made in the answer are supported by the retrieved context (specifically chunks response-model.md::6 and response-model.md::5).",
+        "candidate": "The answer correctly identifies that FastAPI gives priority to `response_model`, fully agreeing with the reference answer. All statements in the answer are directly supported by the retrieved context."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.025471899949479848,
+          "generation": 0.9749310000333935,
+          "answer_successful_stages": 1.0004028999828734
+        },
+        "candidate": {
+          "retrieval": 0.0636726000229828,
+          "generation": 1.5656536999740638,
+          "answer_successful_stages": 1.6293262999970466
+        }
+      }
+    },
+    {
+      "id": "q013",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "No. You should pass the function itself to `Depends` without calling it (no parentheses); FastAPI will invoke the dependency function when handling a request【dependencies__index.md::6】.",
+        "candidate": "No. When you pass a function to `Depends` you **don’t call it yourself** (you omit the parentheses); FastAPI will invoke the dependency function later when handling a request. [dependencies__index.md::s5]"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "dependencies__index.md::6",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.5540515184402466,
+            "text": "only give `Depends` a single parameter.\n\nThis parameter must be something like a function.\n\nYou **don't call it** directly (don't add the parenthesis at the end), you just pass it as a parameter to `Depends()`.\n\nAnd that function takes parameters in the same way that *path operation functions* do.\n\n/// tip\n\nYou'll see what other \"things\", apart from functions, can be used as dependencies in the next chapter.\n\n///\n\nWhenever a new request arrives, **FastAPI** will take care of:\n\n* Calling your dependency (\"dependable\") function with the correct"
+          },
+          {
+            "chunk_id": "dependencies__index.md::14",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.5022947788238525,
+            "text": "his case, **FastAPI**).\n\nWith the Dependency Injection system, you can also tell **FastAPI** that your *path operation function* also \"depends\" on something else that should be executed before your *path operation function*, and **FastAPI** will take care of executing it and \"injecting\" the results.\n\nOther common terms for this same idea of \"dependency injection\" are:\n\n* resources\n* providers\n* services\n* injectables\n* components\n\n## **FastAPI** plug-ins { #fastapi-plug-ins }\n\nIntegrations and \"plug-ins\" can be built using the **Dependency"
+          },
+          {
+            "chunk_id": "dependencies__index.md::5",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.485523521900177,
+            "text": "sions) to at least 0.95.1 before using `Annotated`.\n\n///\n\n### Import `Depends` { #import-depends }\n\n### Declare the dependency, in the \"dependant\" { #declare-the-dependency-in-the-dependant }\n\nThe same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter:\n\nAlthough you use `Depends` in the parameters of your function the same way you use `Body`, `Query`, etc, `Depends` works a bit differently.\n\nYou only give `Depends` a single parameter.\n\nThis parameter must be something like a"
+          },
+          {
+            "chunk_id": "dependencies__index.md::11",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.44641757011413574,
+            "text": "c` or not to `async` { #to-async-or-not-to-async }\n\nAs dependencies will also be called by **FastAPI** (the same as your *path operation functions*), the same rules apply while defining your functions.\n\nYou can use `async def` or normal `def`.\n\nAnd you can declare dependencies with `async def` inside of normal `def` *path operation functions*, or `def` dependencies inside of `async def` *path operation functions*, etc.\n\nIt doesn't matter. **FastAPI** will know what to do.\n\n/// note\n\nIf you don't know, check the [Async: *\"In a"
+          },
+          {
+            "chunk_id": "dependencies__index.md::0",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.44359147548675537,
+            "text": "# Dependencies { #dependencies }\n\n**FastAPI** has a very powerful but intuitive **<dfn title=\"also known as components, resources, providers, services, injectables\">Dependency Injection</dfn>** system.\n\nIt is designed to be very simple to use, and to make it very easy for any developer to integrate other components with **FastAPI**.\n\n## What is \"Dependency Injection\" { #what-is-dependency-injection }\n\n**\"Dependency Injection\"** means, in programming, that there is a way for your code (in this case, your *path operation functions*) to declare"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "dependencies__index.md::s10",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.519672155380249,
+            "text": "As dependencies will also be called by **FastAPI** (the same as your *path operation functions*), the same rules apply while defining your functions.\n\nYou can use `async def` or normal `def`.\n\nAnd you can declare dependencies with `async def` inside of normal `def` *path operation functions*, or `def` dependencies inside of `async def` *path operation functions*, etc.\n\nIt doesn't matter. **FastAPI** will know what to do.\n\n/// note"
+          },
+          {
+            "chunk_id": "dependencies__index.md::s5",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.5085976719856262,
+            "text": "///\n\n### Import `Depends` { #import-depends }\n\n### Declare the dependency, in the \"dependant\" { #declare-the-dependency-in-the-dependant }\n\nThe same way you use `Body`, `Query`, etc. with your *path operation function* parameters, use `Depends` with a new parameter:\n\nAlthough you use `Depends` in the parameters of your function the same way you use `Body`, `Query`, etc, `Depends` works a bit differently.\n\nYou only give `Depends` a single parameter.\n\nThis parameter must be something like a function.\n\nYou **don't call it** directly (don't add the parenthesis at the end), you just pass it as a parameter to `Depends()`.\n\nAnd that function takes parameters in the same way that *path operation functions* do."
+          },
+          {
+            "chunk_id": "dependencies__index.md::s12",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.4767937660217285,
+            "text": "Actually, all (or most) of the web frameworks work in this same way.\n\nYou never call those functions directly. They are called by your framework (in this case, **FastAPI**).\n\nWith the Dependency Injection system, you can also tell **FastAPI** that your *path operation function* also \"depends\" on something else that should be executed before your *path operation function*, and **FastAPI** will take care of executing it and \"injecting\" the results.\n\nOther common terms for this same idea of \"dependency injection\" are:\n\n* resources\n* providers\n* services\n* injectables\n* components\n\n## **FastAPI** plug-ins { #fastapi-plug-ins }"
+          },
+          {
+            "chunk_id": "dependencies__index.md::s6",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.44823235273361206,
+            "text": "/// tip\n\nYou'll see what other \"things\", apart from functions, can be used as dependencies in the next chapter.\n\n///\n\nWhenever a new request arrives, **FastAPI** will take care of:\n\n* Calling your dependency (\"dependable\") function with the correct parameters.\n* Get the result from your function.\n* Assign that result to the parameter in your *path operation function*."
+          },
+          {
+            "chunk_id": "dependencies__index.md::s8",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.41330426931381226,
+            "text": "## Share `Annotated` dependencies { #share-annotated-dependencies }\n\nIn the examples above, you see that there's a tiny bit of **code duplication**.\n\nWhen you need to use the `common_parameters()` dependency, you have to write the whole parameter with the type annotation and `Depends()`:\n\n```Python\ncommons: Annotated[dict, Depends(common_parameters)]\n```\n\nBut because we are using `Annotated`, we can store that `Annotated` value in a variable and use it in multiple places:\n\n/// tip"
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "cbb07116970fc7d230c51f159f8bb3e4c9892e2c2faaa1ca6fe1b1fe2401ab09",
+        "candidate": "8772a29b3897b77d51a1b739ed1f6b12b5bcf20c4ccfd404007f3f9275c00684"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer accurately answers the question matching the reference answer, and all factual assertions are fully supported by the retrieved context.",
+        "candidate": "The answer correctly states that the function should not be called when passed to Depends, perfectly matching the reference answer. All factual details (omitting parentheses, FastAPI invoking it later on request) are fully supported by the retrieved context."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.024805499997455627,
+          "generation": 0.7874958000029437,
+          "answer_successful_stages": 0.8123013000003994
+        },
+        "candidate": {
+          "retrieval": 0.09401649999199435,
+          "generation": 1.5940288999699987,
+          "answer_successful_stages": 1.688045399961993
+        }
+      }
+    },
+    {
+      "id": "q014",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "OAuth2PasswordBearer returns a **401 UNAUTHORIZED** status code when the request lacks an `Authorization` header with a Bearer token. [security__first-steps.md::16]",
+        "candidate": "It returns a **401 UNAUTHORIZED** response when the `Authorization` header is missing or does not contain a `Bearer` token. [security__first-steps.md::s11]"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "security__first-steps.md::8",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.5988852977752686,
+            "text": "res that token temporarily somewhere.\n* The user clicks in the frontend to go to another section of the frontend web app.\n* The frontend needs to fetch some more data from the API.\n    * But it needs authentication for that specific endpoint.\n    * So, to authenticate with our API, it sends a header `Authorization` with a value of `Bearer ` plus the token.\n    * If the token contains `foobar`, the content of the `Authorization` header would be: `Bearer foobar`.\n\n## **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }"
+          },
+          {
+            "chunk_id": "security__first-steps.md::16",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.5734189748764038,
+            "text": "o and look in the request for that `Authorization` header, check if the value is `Bearer ` plus some token, and will return the token as a `str`.\n\nIf it doesn't see an `Authorization` header, or the value doesn't have a `Bearer ` token, it will respond with a 401 status code error (`UNAUTHORIZED`) directly.\n\nYou don't even have to check if the token exists to return an error. You can be sure that if your function is executed, it will have a `str` in that token.\n\nYou can try it already in the interactive docs:\n\n<img"
+          },
+          {
+            "chunk_id": "security__first-steps.md::15",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.5618276596069336,
+            "text": "an use the class `OAuth2PasswordBearer` (declared in a dependency) to define the security scheme in OpenAPI because it inherits from `fastapi.security.oauth2.OAuth2`, which in turn inherits from `fastapi.security.base.SecurityBase`.\n\nAll the security utilities that integrate with OpenAPI (and the automatic API docs) inherit from `SecurityBase`, that's how **FastAPI** can know how to integrate them in OpenAPI.\n\n///\n\n## What it does { #what-it-does }\n\nIt will go and look in the request for that `Authorization` header, check if the value is"
+          },
+          {
+            "chunk_id": "security__first-steps.md::9",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.5270357728004456,
+            "text": "r`.\n\n## **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }\n\n**FastAPI** provides several tools, at different levels of abstraction, to implement these security features.\n\nIn this example we are going to use **OAuth2**, with the **Password** flow, using a **Bearer** token. We do that using the `OAuth2PasswordBearer` class.\n\n/// note\n\nA \"bearer\" token is not the only option.\n\nBut it's the best one for our use case.\n\nAnd it might be the best for most use cases, unless you are an OAuth2 expert and know exactly why there's"
+          },
+          {
+            "chunk_id": "security__first-steps.md::10",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.4810730218887329,
+            "text": "for most use cases, unless you are an OAuth2 expert and know exactly why there's another option that better suits your needs.\n\nIn that case, **FastAPI** also provides you with the tools to build it.\n\n///\n\nWhen we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.\n\n/// tip\n\nHere `tokenUrl=\"token\"` refers to a relative URL `token` that we"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "security__first-steps.md::s11",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.5418943166732788,
+            "text": "All the security utilities that integrate with OpenAPI (and the automatic API docs) inherit from `SecurityBase`, that's how **FastAPI** can know how to integrate them in OpenAPI.\n\n///\n\n## What it does { #what-it-does }\n\nIt will go and look in the request for that `Authorization` header, check if the value is `Bearer ` plus some token, and will return the token as a `str`.\n\nIf it doesn't see an `Authorization` header, or the value doesn't have a `Bearer ` token, it will respond with a 401 status code error (`UNAUTHORIZED`) directly.\n\nYou don't even have to check if the token exists to return an error. You can be sure that if your function is executed, it will have a `str` in that token."
+          },
+          {
+            "chunk_id": "security__first-steps.md::s6",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.5399155616760254,
+            "text": "Normally, a token is set to expire after some time.\n        * So, the user will have to log in again at some point later.\n        * And if the token is stolen, the risk is less. It is not like a permanent key that will work forever (in most of the cases).\n* The frontend stores that token temporarily somewhere.\n* The user clicks in the frontend to go to another section of the frontend web app.\n* The frontend needs to fetch some more data from the API.\n    * But it needs authentication for that specific endpoint.\n    * So, to authenticate with our API, it sends a header `Authorization` with a value of `Bearer ` plus the token.\n    * If the token contains `foobar`, the content of the `Authorization` header would be: `Bearer foobar`.\n\n## **FastAPI**'s `OAuth2PasswordBearer` { #fastapis-oauth2passwordbearer }"
+          },
+          {
+            "chunk_id": "security__first-steps.md::s8",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.5391396880149841,
+            "text": "///\n\nWhen we create an instance of the `OAuth2PasswordBearer` class we pass in the `tokenUrl` parameter. This parameter contains the URL that the client (the frontend running in the user's browser) will use to send the `username` and `password` in order to get a token.\n\n/// tip\n\nHere `tokenUrl=\"token\"` refers to a relative URL `token` that we haven't created yet. As it's a relative URL, it's equivalent to `./token`.\n\nBecause we are using a relative URL, if your API was located at `https://example.com/`, then it would refer to `https://example.com/token`. But if your API was located at `https://example.com/api/v1/`, then it would refer to `https://example.com/api/v1/token`.\n\nUsing a relative URL is important to make sure your application keeps working even in an advanced use case like [Behind a Proxy](../../advanced/behind-a-proxy.md)."
+          },
+          {
+            "chunk_id": "security__first-steps.md::s5",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.5042583346366882,
+            "text": "OAuth2 was designed so that the backend or API could be independent of the server that authenticates the user.\n\nBut in this case, the same **FastAPI** application will handle the API and the authentication.\n\nSo, let's review it from that simplified point of view:\n\n* The user types the `username` and `password` in the frontend, and hits `Enter`.\n* The frontend (running in the user's browser) sends that `username` and `password` to a specific URL in our API (declared with `tokenUrl=\"token\"`).\n* The API checks that `username` and `password`, and responds with a \"token\" (we haven't implemented any of this yet).\n    * A \"token\" is just a string with some content that we can use later to verify this user.\n    *"
+          },
+          {
+            "chunk_id": "security__first-steps.md::s10",
+            "doc_id": "security__first-steps.md",
+            "similarity": 0.41453665494918823,
+            "text": "///\n\nThe `oauth2_scheme` variable is an instance of `OAuth2PasswordBearer`, but it is also a \"callable\".\n\nIt could be called as:\n\n```Python\noauth2_scheme(some, parameters)\n```\n\nSo, it can be used with `Depends`.\n\n### Use it { #use-it }\n\nNow you can pass that `oauth2_scheme` in a dependency with `Depends`.\n\nThis dependency will provide a `str` that is assigned to the parameter `token` of the *path operation function*.\n\n**FastAPI** will know that it can use this dependency to define a \"security scheme\" in the OpenAPI schema (and the automatic API docs).\n\n/// note | Technical Details\n\n**FastAPI** will know that it can use the class `OAuth2PasswordBearer` (declared in a dependency) to define the security scheme in OpenAPI because it inherits from `fastapi.security.oauth2.OAuth2`, which in turn inherits from `fastapi.security.base.SecurityBase`."
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "12e98641e5a3e23a443314206ebdf978406580e706e459dc68e1e7817fe12fbe",
+        "candidate": "b46f1832afbb3796849f28527d907eb085b97b6c0c2c66b229afb5ab9c10e275"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer is fully correct and directly supported by the retrieved context, which explicitly states that OAuth2PasswordBearer responds with a 401 status code (UNAUTHORIZED) when the Authorization header or Bearer token is missing.",
+        "candidate": "The answer correctly states that it returns a 401 Unauthorized response, fully matching the reference answer and supported directly by chunk security__first-steps.md::s11."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.03332689998205751,
+          "generation": 0.9721470999647863,
+          "answer_successful_stages": 1.0054739999468438
+        },
+        "candidate": {
+          "retrieval": 0.03597460000310093,
+          "generation": 1.3734034999506548,
+          "answer_successful_stages": 1.4093780999537557
+        }
+      }
+    },
+    {
+      "id": "q015",
+      "category": "direct",
+      "answerable": true,
+      "answer_changed": true,
+      "context_changed": true,
+      "answers": {
+        "baseline": "No. A path parameter is always required; setting a default value such as `None` does not make it optional【path-params-numeric-validations.md::2】.",
+        "candidate": "No. A path parameter is always required; setting a default value (even `None`) does not make it optional. [path-params-numeric-validations.md::s1]"
+      },
+      "retrieved_context": {
+        "baseline": [
+          {
+            "chunk_id": "query-params.md::6",
+            "doc_id": "query-params.md",
+            "similarity": 0.6130968928337097,
+            "text": ":\n\n## Required query parameters { #required-query-parameters }\n\nWhen you declare a default value for non-path parameters (for now, we have only seen query parameters), then it is not required.\n\nIf you don't want to add a specific value but just make it optional, set the default as `None`.\n\nBut when you want to make a query parameter required, you can just not declare any default value:\n\nHere the query parameter `needy` is a required query parameter of type `str`.\n\nIf you open in your browser a URL like:\n\n```"
+          },
+          {
+            "chunk_id": "path-params-numeric-validations.md::2",
+            "doc_id": "path-params-numeric-validations.md",
+            "similarity": 0.5115880370140076,
+            "text": "ter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required.\n\n///\n\n## Order the parameters as you need { #order-the-parameters-as-you-need }\n\n/// tip\n\nThis is probably not as important or necessary if you use `Annotated`.\n\n///\n\nLet's say that you want to declare the query parameter `q` as a required `str`.\n\nAnd you don't need to declare anything else for that parameter, so you don't really need to use `Query`.\n\nBut you still"
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::18",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.4683515429496765,
+            "text": "required. This would force clients to send a value, even if the value is `None`.\n\nTo do that, you can declare that `None` is a valid type but simply do not declare a default value:\n\n## Query parameter list / multiple values { #query-parameter-list-multiple-values }\n\nWhen you define a query parameter explicitly with `Query` you can also declare it to receive a list of values, or said in another way, to receive multiple values.\n\nFor example, to declare a query parameter `q` that can appear multiple times in the URL, you can write:\n\nThen, with a"
+          },
+          {
+            "chunk_id": "dependencies__index.md::3",
+            "doc_id": "dependencies__index.md",
+            "similarity": 0.44187647104263306,
+            "text": "all the same parameters that a *path operation function* can take:\n\nThat's it.\n\n**2 lines**.\n\nAnd it has the same shape and structure that all your *path operation functions* have.\n\nYou can think of it as a *path operation function* without the \"decorator\" (without the `@app.get(\"/some-path\")`).\n\nAnd it can return anything you want.\n\nIn this case, this dependency expects:\n\n* An optional query parameter `q` that is a `str`.\n* An optional query parameter `skip` that is an `int`, and by default is `0`.\n* An optional query parameter `limit` that"
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::16",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.43096745014190674,
+            "text": "e, use default values other than `None`.\n\nLet's say that you want to declare the `q` query parameter to have a `min_length` of `3`, and to have a default value of `\"fixedquery\"`:\n\n/// note\n\nHaving a default value of any type, including `None`, makes the parameter optional (not required).\n\n///\n\n## Required parameters { #required-parameters }\n\nWhen we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:\n\n```Python\nq: str\n```\n\ninstead of:\n\n```Python\nq: str |"
+          }
+        ],
+        "candidate": [
+          {
+            "chunk_id": "path-params-numeric-validations.md::s1",
+            "doc_id": "path-params-numeric-validations.md",
+            "similarity": 0.5309834480285645,
+            "text": "///\n\n## Declare metadata { #declare-metadata }\n\nYou can declare all the same parameters as for `Query`.\n\nFor example, to declare a `title` metadata value for the path parameter `item_id` you can type:\n\n/// note\n\nA path parameter is always required as it has to be part of the path. Even if you declared it with `None` or set a default value, it would not affect anything, it would still be always required."
+          },
+          {
+            "chunk_id": "query-params-str-validations.md::s14",
+            "doc_id": "query-params-str-validations.md",
+            "similarity": 0.49645352363586426,
+            "text": "/// note\n\nHaving a default value of any type, including `None`, makes the parameter optional (not required).\n\n///\n\n## Required parameters { #required-parameters }\n\nWhen we don't need to declare more validations or metadata, we can make the `q` query parameter required just by not declaring a default value, like:\n\n```Python\nq: str\n```\n\ninstead of:\n\n```Python\nq: str | None = None\n```\n\nBut we are now declaring it with `Query`, for example like:\n\n```Python\nq: Annotated[str | None, Query(min_length=3)] = None\n```\n\nSo, when you need to declare a value as required while using `Query`, you can simply not declare a default value:\n\n### Required, can be `None` { #required-can-be-none }\n\nYou can declare that a parameter can accept `None`, but that it's still required. This would force clients to send a value, even if the value is `None`."
+          },
+          {
+            "chunk_id": "query-params.md::s1",
+            "doc_id": "query-params.md",
+            "similarity": 0.4470672607421875,
+            "text": "As they are part of the URL, they are \"naturally\" strings.\n\nBut when you declare them with Python types (in the example above, as `int`), they are converted to that type and validated against it.\n\nAll the same processes that apply to path parameters also apply to query parameters:\n\n* Editor support (obviously)\n* Data <dfn title=\"converting the string that comes from an HTTP request into Python data\">\"parsing\"</dfn>\n* Data validation\n* Automatic documentation\n\n## Defaults { #defaults }\n\nAs query parameters are not a fixed part of a path, they can be optional and can have default values.\n\nIn the example above they have default values of `skip=0` and `limit=10`.\n\nSo, going to the URL:\n\n```\nhttp://127.0.0.1:8000/items/\n```"
+          },
+          {
+            "chunk_id": "query-params.md::s2",
+            "doc_id": "query-params.md",
+            "similarity": 0.4298919439315796,
+            "text": "would be the same as going to:\n\n```\nhttp://127.0.0.1:8000/items/?skip=0&limit=10\n```\n\nBut if you go to, for example:\n\n```\nhttp://127.0.0.1:8000/items/?skip=20\n```\n\nThe parameter values in your function will be:\n\n* `skip=20`: because you set it in the URL\n* `limit=10`: because that was the default value\n\n## Optional parameters { #optional-parameters }\n\nThe same way, you can declare optional query parameters, by setting their default to `None`:\n\nIn this case, the function parameter `q` will be optional, and will be `None` by default."
+          },
+          {
+            "chunk_id": "query-params.md::s4",
+            "doc_id": "query-params.md",
+            "similarity": 0.4076722264289856,
+            "text": "or\n\n```\nhttp://127.0.0.1:8000/items/foo?short=True\n```\n\nor\n\n```\nhttp://127.0.0.1:8000/items/foo?short=true\n```\n\nor\n\n```\nhttp://127.0.0.1:8000/items/foo?short=on\n```\n\nor\n\n```\nhttp://127.0.0.1:8000/items/foo?short=yes\n```\n\nor any other case variation (uppercase, first letter in uppercase, etc), your function will see the parameter `short` with a `bool` value of `True`. Otherwise as `False`.\n\n## Multiple path and query parameters { #multiple-path-and-query-parameters }\n\nYou can declare multiple path parameters and query parameters at the same time, **FastAPI** knows which is which.\n\nAnd you don't have to declare them in any specific order.\n\nThey will be detected by name:\n\n## Required query parameters { #required-query-parameters }\n\nWhen you declare a default value for non-path parameters (for now, we have only seen query parameters), then it is not required."
+          }
+        ]
+      },
+      "answer_sha256": {
+        "baseline": "79089b9d1de55e452a4231e0f24fa9389c2af7328adad4b5f40806a759be4886",
+        "candidate": "c6dc5bb32546ae6bbfa9780f95d5ee23cd801deb8d5ab3d1bc53a036f094eaec"
+      },
+      "scores": {
+        "baseline": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "candidate": {
+          "correctness": 1,
+          "faithfulness": 1,
+          "abstention": null
+        },
+        "delta": {
+          "correctness": 0,
+          "faithfulness": 0,
+          "abstention": null
+        }
+      },
+      "judge_reasons": {
+        "baseline": "The answer is completely correct according to the reference answer and fully supported by the retrieved context.",
+        "candidate": "The answer correctly states that path parameters are always required regardless of setting default values or None, matching the reference answer. The claim is directly supported by the retrieved context."
+      },
+      "latency_s": {
+        "baseline": {
+          "retrieval": 0.026977500005159527,
+          "generation": 0.7997689999756403,
+          "answer_successful_stages": 0.8267464999807999
+        },
+        "candidate": {
+          "retrieval": 0.03350340004544705,
+          "generation": 1.1170913999667391,
+          "answer_successful_stages": 1.1505948000121862
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "This is a 15-question development calibration sample, not the reserved test split.",
+    "Candidate judge scores have not received an independent blind human review.",
+    "Abstention has only one example and has not been human-calibrated.",
+    "Latency came from separate historical runs, so it is descriptive rather than a controlled speed benchmark.",
+    "A winner must not be claimed from this provisional report."
+  ],
+  "provenance": {
+    "metrics_sha256": "74dd08f3925c6ff670daa2417921e2efc8ea3cf3889f658ac77f62e2614f5f57",
+    "reporter_sha256": "b663337fd61e1880fda56df68715506b6c39e9d23e5447de579f5b5bcfd15ee9"
+  }
+}
