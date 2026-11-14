@@ -120,3 +120,22 @@ B has no fresh blind human agreement result, abstention has one uncalibrated
 example, and the two latency samples were recorded on different dates. The
 report may guide development and failure analysis but must not be presented as
 a pipeline winner or reserved-test result.
+
+
+## Fresh mixed blind calibration
+
+The second packet is versioned under `calibration/2026-11-14`. It contains ten
+previously unused development outputs from configuration B: eight answerable
+and two unanswerable. The runner's `--ids` option records exact selection while
+preserving dataset order. The packet was exported with `--mixed`, which adds an
+abstention column and keeps correctness/faithfulness inapplicable for
+unanswerable rows.
+
+The Streamlit reviewer automatically shows the appropriate controls for each
+row. Version-1 answerable-only packets remain readable. Mixed agreement reports
+measure correctness and faithfulness on answerable items and abstention on
+unanswerable items, with separate sample counts.
+
+Blind ordering is mandatory: generate answers, export the packet, complete and
+freeze human labels, then create judge verdicts. As of packet export on 14
+November 2026, all ten labels are blank and no matching judge directory exists.

@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from src.evaluation.run import file_digest, run_records
+from src.evaluation.run import file_digest, run_records, select_rows
 
 
 class RunnerTests(unittest.TestCase):
@@ -79,6 +79,18 @@ class RunnerTests(unittest.TestCase):
         first.write_bytes(b'one\ntwo\n')
         second.write_bytes(b'one\r\ntwo\r\n')
         self.assertEqual(file_digest(first), file_digest(second))
+
+    def test_exact_id_selection_is_validated_and_keeps_dataset_order(self):
+        rows = [dict(id='q1', split='dev'), dict(id='q2', split='test'),
+                dict(id='q3', split='dev')]
+        self.assertEqual([row['id'] for row in select_rows(rows, 'dev', identifiers=['q3', 'q1'])],
+                         ['q1', 'q3'])
+        with self.assertRaisesRegex(ValueError, 'Unknown IDs'):
+            select_rows(rows, 'dev', identifiers=['q2'])
+        with self.assertRaisesRegex(ValueError, 'duplicates'):
+            select_rows(rows, 'dev', identifiers=['q1', 'q1'])
+        with self.assertRaisesRegex(ValueError, 'cannot be used together'):
+            select_rows(rows, 'dev', limit=1, identifiers=['q1'])
 
 
 if __name__ == '__main__':

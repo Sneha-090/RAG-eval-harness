@@ -37,6 +37,27 @@ def load_dataset(path):
     return rows
 
 
+def select_rows(rows, split, limit=None, identifiers=None):
+    """Select one split, optionally restricted to exact IDs in dataset order."""
+    selected = [row for row in rows if row['split'] == split]
+    if identifiers is not None:
+        if limit is not None:
+            raise ValueError('--limit and --ids cannot be used together')
+        if len(set(identifiers)) != len(identifiers):
+            raise ValueError('--ids contains duplicates')
+        available = {row['id'] for row in selected}
+        missing = [identifier for identifier in identifiers if identifier not in available]
+        if missing:
+            raise ValueError('Unknown IDs for selected split: ' + ', '.join(missing))
+        requested = set(identifiers)
+        selected = [row for row in selected if row['id'] in requested]
+    elif limit:
+        selected = selected[:limit]
+    if not selected:
+        raise ValueError('No questions selected')
+    return selected
+
+
 def snapshot(root=ROOT):
     """Hash actual source/corpus/settings, including uncommitted changes, never .env."""
     paths = list((root / 'src').rglob('*.py')) + list((root / 'data/raw').glob('*.md'))
@@ -120,6 +141,7 @@ def main():
                         help='A: fixed+dense; B: semantic+dense; C: fixed+hybrid; D: hybrid+reranker')
     parser.add_argument('--k', type=int, default=5)
     parser.add_argument('--limit', type=int)
+    parser.add_argument('--ids', nargs='+', help='Exact question IDs; preserves dataset order')
     parser.add_argument('--delay', type=float, default=15, help='Seconds before each generation call')
     parser.add_argument('--retry-errors', action='store_true')
     args = parser.parse_args()
@@ -127,11 +149,7 @@ def main():
         parser.error('k/limit must be positive; delay must be finite and nonnegative')
     try:
         rows = load_dataset(args.dataset)
-        selected = [r for r in rows if r['split'] == args.split]
-        if args.limit:
-            selected = selected[:args.limit]
-        if not selected:
-            raise ValueError('No questions selected')
+        selected = select_rows(rows, args.split, args.limit, args.ids)
         from src.retrieval.dense import retrieve as dense_retrieve
         from src.retrieval.embeddings import MODEL_NAME, MODEL_REVISION, embed_texts, get_model
         from src.retrieval.index import COLLECTION_NAME, SEMANTIC_COLLECTION_NAME
@@ -157,6 +175,8 @@ def main():
                     'chunking': chunking,
                     'dataset_sha256': file_digest(args.dataset),
                     'files': snapshot(), 'python': platform.python_version(), 'platform': platform.platform()}
+        contract['selection'] = {'split': args.split, 'limit': args.limit,
+                                 'ids': args.ids}
         generation = None
         if args.mode == 'answers':
             from src.generation.answer import SYSTEM_PROMPT, build_prompt
@@ -171,7 +191,11 @@ def main():
         from src.retrieval.index import DB_PATH
         collection = chromadb.PersistentClient(path=str(DB_PATH)).get_collection(collection_name)
         stored = collection.get(include=['documents', 'metadatas'])
-        actual = {i: (text, meta['doc_id']) for i, text, meta in zip(stored['ids'], stored['documents'], stored['metadatas'])}
+        documents, metadatas = stored['documents'], stored['metadatas']
+        if documents is None or metadatas is None:
+            raise ValueError('Stored index omitted documents or metadata')
+        actual = {i: (text, meta['doc_id'])
+                  for i, text, meta in zip(stored['ids'], documents, metadatas)}
         expected = {c.chunk_id: (c.text, c.doc_id) for c in expected_chunks}
         if actual != expected:
             raise ValueError(f'Index differs from corpus/chunking; rebuild configuration {args.config}')

@@ -495,3 +495,26 @@ This is development evidence, not a selected-pipeline answer-quality win.
 Candidate outputs have not received a fresh independent blind review,
 abstention remains uncalibrated and all ten reserved test questions remain
 untouched. See reports/config-a-vs-b-calibration-2026-11-14.
+
+
+## 26. Fresh mixed blind calibration prepared: 14 November 2026
+
+Added exact question-ID selection to the resumable runner and recorded the
+selection in each new run contract. Selected ten previously unused development
+questions before any judge call: two each from direct, similar-page,
+multi-part, paraphrase and unanswerable categories. Configuration B generated
+10/10 saved answers with zero final failures; reserved test questions remained
+untouched.
+
+Extended human calibration with a signed version-2 mixed packet while
+preserving the existing version-1 answerable-only format. Answerable rows use
+correctness and faithfulness; unanswerable rows use abstention only. Agreement
+reports will expose separate sample counts for all three metrics. The guided
+Streamlit screen renders the appropriate controls, saves atomically and still
+never loads judge verdicts.
+
+Exported `calibration/2026-11-14` with all labels blank. No matching judge run
+was created, preserving the required order: human labels first, hidden judge
+second. Focused unit and AppTest checks passed, and the real Streamlit agent API
+rendered both the answerable and q047 unanswerable screens without an exception
+or new server warning. The next action belongs to the human reviewer.

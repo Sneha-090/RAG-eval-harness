@@ -6,7 +6,10 @@ import unittest
 from pathlib import Path
 
 from src.evaluation.human_review import (compare_packet, export_packet, parse_labels,
-                                         parse_partial_labels, save_partial_labels, select_sample)
+                                         parse_mixed_labels, parse_partial_labels,
+                                         parse_partial_mixed_labels, save_partial_labels,
+                                         save_partial_mixed_labels, select_mixed_sample,
+                                         select_sample)
 from src.evaluation.judge import judge_records
 from src.evaluation.run import run_records
 
@@ -108,6 +111,53 @@ class HumanReviewTests(unittest.TestCase):
         labels.write_text(self.label_text(), encoding='utf-8')
         with self.assertRaises(ValueError):
             compare_packet(self.packet / 'packet.json', labels, self.judge)
+
+    def test_mixed_packet_labels_and_three_metric_agreement(self):
+        mixed_capture = self.root / 'mixed-capture'
+        mixed_packet = self.root / 'mixed-packet'
+        mixed_judge = self.root / 'mixed-judge'
+        rows = [dict(id=f'm{i:02}', question=f'Question {i}', reference_answer='Reference',
+                     answerable=i < 8, split='dev',
+                     category=('unanswerable' if i >= 8 else ['direct', 'multi_part',
+                               'paraphrase', 'similar_page'][i % 4])) for i in range(10)]
+        run_records(rows, mixed_capture, {'k': 5, 'mode': 'answers'},
+                    lambda q, k: [{'chunk_id': 'a::0', 'text': 'Context'}],
+                    lambda q, c: 'Cannot answer' if q in {'Question 8', 'Question 9'} else 'Answer')
+        observations = [json.loads(path.read_text(encoding='utf-8'))
+                        for path in sorted(mixed_capture.glob('record-*.json'))]
+        selected = select_mixed_sample(rows, observations, 10)
+        self.assertEqual(sum(not item['row']['answerable'] for item in selected), 2)
+        self.assertEqual(export_packet(mixed_capture, mixed_packet, 10, mixed=True), 10)
+        packet = json.loads((mixed_packet / 'packet.json').read_text(encoding='utf-8'))
+        self.assertEqual(packet['version'], 2)
+        answerability = {row['id']: row['answerable'] for row in rows}
+        labels = parse_partial_mixed_labels(
+            (mixed_packet / 'labels.csv').read_text(encoding='utf-8'), answerability)
+        for identifier, answerable in answerability.items():
+            labels[identifier] = ({'correctness': 1.0, 'faithfulness': 1,
+                                   'abstention': None, 'notes': ''} if answerable else
+                                  {'correctness': None, 'faithfulness': None,
+                                   'abstention': 1, 'notes': ''})
+        save_partial_mixed_labels(mixed_packet / 'labels.csv',
+                                  [item['row']['id'] for item in packet['items']],
+                                  labels, answerability)
+        self.assertEqual(len(parse_mixed_labels(
+            (mixed_packet / 'labels.csv').read_text(encoding='utf-8'), answerability)), 10)
+
+        manifest = json.loads((mixed_capture / 'manifest.json').read_text(encoding='utf-8'))
+        judge_records(rows, observations, mixed_judge,
+                      {'capture_signature': manifest['signature']},
+                      lambda prompt: json.dumps(
+                          dict(correctness=1, faithfulness=1, abstention=None,
+                               reason='Supported') if '"answerable": true' in prompt else
+                          dict(correctness=None, faithfulness=None, abstention=1,
+                               reason='Correct refusal')))
+        agreement = compare_packet(mixed_packet / 'packet.json',
+                                   mixed_packet / 'labels.csv', mixed_judge)
+        self.assertEqual(agreement['metric_sample_size'],
+                         {'correctness': 8, 'faithfulness': 8, 'abstention': 2})
+        self.assertEqual(agreement['exact_agreement'],
+                         {'correctness': 1, 'faithfulness': 1, 'abstention': 1})
 
 
 if __name__ == '__main__':

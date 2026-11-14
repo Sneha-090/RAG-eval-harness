@@ -147,8 +147,9 @@ API keys or model calls required):
     python -m streamlit run streamlit_app.py
 
 It shows the reference, generated answer and retrieved context, then saves two
-human decisions per item to the versioned labels file. Judge verdicts stay
-hidden until the independent review is complete.
+human decisions for answerable items or one abstention decision for
+unanswerable items to the versioned labels file. Judge verdicts stay hidden
+until the independent review is complete.
 
 ## Next milestones
 
@@ -214,3 +215,18 @@ explicitly provisional: candidate outputs have not received a fresh independent
 blind review, abstention has one uncalibrated example and the reserved test
 split remains untouched. Therefore the report does **not** claim an answer-
 quality winner.
+
+## Fresh mixed blind calibration prepared (14 November 2026)
+
+Prepared a second independent packet from ten previously unused development
+questions: two direct, two similar-page, two multi-part, two paraphrase and two
+unanswerable. Configuration B generated all 10 answers with zero final errors.
+Exact question-ID selection is recorded in the capture contract. No judge run
+exists yet and all human labels are blank, so the review remains blind.
+
+The guided Streamlit screen now supports both scoring paths: correctness plus
+faithfulness for answerable questions, and abstention for unanswerable
+questions. It preserves the original version-1 calibration format while using
+a signed version-2 mixed packet for the new sample. See
+[calibration/2026-11-14](calibration/2026-11-14/README.md). The human review must
+be completed and frozen before any judge verdict is created.
