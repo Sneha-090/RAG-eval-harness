@@ -4,6 +4,16 @@ RAG Eval Harness: Frozen Roadmap (Lean, 5 core milestones)
 Status: ALL FIVE CORE MILESTONES COMPLETE. The frozen v1 test and handoff are
 published; future scope is tracked in PARKING_LOT.md and must not rewrite v1.
 
+V2 extension status (22 November 2026)
+- Type-clean repository: complete.
+- Second corpus: Django 5.2.19 LTS documentation pinned at commit
+  a3510e06a7598039d0992dd00c736e25dbdc9aab; 12 sources isolated from v1.
+- Corpus-selectable indexing/evaluation infrastructure: complete.
+- Django questions, author review, freeze, four-config comparison and reserved
+  test: pending.
+- Streamlit Community Cloud deployment: pending until the dashboard includes
+  versioned v2 results.
+
 Goal
 Build a document-agnostic RAG system plus an automated evaluation harness that measures quality, compares four pipeline configurations, and detects regressions in CI.
 

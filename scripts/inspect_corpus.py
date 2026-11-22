@@ -1,7 +1,8 @@
 """Inspect the frozen benchmark corpus: file count, size and basic text statistics."""
+import argparse
 from pathlib import Path
 
-RAW_DIR = Path(__file__).resolve().parent.parent / "data" / "raw"
+from src.corpora import CORPORA, get_corpus
 
 
 def inspect_file(path: Path) -> dict:
@@ -19,11 +20,16 @@ def inspect_file(path: Path) -> dict:
 
 
 def main() -> None:
-    files = sorted(RAW_DIR.glob("*.md"))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--corpus", choices=CORPORA, default="fastapi-v1")
+    args = parser.parse_args()
+    corpus = get_corpus(args.corpus)
+    files = sorted(path for path in corpus.raw_dir.iterdir() if path.suffix in {".md", ".txt"})
     if not files:
-        print(f"No .md files found in {RAW_DIR}")
+        print(f"No Markdown/text files found in {corpus.raw_dir}")
         return
 
+    print(f"Corpus: {corpus.label} ({corpus.key})")
     rows = [inspect_file(f) for f in files]
     header = f"{'file':42}{'bytes':>8}{'words':>8}{'lines':>7}{'heads':>7}{'fences':>8}{'includes':>10}"
     print(header)

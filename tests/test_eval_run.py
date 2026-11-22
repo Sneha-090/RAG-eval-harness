@@ -3,7 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from src.evaluation.run import file_digest, run_records, select_rows
+from src.corpora import get_corpus
+from src.evaluation.run import file_digest, run_records, select_rows, snapshot
 
 
 class RunnerTests(unittest.TestCase):
@@ -91,6 +92,12 @@ class RunnerTests(unittest.TestCase):
             select_rows(rows, 'dev', identifiers=['q1', 'q1'])
         with self.assertRaisesRegex(ValueError, 'cannot be used together'):
             select_rows(rows, 'dev', limit=1, identifiers=['q1'])
+
+    def test_snapshot_is_scoped_to_selected_corpus(self):
+        files = snapshot(get_corpus('fastapi-v1'))
+        self.assertIn('data/CORPUS.md', files)
+        self.assertIn('data/raw/body.md', files)
+        self.assertFalse(any('django-5.2/raw' in path for path in files))
 
 
 if __name__ == '__main__':

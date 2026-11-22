@@ -7,6 +7,7 @@ import chromadb
 
 from src.chunking.fixed import CHUNK_SIZE, OVERLAP, chunk_documents
 from src.console import configure_utf8
+from src.corpora import CORPORA, get_corpus
 from src.ingestion.loader import load_documents
 from src.retrieval.embeddings import MODEL_NAME, embed_texts
 
@@ -42,25 +43,29 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", choices=["A", "B"], default="A",
                         help="A: fixed-size chunks; B: semantic chunks")
+    parser.add_argument("--corpus", choices=CORPORA, default="fastapi-v1",
+                        help="Versioned corpus to index")
     args = parser.parse_args()
     configure_utf8()
-    docs = load_documents(PROJECT_ROOT / "data" / "raw")
+    corpus = get_corpus(args.corpus)
+    docs = load_documents(corpus.raw_dir)
     if args.config == "A":
         chunks = chunk_documents(docs)
-        collection_name = COLLECTION_NAME
+        collection_name = corpus.fixed_collection
         settings = f"fixed chunk_size={CHUNK_SIZE}, overlap={OVERLAP}"
     else:
         from src.chunking.semantic import (BREAKPOINT_PERCENTILE, MAX_CHUNK_CHARS,
                                            MIN_BREAKPOINT_DISTANCE, MIN_CHUNK_CHARS, UNIT_MAX_CHARS,
                                            semantic_chunk_documents)
         chunks = semantic_chunk_documents(docs, embed_texts)
-        collection_name = SEMANTIC_COLLECTION_NAME
+        collection_name = corpus.semantic_collection
         settings = (f"semantic min={MIN_CHUNK_CHARS}, max={MAX_CHUNK_CHARS}, "
                     f"unit_max={UNIT_MAX_CHARS}, breakpoint_percentile={BREAKPOINT_PERCENTILE}, "
                     f"minimum_distance={MIN_BREAKPOINT_DISTANCE}")
     collection = build_index(chunks, collection_name)
 
     print(f"Embedding model: {MODEL_NAME}")
+    print(f"Corpus: {corpus.label} ({corpus.key})")
     print(f"Chunk settings: {settings}")
     print(f"Chunks given to Chroma: {len(chunks)}")
     print(f"Chunks stored in collection '{collection_name}': {collection.count()}")

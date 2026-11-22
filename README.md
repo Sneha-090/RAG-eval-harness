@@ -3,21 +3,24 @@
 [![Retrieval quality gate](https://github.com/Sneha-090/RAG-eval-harness/actions/workflows/retrieval-quality.yml/badge.svg)](https://github.com/Sneha-090/RAG-eval-harness/actions/workflows/retrieval-quality.yml)
 
 A document-based RAG baseline and an evaluation harness for measuring retrieval
-quality separately from generated-answer quality. The first benchmark uses 12
-version-pinned FastAPI tutorial pages; core ingestion and retrieval are generic.
+quality separately from generated-answer quality. The completed first benchmark
+uses 12 version-pinned FastAPI tutorial pages. A separate Django 5.2 LTS corpus
+now tests whether the same generic harness can transfer to a second domain.
 
 New here? Start with the [portable handoff](HANDOFF.md), then read the
 [project guide](docs/PROJECT_GUIDE.md), [runbook](docs/RUNBOOK.md), and
 [study/interview guide](docs/STUDY_AND_INTERVIEW.md).
 
-**Current status:** resume-ready benchmark v1 is complete. Four retrieval
+**Current status:** resume-ready FastAPI benchmark v1 is complete. Four retrieval
 configurations were compared, configuration B was selected on development,
 and a CI regression gate protects it. A fresh mixed blind calibration matched
 the hidden judge on 8/8 correctness, 8/8 faithfulness and 2/2 abstention labels.
 After a recorded freeze, the one-time reserved test achieved 100% Page Hit@5,
 77.8% answer correctness, 77.8% faithfulness and 100% abstention. See the
 [final report](reports/final-test-v1-2026-11-22/SUMMARY.md). No production-
-readiness or cross-domain generalization claim is made.
+readiness claim is made. Django benchmark v2 is in progress: its 12 official
+documentation sources are pinned, while its questions and results are not yet
+frozen or reported.
 
 ## Implemented
 
@@ -36,7 +39,9 @@ readiness or cross-domain generalization claim is made.
 - Deterministic answer-quality, calibration and successful-stage latency reports.
 - Blind human-review export and input-pinned agreement comparison.
 - A guided local review screen that saves blind human labels without showing judge scores.
-- 72 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
+- A versioned corpus registry that keeps FastAPI v1 and Django v2 datasets,
+  Chroma collections and provenance separate.
+- 76 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
   metrics and judging.
 
 ## Draft development results
@@ -126,6 +131,15 @@ Build the separate semantic index:
 
     python -m src.retrieval.index --config B
 
+Inspect or index the pinned Django 5.2 LTS corpus without touching FastAPI v1:
+
+    python -m scripts.inspect_corpus --corpus django-5.2
+    python -m src.retrieval.index --corpus django-5.2 --config B
+
+All commands default to `fastapi-v1` for backward compatibility. Django uses
+separate dataset paths and Chroma collection names. Its evaluation command will
+be enabled after the new questions are reviewed and frozen.
+
 Capture and score development retrievals (no generator/judge API calls):
 
     python -m src.evaluation.run --split dev --output runs/my-dev-run
@@ -158,9 +172,10 @@ answer and retrieved context and saves human decisions to the labels file.
 ## Next milestones
 
 Benchmark v1, mixed calibration, the one-time reserved test, results dashboard,
-architecture guide and portable learning handoff are complete. Future scope can
-add a second corpus and optionally add a small demo/API
-without rewriting the v1 result.
+architecture guide and portable learning handoff are complete. The second
+Django corpus is pinned and isolated; benchmark authoring, a fresh freeze and
+cross-domain comparison are the active v2 work. Dashboard deployment follows
+the versioned v2 results and will not rewrite the v1 result.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
 
 

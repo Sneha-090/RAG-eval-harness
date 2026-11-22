@@ -10,6 +10,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+from src.corpora import CORPORA, CorpusConfig, get_corpus
 from src.evaluation.validate import ROOT, validate
 from src.ingestion.loader import load_documents
 
@@ -29,9 +30,9 @@ def atomic_json(path, value):
     os.replace(temporary, path)
 
 
-def load_dataset(path):
+def load_dataset(path, corpus_dir=ROOT / 'data/raw'):
     rows = [json.loads(line) for line in path.read_text(encoding='utf-8').splitlines() if line.strip()]
-    errors = validate(rows, {d.doc_id: d.text for d in load_documents(ROOT / 'data/raw')})
+    errors = validate(rows, {d.doc_id: d.text for d in load_documents(corpus_dir)})
     if not rows or errors:
         raise ValueError('Invalid dataset: ' + '; '.join(errors or ['empty dataset']))
     return rows
@@ -58,10 +59,11 @@ def select_rows(rows, split, limit=None, identifiers=None):
     return selected
 
 
-def snapshot(root=ROOT):
+def snapshot(corpus: CorpusConfig, root=ROOT):
     """Hash actual source/corpus/settings, including uncommitted changes, never .env."""
-    paths = list((root / 'src').rglob('*.py')) + list((root / 'data/raw').glob('*.md'))
-    paths += [root / 'requirements.txt', root / 'METRICS.md', root / 'data/CORPUS.md']
+    paths = list((root / 'src').rglob('*.py'))
+    paths += [path for path in corpus.raw_dir.iterdir() if path.is_file()]
+    paths += [root / 'requirements.txt', root / 'METRICS.md', corpus.record]
     return {p.relative_to(root).as_posix(): file_digest(p)
             for p in sorted(paths)}
 
@@ -133,7 +135,8 @@ def run_records(rows, output, contract, retrieve_fn, generate_fn=None, retry_err
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--dataset', type=Path, default=ROOT / 'data/eval/questions.draft.jsonl')
+    parser.add_argument('--corpus', choices=CORPORA, default='fastapi-v1')
+    parser.add_argument('--dataset', type=Path)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--mode', choices=['retrieval', 'answers'], default='retrieval')
     parser.add_argument('--split', choices=['dev', 'test'], default='dev')
@@ -148,7 +151,9 @@ def main():
     if args.k <= 0 or (args.limit is not None and args.limit <= 0) or not math.isfinite(args.delay) or args.delay < 0:
         parser.error('k/limit must be positive; delay must be finite and nonnegative')
     try:
-        rows = load_dataset(args.dataset)
+        corpus = get_corpus(args.corpus)
+        dataset = args.dataset or corpus.dataset
+        rows = load_dataset(dataset, corpus.raw_dir)
         selected = select_rows(rows, args.split, args.limit, args.ids)
         from src.retrieval.dense import retrieve as dense_retrieve
         from src.retrieval.embeddings import MODEL_NAME, MODEL_REVISION, embed_texts, get_model
@@ -158,23 +163,24 @@ def main():
             from src.chunking.semantic import (BREAKPOINT_PERCENTILE, MAX_CHUNK_CHARS,
                                                MIN_BREAKPOINT_DISTANCE, MIN_CHUNK_CHARS, UNIT_MAX_CHARS,
                                                semantic_chunk_documents)
-            expected_chunks = semantic_chunk_documents(load_documents(ROOT / 'data/raw'), embed_texts)
-            collection_name = SEMANTIC_COLLECTION_NAME
+            expected_chunks = semantic_chunk_documents(load_documents(corpus.raw_dir), embed_texts)
+            collection_name = corpus.semantic_collection
             chunking = {'strategy': 'semantic', 'min_chars': MIN_CHUNK_CHARS,
                         'max_chars': MAX_CHUNK_CHARS, 'unit_max_chars': UNIT_MAX_CHARS,
                         'breakpoint_percentile': BREAKPOINT_PERCENTILE,
                         'minimum_breakpoint_distance': MIN_BREAKPOINT_DISTANCE}
         else:
             from src.chunking.fixed import CHUNK_SIZE, OVERLAP, chunk_documents
-            expected_chunks = chunk_documents(load_documents(ROOT / 'data/raw'))
-            collection_name = COLLECTION_NAME
+            expected_chunks = chunk_documents(load_documents(corpus.raw_dir))
+            collection_name = corpus.fixed_collection
             chunking = {'strategy': 'fixed', 'chunk_size': CHUNK_SIZE, 'overlap': OVERLAP}
-        contract = {'version': 1, 'config': args.config, 'mode': args.mode, 'k': args.k,
+        contract = {'version': 2, 'corpus': {'key': corpus.key, 'label': corpus.label},
+                    'config': args.config, 'mode': args.mode, 'k': args.k,
                     'embedding_model': MODEL_NAME, 'collection': collection_name,
                     'embedding_revision': MODEL_REVISION,
                     'chunking': chunking,
-                    'dataset_sha256': file_digest(args.dataset),
-                    'files': snapshot(), 'python': platform.python_version(), 'platform': platform.platform()}
+                    'dataset_sha256': file_digest(dataset),
+                    'files': snapshot(corpus), 'python': platform.python_version(), 'platform': platform.platform()}
         contract['selection'] = {'split': args.split, 'limit': args.limit,
                                  'ids': args.ids}
         generation = None

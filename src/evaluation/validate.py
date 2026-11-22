@@ -4,6 +4,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from src.corpora import CORPORA, get_corpus
 from src.ingestion.loader import load_documents
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -74,13 +75,16 @@ def validate(records, documents):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("dataset", nargs="?", type=Path, default=ROOT / "data/eval/questions.draft.jsonl")
+    parser.add_argument("dataset", nargs="?", type=Path)
+    parser.add_argument("--corpus", choices=CORPORA, default="fastapi-v1")
     args = parser.parse_args()
+    corpus = get_corpus(args.corpus)
+    dataset = args.dataset or corpus.dataset
     try:
-        records = [json.loads(line) for line in args.dataset.read_text(encoding="utf-8").splitlines() if line.strip()]
+        records = [json.loads(line) for line in dataset.read_text(encoding="utf-8").splitlines() if line.strip()]
         if not records:
             raise ValueError("dataset is empty")
-        documents = {d.doc_id: d.text for d in load_documents(ROOT / "data/raw")}
+        documents = {d.doc_id: d.text for d in load_documents(corpus.raw_dir)}
         errors = validate(records, documents)
     except (OSError, ValueError) as exc:
         parser.exit(1, f"Validation failed: {exc}\n")
