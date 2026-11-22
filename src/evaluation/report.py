@@ -3,6 +3,7 @@ import argparse
 import json
 from pathlib import Path
 
+from src.corpora import get_corpus
 from src.evaluation.run import ROOT, atomic_json, file_digest
 from src.evaluation.metrics import METRIC_NAMES, summarize
 from src.ingestion.loader import load_documents
@@ -47,8 +48,12 @@ def main():
         acquired = True
         manifest = json.loads((args.run / 'manifest.json').read_text(encoding='utf-8'))
         files = manifest['contract']['files']
-        current_paths = {p.relative_to(ROOT).as_posix() for p in (ROOT / 'data/raw').glob('*.md')}
-        expected_paths = {p for p in files if p.startswith('data/raw/')}
+        corpus_key = manifest['contract'].get('corpus', {}).get('key', 'fastapi-v1')
+        corpus = get_corpus(corpus_key)
+        raw_prefix = corpus.raw_dir.relative_to(ROOT).as_posix() + '/'
+        current_paths = {p.relative_to(ROOT).as_posix() for p in corpus.raw_dir.iterdir()
+                         if p.is_file()}
+        expected_paths = {p for p in files if p.startswith(raw_prefix)}
         if current_paths != expected_paths:
             raise ValueError('Corpus file list changed; start a new run')
         for path in [*sorted(expected_paths), 'METRICS.md']:
@@ -57,7 +62,7 @@ def main():
                 raise ValueError(f'{path} changed since this run; start a new run')
         rows = manifest['dataset']
         observations = [json.loads(p.read_text(encoding='utf-8')) for p in sorted(args.run.glob('record-*.json'))]
-        documents = {d.doc_id: d.text for d in load_documents(ROOT / 'data/raw')}
+        documents = {d.doc_id: d.text for d in load_documents(corpus.raw_dir)}
         report = summarize(rows, observations, documents, manifest['contract']['k'])
         report['run_signature'] = manifest['signature']
         report['metrics_sha256'] = files['METRICS.md']
