@@ -116,7 +116,7 @@ For one question, the sequence is:
 | `reports/final-test-v1-2026-11-22/` | Versioned final retrieval and answer results. |
 | `streamlit_app.py` | Saved-results dashboard and blind-review interface. |
 | `.streamlit/config.toml` | Dual light/dark dashboard theme. |
-| `tests/` | 72 functional tests across the evaluation system. |
+| `tests/` | 77 functional tests across the evaluation system. |
 
 ## Experiment history and decisions
 
@@ -161,7 +161,7 @@ Failure types:
 - LLM providers can change model behavior even when model names remain stable.
 - Answer/latency reports exclude scheduling delay, model preload, judge time and
   failed-attempt time as documented.
-- The full repository passes `ty check` and all 72 functional tests.
+- The full repository passes `ty check` and all 77 functional tests.
 - This is a strong evaluation/reliability project, not a production RAG service.
 
 For exact commands, continue with [RUNBOOK.md](RUNBOOK.md). For learning and

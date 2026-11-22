@@ -59,8 +59,8 @@ Never commit `.env`, keys, provider response bodies or local caches.
 & .\.venv\Scripts\python.exe -B -m unittest discover -s tests -v
 ```
 
-Expected current state: 50 benchmark records validate, 72 functional tests pass
-and the full repository type check is clean:
+Expected current state: both 50-record benchmark files validate, 77 functional
+tests pass and the full repository type check is clean:
 
 ```powershell
 & .\.venv\Scripts\ty.exe check

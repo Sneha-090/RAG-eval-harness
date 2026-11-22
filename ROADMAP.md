@@ -9,10 +9,12 @@ V2 extension status (22 November 2026)
 - Second corpus: Django 5.2.19 LTS documentation pinned at commit
   a3510e06a7598039d0992dd00c736e25dbdc9aab; 12 sources isolated from v1.
 - Corpus-selectable indexing/evaluation infrastructure: complete.
-- Django questions, author review, freeze, four-config comparison and reserved
-  test: pending.
-- Streamlit Community Cloud deployment: pending until the dashboard includes
-  versioned v2 results.
+- Django 50-question draft and exact-evidence validation: complete; semantic
+  author review and benchmark freeze remain pending.
+- Django four-configuration development comparison: complete; B is the
+  provisional development selection and the reserved test remains untouched.
+- Streamlit Community Cloud deployment: complete at
+  https://sneha-rag-eval-harness.streamlit.app/.
 
 Goal
 Build a document-agnostic RAG system plus an automated evaluation harness that measures quality, compares four pipeline configurations, and detects regressions in CI.

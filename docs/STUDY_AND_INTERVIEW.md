@@ -131,7 +131,7 @@ larger development-only numbers without naming the split.
   evidence retrieval (55.6%).
 - Implemented resumable signed evaluation runs, blind human–LLM judge
   calibration, correctness/faithfulness/abstention reports, a Streamlit results
-  dashboard, and a GitHub Actions regression gate backed by 72 functional tests.
+  dashboard, and a GitHub Actions regression gate backed by 77 functional tests.
 
 Compact single bullet:
 

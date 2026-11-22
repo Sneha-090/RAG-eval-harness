@@ -617,3 +617,43 @@ behavior. Added one safe UTF-8 console helper, validated optional Chroma result
 fields and embedding limits, made judge checkpoint dictionaries explicit, and
 annotated intentionally heterogeneous test fixtures. The full repository now
 passes `ty check`; all 72 functional tests still pass.
+
+
+## 33. Isolated Django second corpus added: 22 November 2026
+
+Pinned 12 Django 5.2.19 LTS documentation sources at upstream commit
+`a3510e06a7598039d0992dd00c736e25dbdc9aab`. Added a corpus registry and made
+indexing, validation, capture and reporting select the corpus explicitly while
+preserving every FastAPI v1 default path and collection name.
+
+
+## 34. Django benchmark draft and development comparison: 22 November 2026
+
+Created a separate 50-question Django draft with 40 development and ten
+reserved-test records. All answerable references contain exact evidence from
+the pinned corpus, and structural validation passes. The wording remains
+AI-assisted and requires semantic author review before a v2 freeze.
+
+Compared A, B, C and D on the 36 answerable development questions without
+opening the reserved split. All methods reached 100% Page Hit@5. Configuration
+B produced the highest complete-evidence result at 30/36 (83.3%) with 42.8 ms
+mean retrieval latency, so it is the provisional development selection.
+
+
+## 35. Cross-domain dashboard deployed: 22 November 2026
+
+Added the Django development comparison to the saved-results dashboard and a
+lightweight Streamlit Community Cloud entrypoint. Verified the production page
+loads both FastAPI and Django sections without an application exception. The
+live URL is `https://sneha-rag-eval-harness.streamlit.app/`.
+
+
+## 36. Master continuation handoff refreshed: 22 November 2026
+
+Replaced the earlier single-domain handoff with one self-contained current
+document. It records exact v1 and v2 status, results, architecture, truth
+hierarchy, non-negotiable experimental rules, prioritized v2 acceptance
+criteria, safe commands, resume wording, a nine-layer study plan and a
+ready-to-copy prompt for another coding agent. Updated related roadmap and
+documentation counts. Both 50-record validators pass, all 77 functional tests
+pass and the full repository remains type-clean.
