@@ -35,12 +35,23 @@ class ReviewAppTests(unittest.TestCase):
             writer.writerow(['id', 'correctness', 'faithfulness', 'notes'])
             writer.writerows((item['row']['id'], '', '', '') for item in items)
 
+    def test_dashboard_shows_frozen_final_metrics(self):
+        app = Path(__file__).parents[1] / 'streamlit_app.py'
+        view = AppTest.from_file(app, default_timeout=10).run()
+        self.assertFalse(view.exception)
+        self.assertEqual(view.title[0].value, 'RAG evaluation harness')
+        self.assertEqual([metric.value for metric in view.metric[:4]],
+                         ['100.0%', '77.8%', '77.8%', '100.0%'])
+        self.assertEqual(len(view.dataframe[1].value), 10)
+
     def test_review_saves_one_blind_label_and_moves_forward(self):
         app = Path(__file__).parents[1] / 'streamlit_app.py'
         environment = {'RAG_REVIEW_PACKET': str(self.packet_path),
                        'RAG_REVIEW_LABELS': str(self.labels_path)}
         with patch.dict(os.environ, environment):
-            view = AppTest.from_file(app, default_timeout=10).run()
+            view = AppTest.from_file(app, default_timeout=10)
+            view.session_state['app_view'] = 'Blind review'
+            view.run()
             self.assertFalse(view.exception)
             self.assertEqual(view.title[0].value, 'Blind RAG answer review')
             view.segmented_control(key='correctness_q00').set_value(1.0)
@@ -73,7 +84,9 @@ class ReviewAppTests(unittest.TestCase):
         environment = {'RAG_REVIEW_PACKET': str(self.packet_path),
                        'RAG_REVIEW_LABELS': str(self.labels_path)}
         with patch.dict(os.environ, environment):
-            view = AppTest.from_file(app, default_timeout=10).run()
+            view = AppTest.from_file(app, default_timeout=10)
+            view.session_state['app_view'] = 'Blind review'
+            view.run()
             self.assertFalse(view.exception)
             view.segmented_control(key='abstention_q00').set_value(1)
             view.text_area(key='notes_q00').set_value('Correctly refused missing information.')

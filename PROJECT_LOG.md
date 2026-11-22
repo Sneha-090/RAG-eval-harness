@@ -578,3 +578,19 @@ calibration can validate a later scoring run only when judge model, prompt and
 implementation contracts match. All 71 functional tests pass; focused typing
 checks for the changed reporter pass. A full-repository type check still reports
 pre-existing typing debt in older modules and tests.
+
+
+## 30. Results dashboard completed: 22 November 2026
+
+Turned the existing Streamlit entrypoint into a two-view local application.
+The default results dashboard reads only versioned artifacts and shows frozen
+test KPIs, the RAG evaluation flow, the four development configurations,
+category evidence rates, all ten reserved-question outcomes, failure analysis,
+judge calibration and limitations. Blind review remains available from the
+sidebar and preserves its existing save/resume behavior.
+
+Added a compact dual light/dark theme using Streamlit configuration rather than
+custom CSS. Added an AppTest assertion for the four final KPI values and the
+ten-row detail table; existing answerable and unanswerable review tests still
+pass. The real Streamlit agent API loaded both views with zero exceptions, and
+its server console contained no warning or traceback.

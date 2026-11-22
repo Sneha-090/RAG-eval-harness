@@ -142,21 +142,20 @@ and use --mode answers. GEMINI_API_KEY is used by the provisional judge. See [JU
 Provider/model availability and clean installation are not verified by the
 retrieval-only run. Never commit credentials.
 
-Review the saved real calibration packet through the local guided screen (no
-API keys or model calls required):
+Open the saved-results dashboard (no API keys or model calls required):
 
     python -m streamlit run streamlit_app.py
 
-It shows the reference, generated answer and retrieved context, then saves two
-human decisions for answerable items or one abstention decision for
-unanswerable items to the versioned labels file. Judge verdicts stay hidden
-until the independent review is complete.
+The default view shows the frozen final metrics, four-configuration comparison,
+pipeline flow, category evidence, per-question outcomes and failure analysis.
+Use the sidebar to switch to Blind review, which shows the reference, generated
+answer and retrieved context and saves human decisions to the labels file.
 
 ## Next milestones
 
 Benchmark v1, mixed calibration and the one-time reserved test are complete.
-The remaining core packaging work is the results dashboard, architecture and
-learning handoff, and resume/interview wording. Future scope can add a second
+The remaining core packaging work is the architecture and learning handoff,
+and resume/interview wording. Future scope can add a second
 corpus and a small demo/API without rewriting the v1 result.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
 
