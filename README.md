@@ -159,7 +159,7 @@ answer and retrieved context and saves human decisions to the labels file.
 
 Benchmark v1, mixed calibration, the one-time reserved test, results dashboard,
 architecture guide and portable learning handoff are complete. Future scope can
-clear typing debt, add a second corpus and optionally add a small demo/API
+add a second corpus and optionally add a small demo/API
 without rewriting the v1 result.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
 

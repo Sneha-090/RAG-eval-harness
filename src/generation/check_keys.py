@@ -6,6 +6,8 @@ from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
+from src.console import configure_utf8
+
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 
@@ -54,6 +56,6 @@ def check_gemini() -> None:
 
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     check_groq()
     check_gemini()

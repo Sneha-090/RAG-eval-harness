@@ -608,3 +608,12 @@ Updated the roadmap, judging notes and remaining-work file to reflect completed
 core v1 work. Optional future work is separated from the frozen historical
 result: full author checklist, historical typing debt, second-machine install,
 new corpus/v2 protocol and optional deployment/demo.
+
+
+## 32. Repository-wide typing cleanup: 22 November 2026
+
+Removed all 59 remaining `ty` diagnostics without changing frozen evaluation
+behavior. Added one safe UTF-8 console helper, validated optional Chroma result
+fields and embedding limits, made judge checkpoint dictionaries explicit, and
+annotated intentionally heterogeneous test fixtures. The full repository now
+passes `ty check`; all 72 functional tests still pass.

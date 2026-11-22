@@ -161,8 +161,7 @@ Failure types:
 - LLM providers can change model behavior even when model names remain stable.
 - Answer/latency reports exclude scheduling delay, model preload, judge time and
   failed-attempt time as documented.
-- The full-repository `ty check` still reports older typing debt; changed final
-  reporter and dashboard files pass focused type checks.
+- The full repository passes `ty check` and all 72 functional tests.
 - This is a strong evaluation/reliability project, not a production RAG service.
 
 For exact commands, continue with [RUNBOOK.md](RUNBOOK.md). For learning and

@@ -233,8 +233,8 @@ proves a deliberately degraded result fails. Paid LLM calls are excluded.
 
 ### 13. What would you improve next?
 
-I would first clear typing debt and add a second corpus with a new untouched
-test protocol. Then I would evaluate retrieval changes aimed at evidence
+I would add a second corpus with a new untouched test protocol. Then I would
+evaluate retrieval changes aimed at evidence
 completeness—such as boundary-aware context expansion—without editing v1 or
 reusing its reserved split as fresh evidence.
 

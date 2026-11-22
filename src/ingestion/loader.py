@@ -4,6 +4,8 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from src.console import configure_utf8
+
 SUPPORTED_SUFFIXES = {".md", ".txt"}
 
 # Lines such as {* ../../docs_src/example.py hl[3] *} point to code files
@@ -35,7 +37,7 @@ def load_documents(directory) -> list[Document]:
 
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     raw_dir = Path(__file__).resolve().parents[2] / "data" / "raw"
     docs = load_documents(raw_dir)
 

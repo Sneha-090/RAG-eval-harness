@@ -59,16 +59,12 @@ Never commit `.env`, keys, provider response bodies or local caches.
 & .\.venv\Scripts\python.exe -B -m unittest discover -s tests -v
 ```
 
-Expected current state: 50 benchmark records validate and 72 functional tests
-pass. Focused type checks used for the final changed components:
+Expected current state: 50 benchmark records validate, 72 functional tests pass
+and the full repository type check is clean:
 
 ```powershell
-& .\.venv\Scripts\ty.exe check src\evaluation\answer_report.py tests\test_answer_report.py
-& .\.venv\Scripts\ty.exe check streamlit_app.py tests\test_review_app.py
+& .\.venv\Scripts\ty.exe check
 ```
-
-Do not claim the whole repository is type-clean: a full `ty check` currently
-reports pre-existing diagnostics in older modules and tests.
 
 ## Open the local dashboard
 
@@ -242,12 +238,6 @@ judge save successful calls individually.
 
 Local public models still work, but downloads may be slower/rate-limited. Set a
 Hugging Face token only if needed and keep it outside Git.
-
-### Full `ty check` is not clean
-
-This is known technical debt, not a failed final experiment. Keep focused type
-checks clean for every changed file and address the older diagnostics in a
-separate refactor without changing frozen v1 results.
 
 ## Never repeat these final-test actions casually
 

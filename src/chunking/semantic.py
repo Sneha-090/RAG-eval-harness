@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 
 from src.chunking.fixed import Chunk
+from src.console import configure_utf8
 from src.ingestion.loader import Document
 
 MIN_CHUNK_CHARS = 300
@@ -156,7 +157,7 @@ if __name__ == "__main__":
     from src.ingestion.loader import load_documents
     from src.retrieval.embeddings import embed_texts
 
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     raw_dir = Path(__file__).resolve().parents[2] / "data" / "raw"
     documents = load_documents(raw_dir)
     result = semantic_chunk_documents(documents, embed_texts)

@@ -8,6 +8,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import mean
+from typing import Any
 
 from src.evaluation.run import atomic_json, digest
 
@@ -112,10 +113,11 @@ def judge_records(rows, observations, output, contract, call_fn, retry_errors=Fa
             atomic_json(manifest_path, {'signature': signature, 'contract': contract, 'dataset': rows,
                                        'observations': observations,
                                        'created_utc': datetime.now(timezone.utc).isoformat()})
-        results = []
+        results: list[dict[str, Any]] = []
         for index, (row, observation) in enumerate(zip(rows, observations)):
             path = output / f'verdict-{index:04}.json'
-            result = json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
+            result: dict[str, Any] | None = (
+                json.loads(path.read_text(encoding='utf-8')) if path.exists() else None)
             if result and (result['status'] == 'ok' or not retry_errors):
                 results.append(result)
                 continue

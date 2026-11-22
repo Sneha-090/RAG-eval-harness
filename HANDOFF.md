@@ -75,12 +75,10 @@ steps:
 
 1. Complete the 50-item author checklist without changing labels because of
    observed v1 scores; if labels change for factual reasons, create v2.
-2. Clear the older full-repository `ty` diagnostics in a behavior-preserving
-   refactor. Focused final changed files are already type-clean.
-3. Verify clean installation on a second machine.
-4. Add a second corpus and a genuinely new held-out protocol for stronger
+2. Verify clean installation on a second machine.
+3. Add a second corpus and a genuinely new held-out protocol for stronger
    domain-generalization evidence.
-5. Optionally deploy the saved-results dashboard or add a demo/API, clearly
+4. Optionally deploy the saved-results dashboard or add a demo/API, clearly
    separate from the frozen evaluation.
 
 ## Non-negotiable continuation rules

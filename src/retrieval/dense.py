@@ -5,6 +5,7 @@ import chromadb
 
 from src.retrieval.embeddings import embed_texts
 from src.retrieval.index import COLLECTION_NAME, DB_PATH
+from src.console import configure_utf8
 
 TOP_K = 5  # as defined in METRICS.md
 
@@ -19,6 +20,11 @@ def retrieve(question: str, k: int = TOP_K, collection_name: str = COLLECTION_NA
         n_results=k,
         include=["documents", "metadatas", "distances"],
     )
+    metadatas = result["metadatas"]
+    distances = result["distances"]
+    documents = result["documents"]
+    if metadatas is None or distances is None or documents is None:
+        raise ValueError("Chroma query omitted requested result fields")
     return [
         {
             "chunk_id": chunk_id,
@@ -27,8 +33,7 @@ def retrieve(question: str, k: int = TOP_K, collection_name: str = COLLECTION_NA
             "text": text,
         }
         for chunk_id, meta, dist, text in zip(
-            result["ids"][0], result["metadatas"][0],
-            result["distances"][0], result["documents"][0],
+            result["ids"][0], metadatas[0], distances[0], documents[0],
         )
     ]
 
@@ -52,7 +57,7 @@ QUESTIONS = [
 ]
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     if len(sys.argv) > 1:
         show(" ".join(sys.argv[1:]))  # your own question from the command line
     else:

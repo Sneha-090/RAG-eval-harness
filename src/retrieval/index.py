@@ -6,6 +6,7 @@ from pathlib import Path
 import chromadb
 
 from src.chunking.fixed import CHUNK_SIZE, OVERLAP, chunk_documents
+from src.console import configure_utf8
 from src.ingestion.loader import load_documents
 from src.retrieval.embeddings import MODEL_NAME, embed_texts
 
@@ -42,7 +43,7 @@ def main():
     parser.add_argument("--config", choices=["A", "B"], default="A",
                         help="A: fixed-size chunks; B: semantic chunks")
     args = parser.parse_args()
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     docs = load_documents(PROJECT_ROOT / "data" / "raw")
     if args.config == "A":
         chunks = chunk_documents(docs)

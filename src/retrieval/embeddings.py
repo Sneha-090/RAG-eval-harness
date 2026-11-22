@@ -5,6 +5,7 @@ from pathlib import Path
 from sentence_transformers import SentenceTransformer
 
 from src.chunking.fixed import chunk_documents
+from src.console import configure_utf8
 from src.ingestion.loader import load_documents
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
@@ -32,7 +33,7 @@ def embed_texts(texts: list[str], batch_size: int = 32):
 
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     raw_dir = Path(__file__).resolve().parents[2] / "data" / "raw"
     chunks = chunk_documents(load_documents(raw_dir))
     texts = [c.text for c in chunks]
@@ -46,7 +47,10 @@ if __name__ == "__main__":
     print(f"First 8 numbers of {chunks[0].chunk_id}: {vectors[0][:8].round(3)}")
 
     token_counts = [len(ids) for ids in model.tokenizer(texts)["input_ids"]]
-    too_long = sum(1 for t in token_counts if t > model.max_seq_length)
+    max_length = model.max_seq_length
+    if max_length is None:
+        raise ValueError("Embedding model does not declare a maximum sequence length")
+    too_long = sum(1 for t in token_counts if t > max_length)
     print(f"Longest chunk: {max(token_counts)} tokens")
     print(f"Chunks above the token limit: {too_long} of {len(texts)}")
 

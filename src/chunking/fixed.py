@@ -3,6 +3,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from src.console import configure_utf8
 from src.ingestion.loader import Document, load_documents
 
 CHUNK_SIZE = 550 # max charcaters per chunk
@@ -50,7 +51,7 @@ def chunk_documents(docs: list[Document], chunk_size: int = CHUNK_SIZE,
 
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     raw_dir = Path(__file__).resolve().parents[2] / "data" / "raw"
     docs = load_documents(raw_dir)
     chunks = chunk_documents(docs)

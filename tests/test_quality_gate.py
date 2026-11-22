@@ -1,12 +1,13 @@
 import copy
 import unittest
+from typing import Any
 
 from src.evaluation.gate import check_gate
 
 
 class QualityGateTests(unittest.TestCase):
     def setUp(self):
-        self.policy = {
+        self.policy: dict[str, Any] = {
             "version": 1,
             "expected": {
                 "config": "B", "mode": "retrieval", "split": "dev", "k": 5,
@@ -26,7 +27,7 @@ class QualityGateTests(unittest.TestCase):
                 "complete_evidence_count": 0,
             },
         }
-        self.manifest = {
+        self.manifest: dict[str, Any] = {
             "signature": "run",
             "contract": {
                 "config": "B", "mode": "retrieval", "k": 5,
@@ -35,7 +36,7 @@ class QualityGateTests(unittest.TestCase):
                 "chunking": {"strategy": "semantic"},
             },
         }
-        self.report = {
+        self.report: dict[str, Any] = {
             "run_signature": "run", "metrics_sha256": "metrics", "scorer_sha256": "scorer",
             "splits": ["dev"], "requested": 40, "answerable_requested": 36,
             "answerable_missing_retrieval": 0, "retrieval_complete": True,

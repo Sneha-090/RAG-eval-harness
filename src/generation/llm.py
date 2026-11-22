@@ -7,6 +7,8 @@ from pathlib import Path
 import requests
 from dotenv import load_dotenv
 
+from src.console import configure_utf8
+
 load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 # The models are chosen in ONE place. Every evaluation run must record them.
@@ -80,7 +82,7 @@ def generate(config: dict, prompt: str, system: str | None = None) -> dict:
 
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     for label, cfg in [("GENERATOR", GENERATOR), ("JUDGE", JUDGE)]:
         print(f"\n=== {label}: {cfg['provider']} / {cfg['model']} ===")
         try:

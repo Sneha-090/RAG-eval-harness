@@ -21,7 +21,6 @@ verified before the final push.
 ## Optional future scope
 
 - Complete the full 50-item author checklist without test-driven relabelling.
-- Clear historical whole-repository typing diagnostics.
 - Reproduce a clean install on a second machine.
 - Add a second corpus with a new v2 development/test protocol.
 - Optionally deploy the saved-results dashboard or add a small demo/API.

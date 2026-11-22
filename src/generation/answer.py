@@ -3,6 +3,7 @@ import sys
 import time
 
 from src.generation.llm import GENERATOR, generate
+from src.console import configure_utf8
 from src.retrieval.dense import TOP_K, retrieve
 
 ABSTAIN_PHRASE = "I cannot find this in the provided documentation."
@@ -45,7 +46,7 @@ QUESTIONS = [
 ]
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     questions = [" ".join(sys.argv[1:])] if len(sys.argv) > 1 else QUESTIONS
     for q in questions:
         r = answer_question(q)

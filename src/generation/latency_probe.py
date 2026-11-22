@@ -1,6 +1,7 @@
 """Measure the latency of candidate judge models (two calls each)."""
 import sys
 
+from src.console import configure_utf8
 from src.generation.llm import generate
 
 CANDIDATES = [
@@ -12,7 +13,7 @@ CANDIDATES = [
 PROMPT = "Reply with the single word: ready"
 
 if __name__ == "__main__":
-    sys.stdout.reconfigure(encoding="utf-8")
+    configure_utf8()
     for cfg in CANDIDATES:
         print(f"\n=== {cfg['provider']} / {cfg['model']} ===")
         for attempt in (1, 2):

@@ -1,15 +1,17 @@
 import copy
 import unittest
+from typing import Any
 
 from src.evaluation.validate import validate
 
 
 class ValidationTests(unittest.TestCase):
     def setUp(self):
-        self.row = dict(id="q001", category="direct", split="dev", question="Why?",
-                        answerable=True, reference_answer="A fact.", gold_sources=["a.md"],
-                        evidence=[dict(source="a.md", quote="A fact.")])
-        self.docs = {"a.md": "A fact. Another fact."}
+        self.row: dict[str, Any] = dict(
+            id="q001", category="direct", split="dev", question="Why?",
+            answerable=True, reference_answer="A fact.", gold_sources=["a.md"],
+            evidence=[dict(source="a.md", quote="A fact.")])
+        self.docs: dict[str, str] = {"a.md": "A fact. Another fact."}
 
     def test_valid_record(self):
         self.assertEqual(validate([self.row], self.docs), [])
