@@ -1,4 +1,4 @@
-# Draft evaluation runs
+# Evaluation runs
 
 Run commands from D:\rag-eval-harness with the existing virtual environment active.
 

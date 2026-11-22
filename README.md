@@ -6,6 +6,10 @@ A document-based RAG baseline and an evaluation harness for measuring retrieval
 quality separately from generated-answer quality. The first benchmark uses 12
 version-pinned FastAPI tutorial pages; core ingestion and retrieval are generic.
 
+New here? Start with the [portable handoff](HANDOFF.md), then read the
+[project guide](docs/PROJECT_GUIDE.md), [runbook](docs/RUNBOOK.md), and
+[study/interview guide](docs/STUDY_AND_INTERVIEW.md).
+
 **Current status:** resume-ready benchmark v1 is complete. Four retrieval
 configurations were compared, configuration B was selected on development,
 and a CI regression gate protects it. A fresh mixed blind calibration matched
@@ -32,7 +36,7 @@ readiness or cross-domain generalization claim is made.
 - Deterministic answer-quality, calibration and successful-stage latency reports.
 - Blind human-review export and input-pinned agreement comparison.
 - A guided local review screen that saves blind human labels without showing judge scores.
-- 71 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
+- 72 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
   metrics and judging.
 
 ## Draft development results
@@ -153,10 +157,10 @@ answer and retrieved context and saves human decisions to the labels file.
 
 ## Next milestones
 
-Benchmark v1, mixed calibration and the one-time reserved test are complete.
-The remaining core packaging work is the architecture and learning handoff,
-and resume/interview wording. Future scope can add a second
-corpus and a small demo/API without rewriting the v1 result.
+Benchmark v1, mixed calibration, the one-time reserved test, results dashboard,
+architecture guide and portable learning handoff are complete. Future scope can
+clear typing debt, add a second corpus and optionally add a small demo/API
+without rewriting the v1 result.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
 
 

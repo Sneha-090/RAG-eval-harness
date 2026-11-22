@@ -1,7 +1,8 @@
 
 
 RAG Eval Harness: Frozen Roadmap (Lean, 5 core milestones)
-Status: FROZEN. Changes only after a milestone is completed, and only via PARKING_LOT.md.
+Status: ALL FIVE CORE MILESTONES COMPLETE. The frozen v1 test and handoff are
+published; future scope is tracked in PARKING_LOT.md and must not rewrite v1.
 
 Goal
 Build a document-agnostic RAG system plus an automated evaluation harness that measures quality, compares four pipeline configurations, and detects regressions in CI.

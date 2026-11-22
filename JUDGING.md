@@ -1,4 +1,4 @@
-# Answer judging (provisional)
+# Answer judging and human calibration
 
 Capture answers first, then judge the saved answers without regenerating them:
 
@@ -64,8 +64,8 @@ automatically approve a judge or invent an acceptance threshold. The calibration
 sample is small, developmental and deliberately diverse, not a population estimate.
 
 The initial live check on 26 October 2026 successfully generated and judged one
-answer. Both provider calls worked. All 40 offline tests passed after adding the
-human-review workflow. No real human agreement score has been measured yet.
+answer. Both provider calls worked. Human agreement was measured later in the
+two versioned calibration packets described below.
 
 
 ## Real calibration packet
@@ -137,5 +137,12 @@ measure correctness and faithfulness on answerable items and abstention on
 unanswerable items, with separate sample counts.
 
 Blind ordering is mandatory: generate answers, export the packet, complete and
-freeze human labels, then create judge verdicts. As of packet export on 14
-November 2026, all ten labels are blank and no matching judge directory exists.
+freeze human labels, then create judge verdicts. The author completed all ten
+labels and pushed freeze commit `ac4cf7a` before the matching judge run. Exact
+agreement was 8/8 for correctness, 8/8 for faithfulness and 2/2 for abstention,
+with no disagreements. See `calibration/2026-11-14/RESULT.md`.
+
+The final reserved-test report uses a separate calibration judge directory.
+Pass it with `--calibration-judge`; the reporter accepts it only when the judge
+model, prompt and implementation contracts match the scoring judge. The exact
+command is in `docs/RUNBOOK.md`.

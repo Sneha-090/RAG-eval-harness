@@ -594,3 +594,17 @@ custom CSS. Added an AppTest assertion for the four final KPI values and the
 ten-row detail table; existing answerable and unanswerable review tests still
 pass. The real Streamlit agent API loaded both views with zero exceptions, and
 its server console contained no warning or traceback.
+
+
+## 31. Portable learning and agent handoff completed: 22 November 2026
+
+Added a repository-first handoff that does not depend on this chat. It includes
+the plain-language project story, architecture and data flow, every major
+component, experiment history, exact results and limitations, Windows runbook
+and troubleshooting, glossary, seven-session study plan, honest resume bullets,
+interview questions and a ready-to-copy prompt for a future coding agent.
+
+Updated the roadmap, judging notes and remaining-work file to reflect completed
+core v1 work. Optional future work is separated from the frozen historical
+result: full author checklist, historical typing debt, second-machine install,
+new corpus/v2 protocol and optional deployment/demo.
