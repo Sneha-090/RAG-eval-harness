@@ -1,8 +1,7 @@
-# Final handoff requirement — completed 22 November 2026
+# Project documentation package — completed 22 November 2026
 
-The portable learning and agent handoff package is now versioned in `HANDOFF.md`
-and `docs/`. It remains useful without the current ChatGPT subscription or
-conversation and includes:
+The public project status and learning package is versioned in
+`PROJECT_STATUS.md` and `docs/`. It includes:
 
 - a plain-language project story from the original idea to the final result;
 - architecture, data flow and every major file/component;
@@ -10,13 +9,11 @@ conversation and includes:
 - setup, run, test, evaluation and troubleshooting commands;
 - a glossary and a staged study plan for explaining every concept;
 - honest resume bullets and interview questions with model answers;
-- current state, remaining work and safe rules for continuing the repository;
-- a ready-to-copy prompt that lets any future AI agent teach or continue the
-  project using only the GitHub repository and handoff files.
+- current state, remaining work and safe experimental rules for continuation.
 
-The handoff references versioned repository evidence rather than hidden chat
-context. Relative documentation links and documented local commands were
-verified before the final push.
+The documentation references versioned repository evidence rather than hidden
+chat context. Personal continuation instructions are kept outside version
+control.
 
 ## Optional future scope
 

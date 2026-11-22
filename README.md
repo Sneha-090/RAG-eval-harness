@@ -7,7 +7,7 @@ quality separately from generated-answer quality. The completed first benchmark
 uses 12 version-pinned FastAPI tutorial pages. A separate Django 5.2 LTS corpus
 now tests whether the same generic harness can transfer to a second domain.
 
-New here? Start with the [portable handoff](HANDOFF.md), then read the
+New here? Start with the [project status and roadmap](PROJECT_STATUS.md), then read the
 [project guide](docs/PROJECT_GUIDE.md), [runbook](docs/RUNBOOK.md), and
 [study/interview guide](docs/STUDY_AND_INTERVIEW.md).
 

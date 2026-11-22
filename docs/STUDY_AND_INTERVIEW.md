@@ -114,7 +114,8 @@ Do one session at a time. At the end, explain it aloud without reading.
 - Use the file table in `PROJECT_GUIDE.md` and open every major file once.
 - Run validation and tests.
 - Answer all interview questions below aloud.
-- Ask a future AI to quiz you using the prompt in `HANDOFF.md`.
+- Give a future tutor `PROJECT_STATUS.md` and ask it to quiz you section by
+  section using the versioned evidence linked there.
 
 ## Honest resume bullets
 
