@@ -1,0 +1,67 @@
+{
+  "corpus": "django-5.2",
+  "split": "dev",
+  "k": 5,
+  "requested_questions": 40,
+  "answerable_questions": 36,
+  "unanswerable_questions_excluded_from_retrieval_quality": 4,
+  "selected_configuration": "B",
+  "selection_rule": "Maximize complete evidence at K; use latency and complexity as secondary considerations.",
+  "configurations": {
+    "A": {
+      "pipeline": "fixed-size chunks + dense retrieval",
+      "hit_at_5": 1.0,
+      "mrr_at_5": 0.9375,
+      "source_recall_at_5": 1.0,
+      "evidence_coverage_at_5": 0.7980496247218335,
+      "complete_evidence_count": 20,
+      "complete_evidence_at_5": 0.5555555555555556,
+      "retrieval_mean_s": 0.04987854500213871,
+      "retrieval_p95_s": 0.05184540001209825,
+      "run_signature": "467060c8be7c16533a28fc5cbc4222175037885d4a5288c98e5ae2c9ccccf519"
+    },
+    "B": {
+      "pipeline": "semantic chunks + dense retrieval",
+      "hit_at_5": 1.0,
+      "mrr_at_5": 0.9384259259259259,
+      "source_recall_at_5": 1.0,
+      "evidence_coverage_at_5": 0.8472222222222222,
+      "complete_evidence_count": 30,
+      "complete_evidence_at_5": 0.8333333333333334,
+      "retrieval_mean_s": 0.0428404124948429,
+      "retrieval_p95_s": 0.047229699965100735,
+      "run_signature": "c92dd159555c78ae926bcc08a1d58ff93955ba250791ace12ae1f046b4950624"
+    },
+    "C": {
+      "pipeline": "fixed-size chunks + BM25/dense hybrid retrieval",
+      "hit_at_5": 1.0,
+      "mrr_at_5": 0.9861111111111112,
+      "source_recall_at_5": 1.0,
+      "evidence_coverage_at_5": 0.9127568589744944,
+      "complete_evidence_count": 28,
+      "complete_evidence_at_5": 0.7777777777777778,
+      "retrieval_mean_s": 0.05226589750382118,
+      "retrieval_p95_s": 0.056787799985613674,
+      "run_signature": "8ad18d5d6c848379893b348f37de970b5d20949db2847067d9435a8ac9627305"
+    },
+    "D": {
+      "pipeline": "fixed-size chunks + hybrid retrieval + cross-encoder reranking",
+      "hit_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "source_recall_at_5": 1.0,
+      "evidence_coverage_at_5": 0.9114339661552067,
+      "complete_evidence_count": 27,
+      "complete_evidence_at_5": 0.75,
+      "retrieval_mean_s": 1.362208169994119,
+      "retrieval_p95_s": 1.6739085000008345,
+      "run_signature": "e7e2fdc1775f066fe873ab99d7cefef8e0eb73b656a480581ea838d0ec1a9c7f"
+    }
+  },
+  "limitations": [
+    "The Django benchmark is an AI-assisted draft whose semantic author review is pending.",
+    "Only development retrieval was run; the ten-question reserved test remains untouched.",
+    "No generated answers or answer-quality judge scores are included.",
+    "Latency is descriptive for this local machine and excludes model startup time.",
+    "A single 12-document technical corpus does not establish production or broad-domain performance."
+  ]
+}
