@@ -3,9 +3,11 @@
 This packet contains 10 previously unused development questions selected before
 any judge call: eight answerable questions across four categories and two
 unanswerable questions. Configuration B generated every saved answer. The
-packet contains no judge verdicts, and `labels.csv` starts blank.
+packet was exported with no judge verdicts and blank `labels.csv` values. The
+author then completed and committed all labels before the hidden judge run. The
+measured outcome is preserved in `agreement.json` and `RESULT.md`.
 
-## Complete the guided review
+## Review procedure used
 
 Open Command Prompt or PowerShell and run:
 
@@ -21,10 +23,8 @@ supported by the displayed retrieved context. For unanswerable questions,
 choose whether the answer correctly refused or invented missing information.
 Optional notes are useful only when something is unclear.
 
-The screen saves after every item and resumes at the first unfinished item.
-When all 10 are complete, stop. Do not generate or inspect judge verdicts yet;
-tell the project agent that the blind review is finished. The frozen human
-labels must exist before the judge run is created.
+The screen saved after every item and resumed at the first unfinished item.
+All ten labels were frozen in commit `ac4cf7a` before the hidden judge was run.
 
 ## Integrity
 
@@ -33,3 +33,5 @@ labels must exist before the judge run is created.
 - Judge verdicts created before review: no
 - Human labels at export: blank
 - Selection: deterministic category round-robin, independent of judge scores
+- Human labels frozen before judge: yes
+- Exact agreement: 100% for correctness (8), faithfulness (8), and abstention (2)

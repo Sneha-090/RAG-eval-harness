@@ -1,0 +1,18 @@
+{
+  "sample_size": 10,
+  "metric_sample_size": {
+    "correctness": 8,
+    "faithfulness": 8,
+    "abstention": 2
+  },
+  "agreement_measured": true,
+  "packet_signature": "98d309636a3655a6c967c15f9138b574eedc84a75f5f4d12e8b22423c0a25f36",
+  "judge_signature": "35ff7b6b6469d673dd75ad64e362fac6f05099b5d3199032743bbfe96164ce24",
+  "exact_agreement": {
+    "correctness": 1.0,
+    "faithfulness": 1.0,
+    "abstention": 1.0
+  },
+  "disagreements": [],
+  "note": "Small mixed development calibration sample. Inspect disagreements before accepting the judge; no automatic approval threshold is inferred."
+}

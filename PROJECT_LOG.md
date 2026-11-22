@@ -517,4 +517,23 @@ Exported `calibration/2026-11-14` with all labels blank. No matching judge run
 was created, preserving the required order: human labels first, hidden judge
 second. Focused unit and AppTest checks passed, and the real Streamlit agent API
 rendered both the answerable and q047 unanswerable screens without an exception
-or new server warning. The next action belongs to the human reviewer.
+or new server warning. The next action belonged to the human reviewer.
+
+
+## 27. Fresh mixed human-judge agreement: 22 November 2026
+
+The author completed all ten labels in the signed mixed packet. The labels were
+validated, committed and pushed in `ac4cf7a` before any matching hidden judge
+verdict existed. This preserves the blind ordering and prevents post-hoc label
+editing.
+
+The frozen Gemini judge contract then completed 10/10 verdicts. Exact agreement
+was 8/8 (100%) for correctness, 8/8 (100%) for faithfulness and 2/2 (100%) for
+abstention, with no disagreements. The judge's provisional answer scores were
+also 100% for all three metrics on their applicable rows.
+
+This is stronger calibration evidence than the earlier answerable-only packet,
+especially because it now measures abstention. It remains a small development
+sample with one human reviewer, so the result is reported with its sample sizes
+and is not a universal reliability claim. It supports freezing the benchmark
+and using this exact judge contract for the one-time reserved-test report.
