@@ -6,13 +6,14 @@ A document-based RAG baseline and an evaluation harness for measuring retrieval
 quality separately from generated-answer quality. The first benchmark uses 12
 version-pinned FastAPI tutorial pages; core ingestion and retrieval are generic.
 
-**Current status:** all four retrieval configurations are compared and a
-development retrieval regression gate is implemented. The first blind
-human–judge calibration measured 100.0% correctness agreement and 78.6%
-faithfulness agreement on 14 answerable development outputs. The benchmark,
-judge and answer-quality results remain provisional; a fresh calibration,
-human benchmark review and final answer experiments are still pending. No
-production-readiness claim is made.
+**Current status:** resume-ready benchmark v1 is complete. Four retrieval
+configurations were compared, configuration B was selected on development,
+and a CI regression gate protects it. A fresh mixed blind calibration matched
+the hidden judge on 8/8 correctness, 8/8 faithfulness and 2/2 abstention labels.
+After a recorded freeze, the one-time reserved test achieved 100% Page Hit@5,
+77.8% answer correctness, 77.8% faithfulness and 100% abstention. See the
+[final report](reports/final-test-v1-2026-11-22/SUMMARY.md). No production-
+readiness or cross-domain generalization claim is made.
 
 ## Implemented
 
@@ -24,14 +25,14 @@ production-readiness claim is made.
 - A pinned embedding revision and GitHub Actions gate that rebuilds B, reruns
   development retrieval and rejects metric or provenance regressions.
 - Context-only answer generation through a replaceable HTTP LLM client.
-- A 50-question draft with exact evidence: 40 development, 10 reserved test.
+- A frozen 50-question benchmark with exact evidence: 40 development, 10 reserved test.
 - Corpus/evidence validation, atomic question checkpoints and resumable capture.
 - Deterministic retrieval scoring and per-category JSON/Markdown reports.
 - Provisional correctness/faithfulness/abstention judging with strict output validation.
 - Deterministic answer-quality, calibration and successful-stage latency reports.
 - Blind human-review export and input-pinned agreement comparison.
 - A guided local review screen that saves blind human labels without showing judge scores.
-- 61 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
+- 71 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
   metrics and judging.
 
 ## Draft development results
@@ -153,14 +154,10 @@ until the independent review is complete.
 
 ## Next milestones
 
-1. Review and freeze the benchmark, then run a fresh blind calibration sample
-   that also validates abstention on unanswerable questions.
-2. Independently review a fresh candidate sample before promoting the completed
-   provisional A-versus-B answer experiment into a winner claim.
-3. Run the reserved test split once on the frozen benchmark, then finalize
-   architecture documentation, results dashboard and resume wording.
-
-After those milestones: a second corpus and a small demo/API, if useful.
+Benchmark v1, mixed calibration and the one-time reserved test are complete.
+The remaining core packaging work is the results dashboard, architecture and
+learning handoff, and resume/interview wording. Future scope can add a second
+corpus and a small demo/API without rewriting the v1 result.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
 
 
@@ -216,17 +213,31 @@ blind review, abstention has one uncalibrated example and the reserved test
 split remains untouched. Therefore the report does **not** claim an answer-
 quality winner.
 
-## Fresh mixed blind calibration prepared (14 November 2026)
+## Fresh mixed blind calibration completed (22 November 2026)
 
 Prepared a second independent packet from ten previously unused development
 questions: two direct, two similar-page, two multi-part, two paraphrase and two
 unanswerable. Configuration B generated all 10 answers with zero final errors.
-Exact question-ID selection is recorded in the capture contract. No judge run
-exists yet and all human labels are blank, so the review remains blind.
+Exact question-ID selection is recorded in the capture contract. Human labels
+were committed before the hidden judge run. Exact agreement was 100% for
+correctness (8 labels), faithfulness (8 labels) and abstention (2 labels), with
+no disagreements.
 
 The guided Streamlit screen now supports both scoring paths: correctness plus
 faithfulness for answerable questions, and abstention for unanswerable
 questions. It preserves the original version-1 calibration format while using
 a signed version-2 mixed packet for the new sample. See
-[calibration/2026-11-14](calibration/2026-11-14/README.md). The human review must
-be completed and frozen before any judge verdict is created.
+[calibration/2026-11-14](calibration/2026-11-14/README.md).
+
+## Frozen v1 reserved-test result (22 November 2026)
+
+The benchmark and selected configuration B pipeline were frozen in commit
+`7ff5a61` before the ten reserved questions were run. Retrieval found a relevant
+source for all 9/9 answerable questions and ranked it first every time, but
+complete exact evidence was present for 5/9. The calibrated judge scored answer
+correctness 7/9, faithfulness 7/9 and the single unanswerable abstention 1/1.
+Mean successful-stage answer latency was 1.1764 seconds.
+
+The [final report](reports/final-test-v1-2026-11-22/SUMMARY.md) explains the four
+metric-level failures and preserves machine-readable results. No v1 tuning was
+performed from the reserved-test outcomes.

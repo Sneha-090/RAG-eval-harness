@@ -1,0 +1,186 @@
+{
+  "metrics_version": 2,
+  "k": 5,
+  "requested": 10,
+  "splits": [
+    "test"
+  ],
+  "answerable_requested": 9,
+  "answerable_missing_retrieval": 0,
+  "unanswerable_requested": 1,
+  "retrieval_complete": true,
+  "overall": {
+    "count": 9,
+    "hit_at_k": 1,
+    "mrr_at_k": 1.0,
+    "source_recall_at_k": 1.0,
+    "evidence_coverage_at_k": 0.6388888888888888,
+    "evidence_complete_at_k": 0.5555555555555556
+  },
+  "by_category": {
+    "direct": {
+      "count": 3,
+      "hit_at_k": 1,
+      "mrr_at_k": 1.0,
+      "source_recall_at_k": 1.0,
+      "evidence_coverage_at_k": 0.4166666666666667,
+      "evidence_complete_at_k": 0.3333333333333333
+    },
+    "multi_part": {
+      "count": 2,
+      "hit_at_k": 1,
+      "mrr_at_k": 1.0,
+      "source_recall_at_k": 1.0,
+      "evidence_coverage_at_k": 0.75,
+      "evidence_complete_at_k": 0.5
+    },
+    "paraphrase": {
+      "count": 2,
+      "hit_at_k": 1,
+      "mrr_at_k": 1.0,
+      "source_recall_at_k": 1.0,
+      "evidence_coverage_at_k": 0.5,
+      "evidence_complete_at_k": 0.5
+    },
+    "similar_page": {
+      "count": 2,
+      "hit_at_k": 1,
+      "mrr_at_k": 1.0,
+      "source_recall_at_k": 1.0,
+      "evidence_coverage_at_k": 1.0,
+      "evidence_complete_at_k": 1
+    }
+  },
+  "retrieval_latency": {
+    "count": 10,
+    "mean_s": 0.033715029997983946,
+    "p95_s": 0.048160099948290735
+  },
+  "questions": [
+    {
+      "id": "q019",
+      "category": "direct",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 0.0,
+        "evidence_complete_at_k": 0
+      }
+    },
+    {
+      "id": "q020",
+      "category": "direct",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 1.0,
+        "evidence_complete_at_k": 1
+      }
+    },
+    {
+      "id": "q021",
+      "category": "direct",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 0.25,
+        "evidence_complete_at_k": 0
+      }
+    },
+    {
+      "id": "q029",
+      "category": "similar_page",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 1.0,
+        "evidence_complete_at_k": 1
+      }
+    },
+    {
+      "id": "q030",
+      "category": "similar_page",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 1.0,
+        "evidence_complete_at_k": 1
+      }
+    },
+    {
+      "id": "q035",
+      "category": "multi_part",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 1.0,
+        "evidence_complete_at_k": 1
+      }
+    },
+    {
+      "id": "q036",
+      "category": "multi_part",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 0.5,
+        "evidence_complete_at_k": 0
+      }
+    },
+    {
+      "id": "q045",
+      "category": "paraphrase",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 1.0,
+        "evidence_complete_at_k": 1
+      }
+    },
+    {
+      "id": "q046",
+      "category": "paraphrase",
+      "status": "ok",
+      "scores": {
+        "hit_at_k": 1,
+        "mrr_at_k": 1.0,
+        "source_recall_at_k": 1.0,
+        "evidence_coverage_at_k": 0.0,
+        "evidence_complete_at_k": 0
+      }
+    },
+    {
+      "id": "q050",
+      "category": "unanswerable",
+      "status": "ok",
+      "scores": null
+    }
+  ],
+  "answer_quality": null,
+  "limitations": [
+    "Draft benchmark; human review and freezing are pending.",
+    "Averages include available retrievals only; missing counts must be reported.",
+    "Evidence scores measure exact text coverage, not semantic sufficiency.",
+    "Retrieval latency excludes model preloading; it is not end-to-end answer latency.",
+    "No correctness, faithfulness, abstention, or judge-agreement scores exist."
+  ],
+  "run_signature": "fcf96c9d63eabf1641e22204141f3eff54c42976165d89342b7ceff0994aed48",
+  "metrics_sha256": "74dd08f3925c6ff670daa2417921e2efc8ea3cf3889f658ac77f62e2614f5f57",
+  "scorer_sha256": "6cf23cf92111bb4c92af9052c8b1a9fba4a08530148eca3ddc52346e88e8dad6"
+}

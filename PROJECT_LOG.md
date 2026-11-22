@@ -552,3 +552,29 @@ new named version after any pipeline or label change. It also records the honest
 review limitation: all 50 references received an AI-assisted source cross-check
 and programmatic evidence validation, but the full item-by-item author checklist
 is incomplete. The reserved split remains untouched at freeze time.
+
+
+## 29. One-time reserved test completed: 22 November 2026
+
+Ran configuration B once on the ten reserved questions after freeze commit
+`7ff5a61`. All ten retrieval and answer captures completed without a final
+error. The calibrated Gemini judge completed after one checkpointed retry for
+a transient connection error; the retry did not repeat the nine successful
+calls.
+
+For the nine answerable questions, Page Hit@5, MRR@5 and required-source recall
+were all 100%. Exact evidence coverage was 63.9%, and complete evidence was
+5/9 (55.6%). Answer correctness was 7/9 (77.8%), faithfulness was 7/9 (77.8%)
+and the one unanswerable question correctly abstained.
+
+q021 and q045 were correctness failures because the generator refused despite
+useful retrieved context. q036 and q046 were reference-correct but unfaithful
+because a requested fact was absent from the retrieved chunks. Mean retrieval
+latency was 0.0337 seconds; mean retrieval-plus-generation latency was 1.1764
+seconds. Scheduling waits, model preload and judge time are excluded.
+
+Generalized the deterministic answer reporter so a separately frozen human
+calibration can validate a later scoring run only when judge model, prompt and
+implementation contracts match. All 71 functional tests pass; focused typing
+checks for the changed reporter pass. A full-repository type check still reports
+pre-existing typing debt in older modules and tests.

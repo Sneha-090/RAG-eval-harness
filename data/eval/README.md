@@ -15,8 +15,8 @@ to avoid invalidating historical signed run manifests.
 | Unanswerable | 4 | 1 | 5 |
 | Total | 40 | 10 | 50 |
 
-Only development questions are run while building and tuning the pipeline.
-Reserved test questions have not been evaluated. Concepts and source pages
+Only development questions were used while building and selecting the pipeline.
+The reserved split was evaluated once after the v1 freeze. Concepts and source pages
 overlap between splits, so this is not a claim of independent domain generalization.
 All 50 references received an AI-assisted cross-check and exact evidence
 validation. Full item-by-item author review is incomplete; `REVIEW.md` preserves

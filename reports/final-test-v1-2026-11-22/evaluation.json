@@ -1,0 +1,280 @@
+{
+  "report_version": 2,
+  "status": "final_reserved_test_result",
+  "splits": [
+    "test"
+  ],
+  "requested": 10,
+  "completed": 10,
+  "answerable_count": 9,
+  "unanswerable_count": 1,
+  "capture": {
+    "signature": "fcf96c9d63eabf1641e22204141f3eff54c42976165d89342b7ceff0994aed48",
+    "created_utc": "2026-11-22T07:17:36.445779+00:00",
+    "config": "B",
+    "generator": {
+      "provider": "groq",
+      "model": "openai/gpt-oss-120b"
+    },
+    "prompt_sha256": "b266c465e696eca289428171bd0b0c2b96e9b42296edc1faf4b33a4c6012ca97",
+    "git_commit": "7ff5a613cbe1c00eb0cfac7fb6fb9a35d2d6a3f8",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "judge": {
+    "signature": "062a44db41799ec5d91c8be40d997a23b533423303ffee1cc6428b84547d8404",
+    "created_utc": "2026-11-22T07:21:06.108676+00:00",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash",
+    "prompt_sha256": "7cbf8f9ab234d679dde53e611ba26758d25f6e5d55d4e85d6e0886352508abeb"
+  },
+  "human_calibration": {
+    "sample_size": 10,
+    "metric_sample_size": {
+      "correctness": 8,
+      "faithfulness": 8,
+      "abstention": 2
+    },
+    "exact_agreement": {
+      "correctness": 1,
+      "faithfulness": 1,
+      "abstention": 1
+    },
+    "disagreement_count": 0,
+    "judge_signature": "35ff7b6b6469d673dd75ad64e362fac6f05099b5d3199032743bbfe96164ce24",
+    "abstention_human_validated": true
+  },
+  "answer_quality": {
+    "correctness": {
+      "count": 9,
+      "score_sum": 7,
+      "mean": 0.7777777777777778,
+      "distribution": {
+        "0": 2,
+        "0.5": 0,
+        "1": 7
+      }
+    },
+    "faithfulness": {
+      "count": 9,
+      "score_sum": 7,
+      "mean": 0.7777777777777778,
+      "distribution": {
+        "0": 2,
+        "1": 7
+      }
+    },
+    "abstention": {
+      "count": 1,
+      "score_sum": 1,
+      "mean": 1,
+      "distribution": {
+        "0": 0,
+        "1": 1
+      }
+    }
+  },
+  "latency": {
+    "retrieval": {
+      "count": 10,
+      "mean_s": 0.033715029997983946,
+      "p95_s": 0.048160099948290735
+    },
+    "generation": {
+      "count": 10,
+      "mean_s": 1.1427174499898682,
+      "p95_s": 1.5598046000231989
+    },
+    "answer_successful_stages": {
+      "count": 10,
+      "mean_s": 1.1764324799878523,
+      "p95_s": 1.5911578999948688
+    },
+    "judge_excluded_from_answer_latency": {
+      "count": 10,
+      "mean_s": 4.200938119989587,
+      "p95_s": 7.957081499975175
+    },
+    "resumed_question_count": 0
+  },
+  "questions": [
+    {
+      "id": "q019",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.023948199988808483,
+        "generation": 1.0790111999958754,
+        "answer_successful_stages": 1.1029593999846838,
+        "judge": 3.4587528000120074
+      }
+    },
+    {
+      "id": "q020",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.03067980002379045,
+        "generation": 1.3020370999583974,
+        "answer_successful_stages": 1.332716899982188,
+        "judge": 3.2528884999919683
+      }
+    },
+    {
+      "id": "q021",
+      "category": "direct",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 0,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.028643300000112504,
+        "generation": 0.9272880999487825,
+        "answer_successful_stages": 0.955931399948895,
+        "judge": 4.193063099985011
+      }
+    },
+    {
+      "id": "q029",
+      "category": "similar_page",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.0333223000052385,
+        "generation": 0.9524201000458561,
+        "answer_successful_stages": 0.9857424000510946,
+        "judge": 2.961663599999156
+      }
+    },
+    {
+      "id": "q030",
+      "category": "similar_page",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.03135329997166991,
+        "generation": 1.5598046000231989,
+        "answer_successful_stages": 1.5911578999948688,
+        "judge": 3.4907557000406086
+      }
+    },
+    {
+      "id": "q035",
+      "category": "multi_part",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.048160099948290735,
+        "generation": 1.2217331999563612,
+        "answer_successful_stages": 1.269893299904652,
+        "judge": 4.152630599972326
+      }
+    },
+    {
+      "id": "q036",
+      "category": "multi_part",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 0,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.03063240001210943,
+        "generation": 1.0882287999847904,
+        "answer_successful_stages": 1.1188611999968998,
+        "judge": 7.957081499975175
+      }
+    },
+    {
+      "id": "q045",
+      "category": "paraphrase",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 0,
+        "faithfulness": 1,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.04042879998451099,
+        "generation": 1.1761676999740303,
+        "answer_successful_stages": 1.2165964999585412,
+        "judge": 3.079253699979745
+      }
+    },
+    {
+      "id": "q046",
+      "category": "paraphrase",
+      "answerable": true,
+      "resumed": false,
+      "scores": {
+        "correctness": 1,
+        "faithfulness": 0,
+        "abstention": null
+      },
+      "latency_s": {
+        "retrieval": 0.03875930001959205,
+        "generation": 1.1321656999643892,
+        "answer_successful_stages": 1.1709249999839813,
+        "judge": 6.7345226999605075
+      }
+    },
+    {
+      "id": "q050",
+      "category": "unanswerable",
+      "answerable": false,
+      "resumed": false,
+      "scores": {
+        "correctness": null,
+        "faithfulness": null,
+        "abstention": 1
+      },
+      "latency_s": {
+        "retrieval": 0.031222800025716424,
+        "generation": 0.988318000047002,
+        "answer_successful_stages": 1.0195408000727184,
+        "judge": 2.7287689999793656
+      }
+    }
+  ],
+  "limitations": [
+    "Judge scores are model-based estimates backed by a small, single-reviewer human calibration; they are not general RAG accuracy.",
+    "The reserved split covers the same frozen FastAPI corpus as development and does not establish cross-domain generalization.",
+    "Successful-stage answer latency is retrieval plus successful generation; scheduling delays, judge time, model preload and failed-attempt time are excluded."
+  ],
+  "provenance": {
+    "metrics_sha256": "74dd08f3925c6ff670daa2417921e2efc8ea3cf3889f658ac77f62e2614f5f57",
+    "reporter_sha256": "3eb8b9fade706ba56b3d2abaf09c1f5ee5a59061c96a87a102708d3075288d42"
+  }
+}
