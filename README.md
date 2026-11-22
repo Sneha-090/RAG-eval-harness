@@ -19,8 +19,9 @@ After a recorded freeze, the one-time reserved test achieved 100% Page Hit@5,
 77.8% answer correctness, 77.8% faithfulness and 100% abstention. See the
 [final report](reports/final-test-v1-2026-11-22/SUMMARY.md). No production-
 readiness claim is made. Django benchmark v2 is in progress: its 12 official
-documentation sources are pinned, while its questions and results are not yet
-frozen or reported.
+documentation sources and 50-question draft are versioned. Development-only
+comparison selected configuration B with complete evidence on 30/36 answerable
+questions; semantic author review, freeze and reserved test remain pending.
 
 ## Implemented
 
@@ -41,7 +42,7 @@ frozen or reported.
 - A guided local review screen that saves blind human labels without showing judge scores.
 - A versioned corpus registry that keeps FastAPI v1 and Django v2 datasets,
   Chroma collections and provenance separate.
-- 76 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
+- 77 automated tests covering chunking, retrieval, quality gates, validation, resume/error handling,
   metrics and judging.
 
 ## Draft development results
@@ -168,6 +169,12 @@ The default view shows the frozen final metrics, four-configuration comparison,
 pipeline flow, category evidence, per-question outcomes and failure analysis.
 Use the sidebar to switch to Blind review, which shows the reference, generated
 answer and retrieved context and saves human decisions to the labels file.
+
+For Streamlit Community Cloud, deploy `dashboard/streamlit_app.py` from the
+`main` branch. Its local dependency file contains only Streamlit and pandas, so
+the public saved-results dashboard does not install the evaluation stack. No
+secrets are required. Community Cloud executes from the repository root, so
+the versioned report paths and root theme remain valid.
 
 ## Next milestones
 

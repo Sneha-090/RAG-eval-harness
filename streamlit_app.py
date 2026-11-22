@@ -19,6 +19,7 @@ ABSTENTION_LABELS = {1: 'Correctly refused', 0: 'Invented an answer'}
 FINAL_REPORT = ROOT / 'reports/final-test-v1-2026-11-22/evaluation.json'
 FINAL_RETRIEVAL = ROOT / 'reports/final-test-v1-2026-11-22/retrieval.json'
 CONFIG_COMPARISON = ROOT / 'reports/four-config-dev-2026-11-12/comparison.json'
+DJANGO_COMPARISON = ROOT / 'reports/four-config-django-v2-dev-2026-11-22/comparison.json'
 CALIBRATION_RESULT = ROOT / 'calibration/2026-11-14/agreement.json'
 
 
@@ -97,6 +98,7 @@ def render_dashboard():
         answer_report = load_json(str(FINAL_REPORT))
         retrieval_report = load_json(str(FINAL_RETRIEVAL))
         comparison = load_json(str(CONFIG_COMPARISON))
+        django_comparison = load_json(str(DJANGO_COMPARISON))
         calibration = load_json(str(CALIBRATION_RESULT))
     except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
         st.error(str(exc), title='Versioned results could not be loaded')
@@ -106,7 +108,7 @@ def render_dashboard():
     retrieval = retrieval_report['overall']
 
     st.title('RAG evaluation harness')
-    st.caption('A reproducible FastAPI RAG benchmark that separates retrieval, grounding and answer quality.')
+    st.caption('A reproducible RAG benchmark that separates retrieval, grounding and answer quality across two documentation domains.')
     st.success(
         'Benchmark v1 was frozen before the reserved test. These are saved results—opening this dashboard makes no API calls.',
         title='Frozen final evaluation',
@@ -196,8 +198,8 @@ def render_dashboard():
             'Correctness': st.column_config.NumberColumn(format='%.1f'),
             'Faithfulness': st.column_config.NumberColumn(format='%.1f'),
             'Abstention': st.column_config.NumberColumn(format='%.1f'),
-            'Page hit': st.column_config.ProgressColumn(min_value=0, max_value=1, format='%.0f%%'),
-            'Evidence coverage': st.column_config.ProgressColumn(min_value=0, max_value=1, format='%.0f%%'),
+            'Page hit': st.column_config.ProgressColumn(min_value=0, max_value=1, format='percent'),
+            'Evidence coverage': st.column_config.ProgressColumn(min_value=0, max_value=1, format='percent'),
         },
     )
 
@@ -220,6 +222,62 @@ def render_dashboard():
     st.warning(
         'The benchmark uses one FastAPI domain and only ten reserved questions. All references were AI-assisted cross-checked, but the full 50-item author checklist is incomplete.',
         title='Read the result honestly',
+    )
+
+    st.subheader('Cross-domain development check')
+    st.caption(
+        'The same four retrieval configurations were also run on 40 Django 5.2 LTS development questions. '
+        'The ten Django reserved-test questions remain untouched.'
+    )
+    django_b = django_comparison['configurations']['B']
+    with st.container(horizontal=True):
+        st.metric('Django page Hit@5', percent(django_b['hit_at_5']), border=True)
+        st.metric('Django complete evidence',
+                  f"{django_b['complete_evidence_count']}/36 ({percent(django_b['complete_evidence_at_5'])})",
+                  border=True)
+        st.metric('Django evidence coverage', percent(django_b['evidence_coverage_at_5']), border=True)
+        st.metric('Django mean retrieval', f"{django_b['retrieval_mean_s'] * 1000:.1f} ms", border=True)
+
+    cross_domain_rows = []
+    django_rows = []
+    for name in comparison['configurations']:
+        fastapi_item = comparison['configurations'][name]
+        django_item = django_comparison['configurations'][name]
+        cross_domain_rows.append({
+            'Configuration': name,
+            'FastAPI complete evidence (%)': fastapi_item['complete_evidence_at_5'] * 100,
+            'Django complete evidence (%)': django_item['complete_evidence_at_5'] * 100,
+        })
+        django_rows.append({
+            'Configuration': name,
+            'Pipeline': django_item['pipeline'],
+            'Complete evidence': django_item['complete_evidence_at_5'],
+            'Evidence coverage': django_item['evidence_coverage_at_5'],
+            'MRR@5': django_item['mrr_at_5'],
+            'Mean retrieval (ms)': django_item['retrieval_mean_s'] * 1000,
+        })
+    st.bar_chart(
+        pd.DataFrame(cross_domain_rows),
+        x='Configuration',
+        y=['FastAPI complete evidence (%)', 'Django complete evidence (%)'],
+        y_label='Complete evidence (%)',
+        alt='Configuration B has the highest complete-evidence rate on both development corpora',
+    )
+    st.dataframe(
+        pd.DataFrame(django_rows),
+        hide_index=True,
+        alt='Django development retrieval comparison for configurations A through D',
+        column_config={
+            'Complete evidence': st.column_config.ProgressColumn(min_value=0, max_value=1, format='percent'),
+            'Evidence coverage': st.column_config.ProgressColumn(min_value=0, max_value=1, format='percent'),
+            'MRR@5': st.column_config.NumberColumn(format='%.4f'),
+            'Mean retrieval (ms)': st.column_config.NumberColumn(format='%.1f ms'),
+        },
+    )
+    st.warning(
+        'Django v2 is a transparent development result, not a final benchmark claim. '
+        'Its AI-assisted references passed exact-evidence validation, but semantic author review and the reserved test are pending.',
+        title='Django v2 status',
     )
 
 
