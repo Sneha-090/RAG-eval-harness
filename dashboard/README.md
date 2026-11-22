@@ -2,6 +2,8 @@
 
 Deploy `dashboard/streamlit_app.py` on Streamlit Community Cloud.
 
+Live deployment: https://sneha-rag-eval-harness.streamlit.app/
+
 The app reads only versioned JSON reports from the repository. This folder has
 a deliberately small `requirements.txt`, so the dashboard deployment does not
 install Chroma, Torch, sentence-transformers or other evaluation-only packages.

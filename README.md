@@ -163,6 +163,8 @@ retrieval-only run. Never commit credentials.
 
 Open the saved-results dashboard (no API keys or model calls required):
 
+**Live dashboard:** https://sneha-rag-eval-harness.streamlit.app/
+
     python -m streamlit run streamlit_app.py
 
 The default view shows the frozen final metrics, four-configuration comparison,
@@ -180,9 +182,11 @@ the versioned report paths and root theme remain valid.
 
 Benchmark v1, mixed calibration, the one-time reserved test, results dashboard,
 architecture guide and portable learning handoff are complete. The second
-Django corpus is pinned and isolated; benchmark authoring, a fresh freeze and
-cross-domain comparison are the active v2 work. Dashboard deployment follows
-the versioned v2 results and will not rewrite the v1 result.
+Django corpus is pinned and isolated, its 50-question benchmark draft is
+structurally validated, and the four development configurations have been
+compared. The live dashboard shows these v2 development results without
+rewriting the frozen v1 result. Semantic author review, a fresh v2 freeze and
+the untouched Django reserved test remain before making a final v2 claim.
 See [ROADMAP.md](ROADMAP.md) and [PROJECT_LOG.md](PROJECT_LOG.md) for context.
 
 
