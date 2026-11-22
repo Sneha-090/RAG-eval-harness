@@ -65,6 +65,27 @@ class AnswerReportTests(unittest.TestCase):
             build_report(self.capture, self.observations, self.judge,
                          self.verdicts, self.agreement)
 
+    def test_separate_calibration_run_with_same_judge_contract_is_accepted(self):
+        calibration_contract = {'capture_signature': 'calibration-capture',
+                                'judge': {'provider': 'test', 'model': 'judge'}}
+        calibration = {'contract': calibration_contract, 'dataset': [], 'observations': []}
+        calibration['signature'] = digest({'rows': [], 'observations': [],
+                                            'contract': calibration_contract})
+        agreement = dict(self.agreement, judge_signature=calibration['signature'],
+                         metric_sample_size={'correctness': 8, 'faithfulness': 8,
+                                             'abstention': 2},
+                         exact_agreement={'correctness': 1, 'faithfulness': 1,
+                                          'abstention': 1})
+        report = build_report(self.capture, self.observations, self.judge,
+                              self.verdicts, agreement, calibration)
+        self.assertTrue(report['human_calibration']['abstention_human_validated'])
+        self.assertEqual(report['human_calibration']['judge_signature'], calibration['signature'])
+
+        calibration['contract']['judge'] = {'provider': 'test', 'model': 'different'}
+        with self.assertRaises(ValueError):
+            build_report(self.capture, self.observations, self.judge,
+                         self.verdicts, agreement, calibration)
+
 
 if __name__ == '__main__':
     unittest.main()

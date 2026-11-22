@@ -54,7 +54,15 @@ def _score_summary(values, allowed):
             'distribution': {str(value): distribution[value] for value in sorted(allowed)}}
 
 
-def build_report(capture_manifest, observations, judge_manifest, verdicts, agreement):
+def _judge_identity(manifest):
+    """Return judge settings that must match between calibration and scoring."""
+    contract = manifest['contract']
+    return {key: contract.get(key) for key in
+            ('version', 'judge', 'temperature', 'prompt_sha256', 'implementation_sha256')}
+
+
+def build_report(capture_manifest, observations, judge_manifest, verdicts, agreement,
+                 calibration_judge_manifest=None):
     rows = capture_manifest['dataset']
     if capture_manifest['contract'].get('mode') != 'answers':
         raise ValueError('Answer report requires an answers-mode capture')
@@ -63,8 +71,12 @@ def build_report(capture_manifest, observations, judge_manifest, verdicts, agree
         raise ValueError('Answer report inputs must align')
     if judge_manifest['contract'].get('capture_signature') != capture_manifest['signature']:
         raise ValueError('Judge and capture signatures differ')
-    if agreement.get('judge_signature') != judge_manifest['signature'] or not agreement.get('agreement_measured'):
+    calibration_judge_manifest = calibration_judge_manifest or judge_manifest
+    if (agreement.get('judge_signature') != calibration_judge_manifest['signature']
+            or not agreement.get('agreement_measured')):
         raise ValueError('Human agreement does not match this judge run')
+    if _judge_identity(calibration_judge_manifest) != _judge_identity(judge_manifest):
+        raise ValueError('Calibration and scoring judge contracts differ')
 
     correctness, faithfulness, abstention = [], [], []
     retrieval_times, generation_times, answer_times, judge_times = [], [], [], []
@@ -95,9 +107,28 @@ def build_report(capture_manifest, observations, judge_manifest, verdicts, agree
                           'latency_s': {'retrieval': retrieval_s, 'generation': generation_s,
                                         'answer_successful_stages': answer_s, 'judge': judge_s}})
 
+    split_values = sorted({row.get('split') for row in rows if row.get('split')})
+    metric_sample_size = agreement.get('metric_sample_size') or {
+        'correctness': agreement['sample_size'],
+        'faithfulness': agreement['sample_size'],
+        'abstention': 0}
+    is_reserved_test = split_values == ['test']
+    resumed_count = sum(1 for observation in observations if observation.get('resumed'))
+    limitations = [
+        'Judge scores are model-based estimates backed by a small, single-reviewer '
+        'human calibration; they are not general RAG accuracy.',
+        'The reserved split covers the same frozen FastAPI corpus as development and '
+        'does not establish cross-domain generalization.',
+        'Successful-stage answer latency is retrieval plus successful generation; '
+        'scheduling delays, judge time, model preload and failed-attempt time are excluded.']
+    if resumed_count:
+        limitations.append(
+            f'{resumed_count} question(s) resumed from checkpoints; total failed-attempt '
+            'cost cannot be reconstructed from saved checkpoints.')
     return {
-        'report_version': 1,
-        'status': 'provisional_development_result',
+        'report_version': 2,
+        'status': 'final_reserved_test_result' if is_reserved_test else 'provisional_development_result',
+        'splits': split_values,
         'requested': len(rows),
         'completed': len(questions),
         'answerable_count': sum(row['answerable'] for row in rows),
@@ -114,9 +145,11 @@ def build_report(capture_manifest, observations, judge_manifest, verdicts, agree
                   **judge_manifest['contract']['judge'],
                   'prompt_sha256': judge_manifest['contract'].get('prompt_sha256')},
         'human_calibration': {'sample_size': agreement['sample_size'],
+                              'metric_sample_size': metric_sample_size,
                               'exact_agreement': agreement['exact_agreement'],
                               'disagreement_count': len(agreement['disagreements']),
-                              'abstention_human_validated': False},
+                              'judge_signature': calibration_judge_manifest['signature'],
+                              'abstention_human_validated': metric_sample_size.get('abstention', 0) > 0},
         'answer_quality': {
             'correctness': _score_summary(correctness, {0, .5, 1}),
             'faithfulness': _score_summary(faithfulness, {0, 1}),
@@ -126,23 +159,17 @@ def build_report(capture_manifest, observations, judge_manifest, verdicts, agree
             'generation': latency_summary(generation_times),
             'answer_successful_stages': latency_summary(answer_times),
             'judge_excluded_from_answer_latency': latency_summary(judge_times),
-            'resumed_question_count': sum(1 for observation in observations if observation.get('resumed'))},
+            'resumed_question_count': resumed_count},
         'questions': questions,
-        'limitations': [
-            'Draft development sample of 15 questions; the reserved test split was not used.',
-            'Judge scores are provisional: correctness agreement was measured on 14 answers, '
-            'faithfulness agreement was 78.6%, and abstention has no human calibration.',
-            'The historical capture uses configuration A, not the selected configuration B.',
-            'Successful-stage answer latency is retrieval plus successful generation; scheduling '
-            'delays, judge time, model preload and failed-attempt time are excluded.',
-            'Four resumed questions are identified, but total retry cost cannot be reconstructed '
-            'from the saved historical checkpoints.']}
+        'limitations': limitations}
 
 
 def render_markdown(report):
     quality, latency, calibration = report['answer_quality'], report['latency'], report['human_calibration']
     lines = [
-        '# Provisional answer-quality report', '',
+        ('# Final reserved-test answer-quality report'
+         if report['status'] == 'final_reserved_test_result'
+         else '# Provisional answer-quality report'), '',
         f"Configuration {report['capture']['config']}; {report['completed']}/{report['requested']} saved answers scored.",
         f"Generator: `{report['capture']['generator']['provider']} / {report['capture']['generator']['model']}`.",
         f"Judge: `{report['judge']['provider']} / {report['judge']['model']}`.", '',
@@ -154,11 +181,14 @@ def render_markdown(report):
         f"({quality['faithfulness']['mean']:.1%}) |",
         f"| Abstention | {quality['abstention']['score_sum']:g}/{quality['abstention']['count']} "
         f"({quality['abstention']['mean']:.1%}) |", '',
-        'These are provisional judge scores, not general RAG accuracy.', '',
+        'These are calibrated model-judge estimates, not general RAG accuracy.', '',
         '## Human calibration', '',
-        f"Blind exact agreement on {calibration['sample_size']} answerable outputs: correctness "
-        f"{calibration['exact_agreement']['correctness']:.1%}; faithfulness "
-        f"{calibration['exact_agreement']['faithfulness']:.1%}. Abstention was not human-calibrated.", '',
+        f"Blind exact agreement: correctness {calibration['exact_agreement']['correctness']:.1%} "
+        f"on {calibration['metric_sample_size']['correctness']} labels; faithfulness "
+        f"{calibration['exact_agreement']['faithfulness']:.1%} on "
+        f"{calibration['metric_sample_size']['faithfulness']} labels; abstention "
+        f"{calibration['exact_agreement'].get('abstention', 0):.1%} on "
+        f"{calibration['metric_sample_size']['abstention']} labels.", '',
         '## Latency', '',
         '| Stage | Count | Mean | Nearest-rank P95 |', '|---|---:|---:|---:|']
     for label, key in [('Retrieval', 'retrieval'), ('Generation', 'generation'),
@@ -185,6 +215,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run', type=Path, required=True)
     parser.add_argument('--judge', type=Path, required=True)
+    parser.add_argument('--calibration-judge', type=Path,
+                        help='Judge run used by the human calibration; defaults to --judge')
     parser.add_argument('--packet', type=Path, required=True)
     parser.add_argument('--labels', type=Path, required=True)
     parser.add_argument('--agreement', type=Path, required=True)
@@ -195,11 +227,14 @@ def main():
             raise ValueError('Output directory already exists')
         capture, observations = load_capture(args.run)
         judge, verdicts = load_judge(args.judge, capture, observations)
-        agreement = compare_packet(args.packet, args.labels, args.judge)
+        calibration_judge_path = args.calibration_judge or args.judge
+        agreement = compare_packet(args.packet, args.labels, calibration_judge_path)
         saved_agreement = json.loads(args.agreement.read_text(encoding='utf-8'))
         if saved_agreement != agreement:
             raise ValueError('Versioned agreement differs from recomputed agreement')
-        report = build_report(capture, observations, judge, verdicts, agreement)
+        calibration_judge = json.loads((calibration_judge_path / 'manifest.json').read_text(encoding='utf-8'))
+        report = build_report(capture, observations, judge, verdicts, agreement,
+                              calibration_judge)
         report['provenance'] = {'metrics_sha256': file_digest('METRICS.md'),
                                 'reporter_sha256': file_digest(Path(__file__))}
         args.output.mkdir(parents=True)
