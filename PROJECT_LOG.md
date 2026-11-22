@@ -537,3 +537,18 @@ especially because it now measures abstention. It remains a small development
 sample with one human reviewer, so the result is reported with its sample sizes
 and is not a universal reliability claim. It supports freezing the benchmark
 and using this exact judge contract for the one-time reserved-test report.
+
+
+## 28. Benchmark and final protocol frozen: 22 November 2026
+
+Created a machine-readable benchmark v1 freeze before touching the ten reserved
+test questions. It records the 50-question dataset hash, all 12 corpus file
+hashes, test IDs, configuration B settings, semantic-index fingerprint, pinned
+embedding revision, generator and judge models, prompt hashes, calibration
+artifact hash and the source commit from which the freeze was made.
+
+The accompanying protocol prohibits tuning from the final test and requires a
+new named version after any pipeline or label change. It also records the honest
+review limitation: all 50 references received an AI-assisted source cross-check
+and programmatic evidence validation, but the full item-by-item author checklist
+is incomplete. The reserved split remains untouched at freeze time.

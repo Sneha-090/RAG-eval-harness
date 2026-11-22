@@ -1,7 +1,10 @@
-# Evaluation set — draft version 0.2
+# Evaluation set — frozen benchmark v1
 
 50 evidence-backed questions cover all 12 frozen FastAPI tutorial pages.
-This is a draft benchmark, not a human-approved or frozen evaluation set.
+The content was frozen before its one-time reserved-test run on 22 November
+2026. See `BENCHMARK_FREEZE_v1.md` and `benchmark-freeze-v1.json` for the exact
+contract and limitations. The legacy filename `questions.draft.jsonl` is kept
+to avoid invalidating historical signed run manifests.
 
 | Category | Development | Reserved test | Total |
 |---|---:|---:|---:|
@@ -15,9 +18,9 @@ This is a draft benchmark, not a human-approved or frozen evaluation set.
 Only development questions are run while building and tuning the pipeline.
 Reserved test questions have not been evaluated. Concepts and source pages
 overlap between splits, so this is not a claim of independent domain generalization.
-The author must review wording, reference correctness, sufficient evidence,
-ambiguity, related-question leakage and absence of answers for unanswerable items
-before freezing this version. REVIEW.md provides the complete review sheet.
+All 50 references received an AI-assisted cross-check and exact evidence
+validation. Full item-by-item author review is incomplete; `REVIEW.md` preserves
+that status and the review history.
 
 Run from the repository root:
 
@@ -35,10 +38,9 @@ Unanswerable records have empty sources/evidence and the expected refusal as
 their reference. The validator checks structure, uniqueness, source existence,
 and exact evidence presence. It does not prove correctness or unanswerability.
 
-The developer may correct factual/format errors during review, recording the
-reason and changing the dataset hash. Do not revise labels because a pipeline
-scored poorly. After human review, create a named dataset version and content
-hash before comparison experiments. METRICS.md version 2 defines deterministic
-retrieval scoring. Provisional answer judging is implemented; human judge validation remains pending (see JUDGING.md).
+The frozen dataset hash is recorded in the v1 manifest. Do not revise labels
+because a pipeline scored poorly. METRICS.md version 2 defines deterministic
+retrieval scoring. Answer judging has fresh mixed human calibration; see
+`calibration/2026-11-14` and JUDGING.md.
 
 See RUNNING_EVAL.md for observation capture and offline report commands.
